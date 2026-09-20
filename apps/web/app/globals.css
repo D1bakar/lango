@@ -43,6 +43,14 @@
   --color-mastery-decaying: #8a5a15;
   --color-mastery-decaying-soft: #fdf5e6;
 
+  /*
+   * Study-dark surfaces: reserved for focus surfaces (mentor sessions,
+   * placement). Depth comes from layering, never drop shadows.
+   */
+  --color-study: #1b1d22;
+  --color-study-raised: #23262d;
+  --color-study-line: rgb(250 248 245 / 0.14);
+
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
