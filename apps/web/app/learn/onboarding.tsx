@@ -258,11 +258,15 @@ export function Onboarding({ languages, pairsByNative }: OnboardingProps) {
             <div className="mt-8 sm:col-span-2">
               <button
                 type="button"
+                disabled={goal === undefined}
                 onClick={() => setStepIndex((current) => current + 1)}
-                className="rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-lift hover:bg-accent-strong"
+                className="rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-lift hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-50"
               >
                 See my plan
               </button>
+              {goal === undefined ? (
+                <p className="mt-2 text-sm text-muted">Pick a goal above to continue.</p>
+              ) : null}
             </div>
           </Step>
         ) : null}
