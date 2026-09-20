@@ -248,10 +248,7 @@ export default async function HomePage() {
         id="how"
         className="scroll-mt-24 rounded-2xl border border-line bg-surface p-8 shadow-card sm:p-10"
       >
-        <p className="text-xs font-medium tracking-wide text-accent uppercase">How Lingua works</p>
-        <h2 className="mt-2 font-serif text-3xl text-balance sm:text-4xl">
-          One plan, every lesson inside it.
-        </h2>
+        <SectionHeading eyebrow="How Lingua works" title="One plan, every lesson inside it." />
         <ol className="mt-8 grid gap-8 sm:grid-cols-3">
           <HowStep
             n="1"
