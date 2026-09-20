@@ -50,6 +50,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/learn" className="hover:text-ink">
                 Find your path
               </Link>
+              <Link href="/placement" className="hover:text-ink">
+                Placement
+              </Link>
               <Link href="/#how" className="hover:text-ink">
                 How it works
               </Link>
@@ -82,6 +85,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="mx-auto flex w-full max-w-6xl items-center gap-6 overflow-x-auto px-5 py-2 text-sm text-muted">
               <Link href="/learn" className="shrink-0 hover:text-ink">
                 Find your path
+              </Link>
+              <Link href="/placement" className="shrink-0 hover:text-ink">
+                Placement
               </Link>
               <Link href="/#how" className="shrink-0 hover:text-ink">
                 How it works
