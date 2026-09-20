@@ -3,7 +3,6 @@
 
 import type { FastifyInstance } from "fastify";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { problemDetailsSchema } from "@lingua/types";
 import { buildApp } from "../app";
 
 describe("learner routes", () => {

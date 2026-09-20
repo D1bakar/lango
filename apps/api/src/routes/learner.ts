@@ -12,10 +12,7 @@
 
 import type { FastifyInstance } from "fastify";
 import { createProblem, sendProblem } from "../problem";
-import {
-  requireAuth,
-  type AuthenticatedRequest,
-} from "../middleware/auth";
+import { requireAuth, type AuthenticatedRequest } from "../middleware/auth";
 
 const VALID_GOALS = ["travel", "work", "exam", "family", "media", "other"];
 const VALID_CEFR = ["A0", "A1", "A2", "B1", "B2", "C1", "C2"];
@@ -269,45 +266,41 @@ export async function registerLearnerRoutes(app: FastifyInstance): Promise<void>
   // GET /v1/learner/languages
   // List all profiles for the authenticated user.
   // ---------------------------------------------------------------------------
-  app.get(
-    "/v1/learner/languages",
-    { preHandler: [requireAuth] },
-    async (request, reply) => {
-      const { sub } = (request as AuthenticatedRequest).user;
+  app.get("/v1/learner/languages", { preHandler: [requireAuth] }, async (request, reply) => {
+    const { sub } = (request as AuthenticatedRequest).user;
 
-      const { prisma } = await import("@lingua/db");
-      const profiles = await prisma.learnerLanguageProfile.findMany({
-        where: { user_id: sub },
-        include: {
-          target_language: true,
-          native_language: true,
+    const { prisma } = await import("@lingua/db");
+    const profiles = await prisma.learnerLanguageProfile.findMany({
+      where: { user_id: sub },
+      include: {
+        target_language: true,
+        native_language: true,
+      },
+      orderBy: { created_at: "desc" },
+    });
+
+    reply.send(
+      profiles.map((profile) => ({
+        id: profile.id,
+        target_language: {
+          id: profile.target_language.id,
+          tag: profile.target_language.bcp47_tag,
+          english_name: profile.target_language.english_name,
         },
-        orderBy: { created_at: "desc" },
-      });
-
-      reply.send(
-        profiles.map((profile) => ({
-          id: profile.id,
-          target_language: {
-            id: profile.target_language.id,
-            tag: profile.target_language.bcp47_tag,
-            english_name: profile.target_language.english_name,
-          },
-          native_language: {
-            id: profile.native_language.id,
-            tag: profile.native_language.bcp47_tag,
-            english_name: profile.native_language.english_name,
-          },
-          cefr_self: profile.cefr_self,
-          goal: profile.goal,
-          daily_minutes_target: profile.daily_minutes_target,
-          is_active: profile.is_active,
-          onboarding_completed_at: profile.onboarding_completed_at,
-          created_at: profile.created_at,
-        })),
-      );
-    },
-  );
+        native_language: {
+          id: profile.native_language.id,
+          tag: profile.native_language.bcp47_tag,
+          english_name: profile.native_language.english_name,
+        },
+        cefr_self: profile.cefr_self,
+        goal: profile.goal,
+        daily_minutes_target: profile.daily_minutes_target,
+        is_active: profile.is_active,
+        onboarding_completed_at: profile.onboarding_completed_at,
+        created_at: profile.created_at,
+      })),
+    );
+  });
 
   // ---------------------------------------------------------------------------
   // POST /v1/learning-plan
@@ -371,11 +364,12 @@ export async function registerLearnerRoutes(app: FastifyInstance): Promise<void>
       const levelIndex = cefrLadder.indexOf(selectedLevel);
 
       // Find the pack whose range includes the learner's level
-      const matchingPack = packs.find((pack) => {
-        const fromIndex = cefrLadder.indexOf(pack.cefr_from);
-        const toIndex = cefrLadder.indexOf(pack.cefr_to);
-        return levelIndex >= fromIndex && levelIndex <= toIndex;
-      }) ?? packs[0];
+      const matchingPack =
+        packs.find((pack) => {
+          const fromIndex = cefrLadder.indexOf(pack.cefr_from);
+          const toIndex = cefrLadder.indexOf(pack.cefr_to);
+          return levelIndex >= fromIndex && levelIndex <= toIndex;
+        }) ?? packs[0];
 
       // Calculate daily session breakdown
       const totalMinutes = profile.daily_minutes_target;
@@ -385,11 +379,14 @@ export async function registerLearnerRoutes(app: FastifyInstance): Promise<void>
 
       // Estimate completion time
       const packHours = matchingPack
-        ? Math.round((matchingPack as unknown as { estimated_minutes: number }).estimated_minutes / 60)
+        ? Math.round(
+            (matchingPack as unknown as { estimated_minutes: number }).estimated_minutes / 60,
+          )
         : 0;
       const daysToComplete = matchingPack
         ? Math.ceil(
-            ((matchingPack as unknown as { estimated_minutes: number }).estimated_minutes / totalMinutes)
+            (matchingPack as unknown as { estimated_minutes: number }).estimated_minutes /
+              totalMinutes,
           )
         : 0;
 

@@ -5,6 +5,7 @@ import { randomUUID } from "node:crypto";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import jwt from "@fastify/jwt";
+import cookie from "@fastify/cookie";
 import Fastify, { type FastifyInstance } from "fastify";
 import { getCorsOrigins, getServerEnv } from "@lingua/config";
 import { createProblem, sendProblem } from "./problem";
@@ -47,6 +48,9 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<FastifyIn
     secret: env.AUTH_SECRET ?? "dev-secret-change-in-production-min-32-chars!!",
     sign: { algorithm: "HS256" },
   });
+
+  // Cookie support for refresh tokens
+  await app.register(cookie);
 
   // Echo the correlation id so a user-reported failure can be traced to logs.
   app.addHook("onSend", async (request, reply) => {

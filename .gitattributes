@@ -1,0 +1,3 @@
+# Prettier enforces endOfLine: lf, so every checkout must use LF —
+# otherwise format:check fails on Windows for line-ending reasons alone.
+* text=auto eol=lf

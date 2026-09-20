@@ -258,9 +258,7 @@ export async function registerAuthRoutes(app: FastifyInstance): Promise<void> {
   // POST /v1/auth/refresh
   // ---------------------------------------------------------------------------
   app.post("/v1/auth/refresh", async (request, reply) => {
-    const refreshToken = request.cookies[REFRESH_COOKIE_NAME] as
-      | string
-      | undefined;
+    const refreshToken = request.cookies[REFRESH_COOKIE_NAME] as string | undefined;
 
     if (!refreshToken) {
       sendProblem(
@@ -307,9 +305,7 @@ export async function registerAuthRoutes(app: FastifyInstance): Promise<void> {
     // Check if this token matches any session
     let matchedSession: (typeof sessions)[number] | undefined;
     for (const session of sessions) {
-      const matches = await verify(session.refresh_token_hash, refreshToken).catch(
-        () => false,
-      );
+      const matches = await verify(session.refresh_token_hash, refreshToken).catch(() => false);
       if (matches) {
         matchedSession = session;
         break;
@@ -390,93 +386,81 @@ export async function registerAuthRoutes(app: FastifyInstance): Promise<void> {
   // ---------------------------------------------------------------------------
   // POST /v1/auth/logout
   // ---------------------------------------------------------------------------
-  app.post(
-    "/v1/auth/logout",
-    { preHandler: [requireAuth] },
-    async (request, reply) => {
-      const { sub } = (request as AuthenticatedRequest).user;
-      const refreshToken = request.cookies[REFRESH_COOKIE_NAME] as
-        | string
-        | undefined;
+  app.post("/v1/auth/logout", { preHandler: [requireAuth] }, async (request, reply) => {
+    const { sub } = (request as AuthenticatedRequest).user;
+    const refreshToken = request.cookies[REFRESH_COOKIE_NAME] as string | undefined;
 
-      const { prisma } = await import("@lingua/db");
+    const { prisma } = await import("@lingua/db");
 
-      // Revoke all sessions for this user (or just the current one if we match)
-      if (refreshToken) {
-        const sessions = await prisma.authSession.findMany({
-          where: { user_id: sub, revoked_at: null },
-        });
+    // Revoke all sessions for this user (or just the current one if we match)
+    if (refreshToken) {
+      const sessions = await prisma.authSession.findMany({
+        where: { user_id: sub, revoked_at: null },
+      });
 
-        for (const session of sessions) {
-          const matches = await verify(session.refresh_token_hash, refreshToken).catch(
-            () => false,
-          );
-          if (matches) {
-            await prisma.authSession.update({
-              where: { id: session.id },
-              data: { revoked_at: new Date() },
-            });
-            break;
-          }
+      for (const session of sessions) {
+        const matches = await verify(session.refresh_token_hash, refreshToken).catch(() => false);
+        if (matches) {
+          await prisma.authSession.update({
+            where: { id: session.id },
+            data: { revoked_at: new Date() },
+          });
+          break;
         }
       }
+    }
 
-      // Clear the cookie
-      reply.clearCookie(REFRESH_COOKIE_NAME, { path: "/" });
-      reply.status(204).send();
-    },
-  );
+    // Clear the cookie
+    reply.clearCookie(REFRESH_COOKIE_NAME, { path: "/" });
+    reply.status(204).send();
+  });
 
   // ---------------------------------------------------------------------------
   // GET /v1/me
   // ---------------------------------------------------------------------------
-  app.get(
-    "/v1/me",
-    { preHandler: [requireAuth] },
-    async (request, reply) => {
-      const { sub } = (request as AuthenticatedRequest).user;
+  app.get("/v1/me", { preHandler: [requireAuth] }, async (request, reply) => {
+    const { sub } = (request as AuthenticatedRequest).user;
 
-      const { prisma } = await import("@lingua/db");
-      const user = await prisma.user.findUnique({
-        where: { id: sub },
-        include: {
-          learner_profiles: {
-            where: { is_active: true },
-            include: {
-              target_language: true,
-              native_language: true,
-            },
-          },
-          entitlements: {
-            where: { status: "active" },
+    const { prisma } = await import("@lingua/db");
+    const user = await prisma.user.findUnique({
+      where: { id: sub },
+      include: {
+        learner_profiles: {
+          where: { is_active: true },
+          include: {
+            target_language: true,
+            native_language: true,
           },
         },
-      });
+        entitlements: {
+          where: { status: "active" },
+        },
+      },
+    });
 
-      if (!user) {
-        sendProblem(
-          reply,
-          createProblem({
-            code: "not_found",
-            detail: "User not found.",
-            instance: request.url,
-            requestId: request.id,
-          }),
-        );
-        return;
-      }
+    if (!user) {
+      sendProblem(
+        reply,
+        createProblem({
+          code: "not_found",
+          detail: "User not found.",
+          instance: request.url,
+          requestId: request.id,
+        }),
+      );
+      return;
+    }
 
-      reply.send({
-        id: user.id,
-        email: user.email,
-        display_name: user.display_name,
-        role: user.role,
-        ui_locale: user.ui_locale,
-        timezone: user.timezone,
-        created_at: user.created_at,
-        active_profile: user.learner_profiles[0] ?? null,
-        entitlement: user.entitlements[0] ?? null,
-      });
-    },
-  );
+    reply.send({
+      id: user.id,
+      email: user.email,
+      display_name: user.display_name,
+      role: user.role,
+      ui_locale: user.ui_locale,
+      timezone: user.timezone,
+      created_at: user.created_at,
+      active_profile: user.learner_profiles[0] ?? null,
+      entitlement: user.entitlements[0] ?? null,
+    });
+  });
 }
