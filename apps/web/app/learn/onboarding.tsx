@@ -416,6 +416,12 @@ function Plan({
         <p className="mt-4 text-sm text-muted">{packDescription}</p>
       ) : null}
 
+      <p className="mt-4 rounded-lg border border-line bg-canvas px-4 py-3 text-sm text-muted">
+        Why this plan? Every row above is built from the pack&apos;s own metadata — level range,
+        hours, and daily loop are computed, not guessed. When the curriculum changes, this plan
+        changes with it.
+      </p>
+
       <div className="mt-8">
         <button
           type="button"
