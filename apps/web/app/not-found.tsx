@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2026 Lingua contributors
 
-import Link from "next/link";
+import { ButtonLink } from "@/components/button";
 
 /**
  * Unknown routes land here with a way back into the curriculum —
@@ -16,18 +16,10 @@ export default function NotFound() {
         The page you asked for does not exist. Your learning paths are one step away.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Link
-          href="/learn"
-          className="rounded-md bg-accent px-6 py-3 text-sm font-medium text-white hover:bg-accent-strong"
-        >
-          Find your path
-        </Link>
-        <Link
-          href="/"
-          className="rounded-md border border-line bg-surface px-6 py-3 text-sm text-ink hover:border-line-strong"
-        >
+        <ButtonLink href="/learn">Find your path</ButtonLink>
+        <ButtonLink href="/" variant="secondary">
           Back home
-        </Link>
+        </ButtonLink>
       </div>
     </section>
   );
