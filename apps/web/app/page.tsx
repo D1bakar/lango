@@ -4,6 +4,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { CorrectionCard } from "@/components/correction-card";
+import { SectionHeading } from "@/components/section-heading";
 import { fetchContentStatus, fetchLanguages, fetchPairs } from "@/lib/api";
 import type { LanguagePairSummary } from "@lingua/types";
 
@@ -184,27 +185,26 @@ export default async function HomePage() {
 
       {/* Popular paths — card grid like "Upcoming camps" */}
       <section id="paths" className="scroll-mt-24">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-medium tracking-wide text-accent uppercase">Curriculum</p>
-            <h2 className="mt-2 font-serif text-3xl text-balance sm:text-4xl">
-              Start from a real path, not an empty search.
-            </h2>
-            <p className="mt-3 max-w-2xl text-muted">
-              Only pairs with authored curriculum are listed — you will never pick something that
-              turns out to be empty.{" "}
-              {apiLive
-                ? "Live from the running API."
-                : "Showing preview examples while the API is offline."}
-            </p>
-          </div>
-          <Link
-            href="/learn"
-            className="rounded-md border border-line bg-surface px-4 py-2 text-sm text-ink shadow-card hover:border-line-strong"
-          >
-            View all paths →
-          </Link>
-        </div>
+        <SectionHeading
+          eyebrow="Curriculum"
+          title="Start from a real path, not an empty search."
+          action={
+            <Link
+              href="/learn"
+              className="rounded-md border border-line bg-surface px-4 py-2 text-sm text-ink shadow-card hover:border-line-strong"
+            >
+              View all paths →
+            </Link>
+          }
+        >
+          <p>
+            Only pairs with authored curriculum are listed — you will never pick something that
+            turns out to be empty.{" "}
+            {apiLive
+              ? "Live from the running API."
+              : "Showing preview examples while the API is offline."}
+          </p>
+        </SectionHeading>
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {pathCards.map((card) => (
             <li
