@@ -19,6 +19,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="flex min-h-dvh flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-ink-invert"
+        >
+          Skip to content
+        </a>
         <div className="border-b border-line bg-ink text-[13px] text-ink-invert">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-2">
             <p className="truncate">
@@ -105,7 +111,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </nav>
         </header>
 
-        <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10 sm:py-14">{children}</main>
+        <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-5 py-10 sm:py-14">
+          {children}
+        </main>
 
         <footer className="border-t border-line bg-surface">
           <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-5">
