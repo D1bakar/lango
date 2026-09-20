@@ -2,7 +2,7 @@
 // Copyright 2026 Lingua contributors
 
 import type { Metadata } from "next";
-import Link from "next/link";
+import { ButtonLink } from "@/components/button";
 import { SectionHeading } from "@/components/section-heading";
 
 export const metadata: Metadata = {
@@ -19,14 +19,7 @@ export default function PlacementPage() {
       <SectionHeading
         eyebrow="Placement"
         title="Find your level by using the language."
-        action={
-          <Link
-            href="/learn"
-            className="rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-white hover:bg-accent-strong"
-          >
-            Choose a level for now →
-          </Link>
-        }
+        action={<ButtonLink href="/learn">Choose a level for now →</ButtonLink>}
       >
         <p>
           Self-reported levels are guesses. The placement check ramps real exercises until you miss
@@ -59,12 +52,9 @@ export default function PlacementPage() {
           then, pick your level honestly in onboarding — the mentor stays inside whatever ceiling
           you set.
         </p>
-        <Link
-          href="/learn"
-          className="mt-6 inline-block rounded-md bg-ink-invert px-5 py-2.5 text-sm font-medium text-ink hover:opacity-90"
-        >
+        <ButtonLink href="/learn" variant="secondary" className="mt-6">
           Continue to onboarding →
-        </Link>
+        </ButtonLink>
       </section>
     </div>
   );
