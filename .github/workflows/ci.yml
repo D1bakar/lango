@@ -23,6 +23,26 @@ jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
+    services:
+      # API tests exercise auth and learner routes against a real database.
+      # The service is reachable at localhost:5432 from every step below.
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lingua
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d lingua"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # Matches .env.example. Prisma reads this directly; the config package
+      # default alone is not enough for the client or the test run.
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/lingua
     steps:
       - uses: actions/checkout@v4
 
@@ -55,6 +75,11 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
+
+      # No migrations exist yet, so sync the schema directly. The test run
+      # creates its own rows (timestamped signup emails); no seed needed.
+      - name: Sync test database schema
+        run: pnpm --filter @lingua/db exec prisma db push
 
       - name: Test
         run: pnpm test
