@@ -4,6 +4,7 @@
 // Copyright 2026 Lingua contributors
 
 import { useEffect } from "react";
+import { Button } from "@/components/button";
 
 /**
  * Route-level error boundary. Plain language and a retry action —
@@ -29,13 +30,9 @@ export default function RouteError({
       <p className="mx-auto mt-4 max-w-md text-muted">
         Your place is safe — nothing you chose was lost. Try loading it again.
       </p>
-      <button
-        type="button"
-        onClick={reset}
-        className="mt-8 rounded-md bg-accent px-6 py-3 text-sm font-medium text-white hover:bg-accent-strong"
-      >
-        Try again
-      </button>
+      <div className="mt-8 flex justify-center">
+        <Button onClick={reset}>Try again</Button>
+      </div>
     </section>
   );
 }
