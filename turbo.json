@@ -3,14 +3,18 @@
   "ui": "stream",
   "globalDependencies": ["tsconfig.base.json", "eslint.config.mjs", ".prettierrc.json"],
   "tasks": {
+    "generate": {
+      "outputs": []
+    },
     "lint": {
       "outputs": []
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"],
+      "dependsOn": ["^typecheck", "^generate", "generate"],
       "outputs": []
     },
     "test": {
+      "dependsOn": ["^generate", "generate"],
       "outputs": []
     },
     "test:coverage": {
