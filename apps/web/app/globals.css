@@ -60,6 +60,9 @@
 
   --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-float: float 7s ease-in-out infinite;
+  --animate-bloom: bloom 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-correction-in: correction-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
 
   @keyframes rise {
     from {
@@ -79,6 +82,41 @@
     }
     50% {
       transform: translateY(-8px);
+    }
+  }
+
+  @keyframes bloom {
+    0% {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    55% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes correction-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
     }
   }
 }
@@ -105,5 +143,19 @@
 
   ::selection {
     background-color: var(--color-accent-soft);
+  }
+
+  /*
+   * Reduced motion: every animation collapses to its end state.
+   * Learning must never depend on movement.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
