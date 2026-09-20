@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { CorrectionCard } from "@/components/correction-card";
 import { fetchContentStatus, fetchLanguages, fetchPairs } from "@/lib/api";
 import type { LanguagePairSummary } from "@lingua/types";
 
@@ -151,22 +152,15 @@ export default async function HomePage() {
                 Yo <Mark>soy 22 años</Mark> y vivo en Madrid.
               </p>
             </div>
-            <div className="mt-3 rounded-xl border border-accent/30 bg-accent-soft/60 p-4">
-              <p className="text-sm font-medium text-accent-strong">
-                Correction · <span className="font-normal">tengo 22 años</span>
-              </p>
-              <p className="mt-1 text-sm text-ink">
-                Age uses <em>tener</em>, not <em>ser</em>. See concept{" "}
-                <span className="font-medium">ser-vs-estar-basics</span>.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                <span className="rounded-full border border-line bg-surface px-2.5 py-1 text-muted">
-                  agreement · minor
-                </span>
-                <span className="rounded-full border border-line bg-surface px-2.5 py-1 text-muted">
-                  added to review · in 2 days
-                </span>
-              </div>
+            <div className="mt-3">
+              <CorrectionCard
+                original="soy 22 años"
+                corrected="tengo 22 años"
+                explanation="Age uses tener, not ser."
+                conceptKey="ser-vs-estar-basics"
+                category="agreement"
+                severity={1}
+              />
             </div>
             <div className="mt-4 flex items-center justify-between text-xs text-muted">
               <span>Learner model · 14 concepts tracked</span>
