@@ -142,6 +142,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               title="Start"
               links={[
                 { href: "/learn", label: "Find your path" },
+                { href: "/placement", label: "Placement check" },
                 { href: "/#paths", label: "Curriculum" },
                 { href: "/#level", label: "Check your level" },
               ]}
