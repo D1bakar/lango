@@ -1,0 +1,59 @@
+Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC-4.0)
+
+Copyright 2026 Lingua contributors
+
+The contents of this directory — the authored curriculum: language and
+normalization definitions, packs, courses, units, lessons, concepts, exercises,
+examples, and mentor guidance — are licensed under the Creative Commons
+Attribution-NonCommercial 4.0 International License.
+
+You are free to:
+
+  Share  — copy and redistribute the material in any medium or format.
+
+  Adapt  — remix, transform, and build upon the material.
+
+Under the following terms:
+
+  Attribution — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your
+  use.
+
+  NonCommercial — You may not use the material for commercial purposes.
+
+  No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the license
+  permits.
+
+No warranties are given. The license may not give you all of the permissions
+necessary for your intended use. Other rights, such as publicity, privacy, or
+moral rights, may limit how you use the material.
+
+Full legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+---------------------------------------------------------------------------
+
+SCOPE
+
+  The license above applies to everything under `content/`.
+
+  Source code elsewhere in this repository — `apps/`, `packages/`, tooling, and
+  configuration — is licensed separately under the Apache License 2.0. See the
+  `LICENSE` file at the repository root.
+
+CONTRIBUTIONS
+
+  Contributors retain copyright in their contributions and license them to the
+  project under the terms above. Contribution also grants the project the right
+  to relicense this content, which is what keeps the licensing decision
+  reversible. See CONTRIBUTING.md and
+  docs/architecture/adr/0006-apache2-code-ccbync-content.md.
+
+COMMERCIAL USE
+
+  Commercial use of this content is not permitted without a separate written
+  agreement. Enquiries should go to the contact address in MAINTAINERS.md.
+
+  Note that the project itself, as the copyright holder, is not bound by the
+  NonCommercial restriction.

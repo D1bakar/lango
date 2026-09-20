@@ -1,0 +1,25 @@
+schema_version: 1
+profile: es
+
+rules:
+  trim: true
+  collapse_whitespace: true
+  case_sensitive: false
+  # Accents are REQUIRED in Spanish. Accepting "esta" for "está" would teach a
+  # wrong habit, and grading is one of the few places we can hold that line
+  # without a human in the loop.
+  diacritics: required
+  punctuation: ignore
+  inverted_punctuation: ignore
+  # A learner at A1 on a phone keyboard omitting "¿" is not the error being
+  # tested. At A2 and above the pack tightens this per exercise.
+  accept_missing_opening_marks: true
+  numeric_normalization: true
+  ignore_articles: false
+  script_folding: []
+  width_normalization: false
+
+notes: >
+  Spanish grading. The opening inverted marks are accepted as omitted at A1
+  only; an exercise may narrow this by setting stricter normalization, but never
+  loosen accents, which requires a reviewer note.

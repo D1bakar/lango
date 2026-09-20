@@ -1,0 +1,74 @@
+schema_version: 1
+tag: es
+english_name: Spanish
+native_name: Español
+script: Latn
+text_direction: ltr
+transliteration_scheme: null
+transliteration_required: false
+tokenizer_profile: whitespace
+normalization_profile: es
+
+morphology:
+  has_grammatical_gender: true
+  genders:
+    - masculine
+    - feminine
+  has_cases: false
+  case_count: 0
+  has_counter_words: false
+  has_formal_register: true
+  has_diacritics: true
+  has_tones: false
+
+tts:
+  rate: 0.95
+
+stt:
+  language_code: es
+  bias_strategy: lesson_vocabulary
+  # Authored, reviewed knowledge about what English speakers actually get wrong.
+  # Seeded into the mentor's context so it does not have to reason unaided.
+  error_heuristics:
+    - category: grammar_agreement
+      subcategory_key: ser_vs_estar
+      signals:
+        - soy cansado
+        - es aburrido
+        - estoy profesor
+    - category: grammar_agreement
+      subcategory_key: adjective_agreement
+      signals:
+        - los casas
+        - una problema
+    - category: grammar_preposition
+      subcategory_key: por_vs_para
+      signals:
+        - por mi
+        - para el lunes
+    - category: vocab_false_friend
+      subcategory_key: false_friends
+      signals:
+        - estoy embarazada
+        - actualmente
+    - category: grammar_tense
+      subcategory_key: preterite_vs_imperfect
+      signals:
+        - yo era
+        - yo estaba
+    - category: accent_or_diacritic
+      signals:
+        - esta
+        - como
+        - si
+
+content_policy:
+  forbidden_terms: []
+  min_age_rating: general
+
+notes: >
+  Spanish is the reference language for the seeded pack. It is the easiest
+  language to validate the architecture against: Latin script and left-to-right
+  direction keep the rendering path simple, while grammatical gender, a formal
+  register, and required diacritics exercise the morphology, normalization, and
+  explanation paths that a single-language implementation would hardcode.

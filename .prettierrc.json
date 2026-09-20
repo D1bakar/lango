@@ -1,0 +1,15 @@
+{
+  "semi": true,
+  "singleQuote": false,
+  "printWidth": 100,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "proseWrap": "preserve",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": ["*.yml", "*.yaml"],
+      "options": { "singleQuote": false }
+    }
+  ]
+}

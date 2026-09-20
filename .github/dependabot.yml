@@ -1,0 +1,47 @@
+version: 2
+
+updates:
+  # A single entry at the workspace root covers every package in the pnpm
+  # workspace, because pnpm keeps one lockfile for all of them.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    labels:
+      - dependencies
+    groups:
+      # Tooling bumps are low risk and arrive as one pull request so they do not
+      # bury a runtime dependency update in noise.
+      development:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+      # Runtime dependencies get grouped only for patches. A minor bump to
+      # fastify or zod is a reviewable event, not a batch.
+      production-patch:
+        dependency-type: production
+        update-types:
+          - patch
+    ignore:
+      # TypeScript is intentionally held below 6.1: typescript-eslint does not
+      # support newer majors yet. Remove this once it does.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: "ci(deps)"
+    labels:
+      - dependencies
+      - ci

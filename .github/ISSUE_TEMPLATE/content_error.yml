@@ -1,0 +1,99 @@
+name: Content error
+description: A lesson, translation, explanation, or audio clip is wrong.
+title: "[Content]: "
+labels:
+  - content
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This is a product bug, not a nitpick.** A wrong translation or a wrong
+        grammar explanation teaches a wrong habit, and the learner cannot detect
+        it. These reports are triaged ahead of feature work.
+
+        You do not need to be a fluent speaker to report this. If something
+        looked wrong to you as a learner, that is useful information on its own
+        — say so in the notes below.
+
+  - type: dropdown
+    id: pack
+    attributes:
+      label: Which language pack?
+      options:
+        - en-es-a1 (English speakers learning Spanish, A1)
+        - Other or not listed
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Where is it?
+      description: Unit and lesson name or slug, as precisely as you can. If you can see the exercise prompt, include it.
+      placeholder: Unit 03, lesson 03-02 (ser vs estar), exercise 4
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Quote the content exactly as it appears.
+    validations:
+      required: true
+
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should it be?
+      description: Your suggested correction, if you have one. If you are unsure, describing the problem is enough — a reviewer will work it out.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem is it?
+      options:
+        - Translation or answer is incorrect
+        - Grammar explanation is wrong or misleading
+        - Pronunciation or audio is wrong
+        - Spelling, punctuation, or accent error
+        - Level is wrong — too easy, too hard, or uses grammar not yet taught
+        - Offensive, culturally inappropriate, or insensitive
+        - Something else
+    validations:
+      required: true
+
+  - type: dropdown
+    id: fluency
+    attributes:
+      label: Your relationship to the target language
+      description: This affects only how we route the review, never whether we take the report seriously.
+      options:
+        - Native speaker
+        - Fluent / professional proficiency
+        - Intermediate learner
+        - Beginner or just starting
+        - I do not speak it — I noticed something that looked inconsistent
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Sources, regional variation worth noting, or how the lesson presented the point.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing content issues for this location.
+          required: true
+        - label: I did not paste copyrighted course material, a textbook excerpt, or another app's content to demonstrate the point.
+          required: true

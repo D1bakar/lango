@@ -1,0 +1,24 @@
+# Never format generated or third-party text.
+node_modules
+dist
+build
+out
+coverage
+.turbo
+.next
+.cache
+
+# Lockfile integrity is managed by pnpm, not prettier.
+pnpm-lock.yaml
+
+# Legal text must remain byte-for-byte as published.
+LICENSE
+content/LICENSE
+
+# Generated artifacts
+*.generated.*
+*.min.js
+*.tsbuildinfo
+
+# Rewritten by the framework on every build.
+next-env.d.ts

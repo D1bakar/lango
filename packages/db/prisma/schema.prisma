@@ -1,0 +1,793 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Lingua contributors
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+// ---------------------------------------------------------------------------
+// Part A — Languages and content
+// ---------------------------------------------------------------------------
+
+model Language {
+  id                     String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  bcp47_tag              String   @unique @db.VarChar(20)
+  english_name           String   @db.VarChar(100)
+  native_name            String   @db.VarChar(100)
+  script                 String   @db.VarChar(10)
+  text_direction         String   @default("ltr") @db.VarChar(3)
+  transliteration_scheme String?  @db.VarChar(50)
+  transliteration_required Boolean @default(false)
+  tokenizer_profile      String   @default("whitespace") @db.VarChar(20)
+  normalization_profile  String   @db.VarChar(50)
+  morphology             Json     @default("{}")
+  tts_config             Json     @default("{}")
+  stt_config             Json     @default("{}")
+  is_active              Boolean  @default(true)
+  created_at             DateTime @default(now()) @db.Timestamptz()
+  updated_at             DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  native_pairs              LanguagePair[] @relation("NativeLanguage")
+  target_pairs              LanguagePair[] @relation("TargetLanguage")
+  target_profiles           LearnerLanguageProfile[] @relation("TargetLanguageProfile")
+  native_profiles           LearnerLanguageProfile[] @relation("NativeLanguageProfile")
+  study_sessions            StudySession[]
+  audio_assets              AudioAsset[]
+
+  @@index([is_active])
+  @@map("language")
+}
+
+model LanguagePair {
+  id                String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  native_language_id String  @db.Uuid
+  target_language_id String  @db.Uuid
+  is_active         Boolean  @default(true)
+
+  // Relations
+  native_language   Language @relation("NativeLanguage", fields: [native_language_id], references: [id])
+  target_language   Language @relation("TargetLanguage", fields: [target_language_id], references: [id])
+  content_packs     ContentPack[]
+  learner_profiles  LearnerLanguageProfile[]
+
+  @@unique([native_language_id, target_language_id])
+  @@index([is_active])
+  @@map("language_pair")
+}
+
+model ContentPack {
+  id                 String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  language_pair_id   String    @db.Uuid
+  pack_key           String    @unique @db.VarChar(100)
+  title              String    @db.VarChar(200)
+  cefr_from          String    @db.VarChar(2)
+  cefr_to            String    @db.VarChar(2)
+  version            String    @db.VarChar(20)
+  license            String    @db.VarChar(100)
+  status             String    @default("draft") @db.VarChar(20)
+  published_at       DateTime? @db.Timestamptz()
+  import_checksum    String?   @db.VarChar(64)
+  created_at         DateTime  @default(now()) @db.Timestamptz()
+  updated_at         DateTime  @updatedAt @db.Timestamptz()
+
+  // Relations
+  language_pair      LanguagePair @relation(fields: [language_pair_id], references: [id])
+  courses            Course[]
+  concepts           Concept[]
+
+  @@index([language_pair_id, status])
+  @@map("content_pack")
+}
+
+model Course {
+  id                 String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  content_pack_id    String   @db.Uuid
+  slug               String   @db.VarChar(100)
+  title              String   @db.VarChar(200)
+  subtitle           String?  @db.VarChar(300)
+  cefr_level         String   @db.VarChar(2)
+  order_index        Int      @default(0)
+  estimated_minutes  Int      @default(0)
+  status             String   @default("draft") @db.VarChar(20)
+  version            String   @db.VarChar(20)
+  created_at         DateTime @default(now()) @db.Timestamptz()
+  updated_at         DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  content_pack       ContentPack @relation(fields: [content_pack_id], references: [id])
+  units              Unit[]
+  enrollments        Enrollment[]
+
+  @@unique([content_pack_id, slug])
+  @@map("course")
+}
+
+model Unit {
+  id                 String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  course_id          String   @db.Uuid
+  slug               String   @db.VarChar(100)
+  title              String   @db.VarChar(200)
+  summary            String?  @db.VarChar(500)
+  order_index        Int      @default(0)
+  estimated_minutes  Int      @default(0)
+  status             String   @default("draft") @db.VarChar(20)
+  created_at         DateTime @default(now()) @db.Timestamptz()
+  updated_at         DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  course             Course   @relation(fields: [course_id], references: [id])
+  lessons            Lesson[]
+
+  @@unique([course_id, slug])
+  @@map("unit")
+}
+
+model Lesson {
+  id                 String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  unit_id            String   @db.Uuid
+  slug               String   @db.VarChar(100)
+  title              String   @db.VarChar(200)
+  lesson_type        String   @db.VarChar(30) // concept_intro|practice|review|assessment|conversation
+  order_index        Int      @default(0)
+  estimated_minutes  Int      @default(0)
+  mentor_brief       String?  @db.Text
+  status             String   @default("draft") @db.VarChar(20)
+  created_at         DateTime @default(now()) @db.Timestamptz()
+  updated_at         DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  unit               Unit     @relation(fields: [unit_id], references: [id])
+  exercises          Exercise[]
+  lesson_concepts    LessonConcept[]
+  progress           LessonProgress[]
+
+  @@unique([unit_id, slug])
+  @@index([unit_id, order_index])
+  @@map("lesson")
+}
+
+model Concept {
+  id                 String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  content_pack_id    String   @db.Uuid
+  key                String   @db.VarChar(200)
+  kind               String   @db.VarChar(20) // grammar|vocab|pronunciation|pragmatics|orthography|listening
+  title              String   @db.VarChar(200)
+  summary_short      String   @db.VarChar(160)
+  explanation_md     String   @db.Text
+  cefr_level         String   @db.VarChar(2)
+  pronunciation_ipa  String?  @db.VarChar(100)
+  tags               String[] @default([])
+  metadata           Json     @default("{}")
+  version            Int      @default(1)
+  status             String   @default("active") @db.VarChar(20)
+  created_at         DateTime @default(now()) @db.Timestamptz()
+  updated_at         DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  content_pack       ContentPack  @relation(fields: [content_pack_id], references: [id])
+  prerequisites      ConceptPrerequisite[] @relation("Concept")
+  required_by        ConceptPrerequisite[] @relation("PrerequisiteConcept")
+  lesson_concepts    LessonConcept[]
+  exercise_concepts  ExerciseConcept[]
+  content_examples   ContentExample[]
+  mastery_records    ConceptMastery[]
+  error_records      ErrorRecord[]
+
+  @@unique([content_pack_id, key])
+  @@index([content_pack_id, kind, cefr_level])
+  @@map("concept")
+}
+
+model ConceptPrerequisite {
+  concept_id              String @db.Uuid
+  prerequisite_concept_id String @db.Uuid
+  strength                String @default("hard") @db.VarChar(10) // hard|soft
+
+  concept       Concept @relation("Concept", fields: [concept_id], references: [id])
+  prerequisite  Concept @relation("PrerequisiteConcept", fields: [prerequisite_concept_id], references: [id])
+
+  @@id([concept_id, prerequisite_concept_id])
+  @@map("concept_prerequisite")
+}
+
+model LessonConcept {
+  lesson_id   String @db.Uuid
+  concept_id  String @db.Uuid
+  role        String @db.VarChar(20) // introduce|practise|assess|reinforce
+  order_index Int    @default(0)
+
+  lesson  Lesson  @relation(fields: [lesson_id], references: [id])
+  concept Concept @relation(fields: [concept_id], references: [id])
+
+  @@id([lesson_id, concept_id])
+  @@index([concept_id])
+  @@map("lesson_concept")
+}
+
+model Exercise {
+  id                  String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  lesson_id           String   @db.Uuid
+  order_index         Int      @default(0)
+  exercise_type       String   @db.VarChar(30) // mcq|multi_select|translate_to_target|...
+  prompt_md           String   @db.Text
+  prompt_audio_id     String?  @db.Uuid
+  payload             Json     @default("{}")
+  answer_spec         Json     @default("{}")
+  explanation_md      String   @db.Text
+  difficulty          Int      @default(3)
+  revision            Int      @default(1)
+  status              String   @default("active") @db.VarChar(20)
+  created_at          DateTime @default(now()) @db.Timestamptz()
+  updated_at          DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  lesson              Lesson   @relation(fields: [lesson_id], references: [id])
+  exercise_concepts   ExerciseConcept[]
+  attempts            ExerciseAttempt[]
+  content_reports     ContentReport[]
+
+  @@index([lesson_id, order_index])
+  @@map("exercise")
+}
+
+model ExerciseConcept {
+  exercise_id String @db.Uuid
+  concept_id  String @db.Uuid
+  weight      Float  @default(1.0)
+
+  exercise Exercise @relation(fields: [exercise_id], references: [id])
+  concept  Concept  @relation(fields: [concept_id], references: [id])
+
+  @@id([exercise_id, concept_id])
+  @@map("exercise_concept")
+}
+
+model ContentExample {
+  id                String  @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  concept_id        String  @db.Uuid
+  target_text       String  @db.Text
+  native_text       String  @db.Text
+  transliteration   String? @db.VarChar(200)
+  audio_asset_id    String? @db.Uuid
+  register          String  @default("neutral") @db.VarChar(10) // formal|neutral|informal
+  tags              String[] @default([])
+  order_index       Int     @default(0)
+  created_at        DateTime @default(now()) @db.Timestamptz()
+
+  concept Concept @relation(fields: [concept_id], references: [id])
+
+  @@index([concept_id])
+  @@map("content_example")
+}
+
+model AudioAsset {
+  id            String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  storage_key   String   @db.VarChar(500)
+  text_hash     String   @unique @db.VarChar(64)
+  text_content  String   @db.Text
+  language_id   String   @db.Uuid
+  voice_id      String   @db.VarChar(100)
+  provider      String   @db.VarChar(50)
+  duration_ms   Int      @default(0)
+  bytes         Int      @default(0)
+  mime_type     String   @db.VarChar(50)
+  origin        String   @db.VarChar(20) // lesson_pregen|mentor_reply|user_upload
+  expires_at    DateTime? @db.Timestamptz()
+  created_at    DateTime  @default(now()) @db.Timestamptz()
+
+  language Language @relation(fields: [language_id], references: [id])
+
+  @@index([text_hash])
+  @@map("audio_asset")
+}
+
+// ---------------------------------------------------------------------------
+// Part B — Learner identity and profile
+// ---------------------------------------------------------------------------
+
+model User {
+  id                String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  email             String    @unique @db.VarChar(320)
+  email_verified_at DateTime? @db.Timestamptz()
+  password_hash     String?   @db.VarChar(200)
+  display_name      String?   @db.VarChar(100)
+  avatar_url        String?   @db.VarChar(500)
+  ui_locale         String    @default("en") @db.VarChar(10)
+  timezone          String    @default("UTC") @db.VarChar(50)
+  role              String    @default("learner") @db.VarChar(20) // learner|reviewer|admin
+  status            String    @default("active") @db.VarChar(20) // active|suspended|deleted
+  last_seen_at      DateTime? @db.Timestamptz()
+  created_at        DateTime  @default(now()) @db.Timestamptz()
+  updated_at        DateTime  @updatedAt @db.Timestamptz()
+  deleted_at        DateTime? @db.Timestamptz()
+
+  // Relations
+  oauth_accounts         OAuthAccount[]
+  auth_sessions          AuthSession[]
+  learner_profiles       LearnerLanguageProfile[]
+  study_sessions         StudySession[]
+  exercise_attempts      ExerciseAttempt[]
+  concept_mastery        ConceptMastery[]
+  vocab_items            VocabItem[]
+  error_records          ErrorRecord[]
+  activity_days          ActivityDay[]
+  placement_attempts     PlacementAttempt[]
+  usage_ledger           UsageLedger[]
+  usage_counters         UsageCounter[]
+  entitlements           Entitlement[]
+  content_reports        ContentReport[]
+  audit_log              AuditLog[]
+  enrollments            Enrollment[]
+  lesson_progress        LessonProgress[]
+  review_logs            ReviewLog[]
+  tutor_sessions         TutorSession[]
+
+  @@index([status])
+  @@map("user")
+}
+
+model OAuthAccount {
+  id                  String @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id             String @db.Uuid
+  provider            String @db.VarChar(20) // google|apple
+  provider_account_id String @db.VarChar(200)
+  created_at          DateTime @default(now()) @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([provider, provider_account_id])
+  @@map("oauth_account")
+}
+
+model AuthSession {
+  id                   String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id              String    @db.Uuid
+  refresh_token_hash   String    @db.VarChar(64)
+  rotated_from_id      String?   @db.Uuid
+  user_agent           String?   @db.VarChar(500)
+  ip_hash              String?   @db.VarChar(64)
+  expires_at           DateTime  @db.Timestamptz()
+  revoked_at           DateTime? @db.Timestamptz()
+  created_at           DateTime  @default(now()) @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@index([user_id, revoked_at])
+  @@map("auth_session")
+}
+
+model LearnerLanguageProfile {
+  id                     String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id                String    @db.Uuid
+  target_language_id     String    @db.Uuid
+  native_language_id     String    @db.Uuid
+  language_pair_id       String?   @db.Uuid
+  cefr_self              String?   @db.VarChar(2)
+  cefr_assessed          String?   @db.VarChar(2)
+  goal                   String?   @db.VarChar(20) // travel|work|exam|family|media|other
+  goal_note              String?   @db.Text
+  daily_minutes_target   Int       @default(15)
+  reminder_time          DateTime? @db.Time()
+  current_streak         Int       @default(0)
+  longest_streak         Int       @default(0)
+  streak_computed_at     DateTime? @db.Timestamptz()
+  is_active              Boolean   @default(false)
+  onboarding_completed_at DateTime? @db.Timestamptz()
+  created_at             DateTime  @default(now()) @db.Timestamptz()
+  updated_at             DateTime  @updatedAt @db.Timestamptz()
+
+  // Relations
+  user               User          @relation(fields: [user_id], references: [id])
+  target_language    Language      @relation("TargetLanguageProfile", fields: [target_language_id], references: [id])
+  native_language    Language      @relation("NativeLanguageProfile", fields: [native_language_id], references: [id])
+  language_pair      LanguagePair? @relation(fields: [language_pair_id], references: [id])
+  study_sessions     StudySession[]
+
+  @@unique([user_id, target_language_id])
+  @@index([user_id])
+  @@map("learner_language_profile")
+}
+
+// ---------------------------------------------------------------------------
+// Part C — Learning state
+// ---------------------------------------------------------------------------
+
+model Enrollment {
+  id                 String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id            String    @db.Uuid
+  course_id          String    @db.Uuid
+  status             String    @default("active") @db.VarChar(20) // active|completed|paused|abandoned
+  current_lesson_id  String?   @db.Uuid
+  started_at         DateTime  @default(now()) @db.Timestamptz()
+  completed_at       DateTime? @db.Timestamptz()
+
+  user   User   @relation(fields: [user_id], references: [id])
+  course Course @relation(fields: [course_id], references: [id])
+
+  @@unique([user_id, course_id])
+  @@map("enrollment")
+}
+
+model LessonProgress {
+  id                String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id           String    @db.Uuid
+  lesson_id         String    @db.Uuid
+  pack_version      String    @db.VarChar(20)
+  status            String    @default("available") @db.VarChar(20) // available|in_progress|completed
+  attempts          Int       @default(0)
+  best_score        Decimal?  @db.Decimal(5, 2)
+  first_started_at  DateTime? @db.Timestamptz()
+  last_attempt_at   DateTime? @db.Timestamptz()
+  completed_at      DateTime? @db.Timestamptz()
+
+  user   User   @relation(fields: [user_id], references: [id])
+  lesson Lesson @relation(fields: [lesson_id], references: [id])
+
+  @@unique([user_id, lesson_id])
+  @@index([user_id, status])
+  @@map("lesson_progress")
+}
+
+model StudySession {
+  id                   String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id              String    @db.Uuid
+  target_language_id   String    @db.Uuid
+  learner_profile_id   String?   @db.Uuid
+  mode                 String    @db.VarChar(20) // lesson|tutor|review|placement|free
+  lesson_id            String?   @db.Uuid
+  device               String?   @db.VarChar(200)
+  app_version          String?   @db.VarChar(20)
+  started_at           DateTime  @default(now()) @db.Timestamptz()
+  ended_at             DateTime? @db.Timestamptz()
+  duration_seconds     Int?
+
+  user            User                  @relation(fields: [user_id], references: [id])
+  target_language Language              @relation(fields: [target_language_id], references: [id])
+  learner_profile LearnerLanguageProfile? @relation(fields: [learner_profile_id], references: [id])
+  exercise_attempts ExerciseAttempt[]
+  tutor_sessions    TutorSession[]
+  review_logs       ReviewLog[]
+
+  @@index([user_id, started_at(sort: Desc)])
+  @@map("study_session")
+}
+
+model ExerciseAttempt {
+  id                 String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  study_session_id   String   @db.Uuid
+  user_id            String   @db.Uuid
+  exercise_id        String   @db.Uuid
+  exercise_revision  Int      @default(1)
+  response           Json     @default("{}")
+  is_correct         Boolean  @default(false)
+  score              Decimal  @db.Decimal(5, 2)
+  duration_ms        Int?
+  hint_used          Boolean  @default(false)
+  graded_by          String   @default("deterministic") @db.VarChar(20) // deterministic|llm
+  created_at         DateTime @default(now()) @db.Timestamptz()
+
+  study_session StudySession @relation(fields: [study_session_id], references: [id])
+  user          User         @relation(fields: [user_id], references: [id])
+  exercise      Exercise     @relation(fields: [exercise_id], references: [id])
+
+  @@index([user_id, created_at(sort: Desc)])
+  @@index([exercise_id])
+  @@map("exercise_attempt")
+}
+
+model ConceptMastery {
+  id                    String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id               String    @db.Uuid
+  concept_id            String    @db.Uuid
+  target_language_id    String    @db.Uuid
+  state                 String    @default("new") @db.VarChar(20) // new|learning|review|relearning|mastered
+  stability             Float     @default(0)
+  difficulty            Float     @default(0)
+  due_at                DateTime? @db.Timestamptz()
+  last_reviewed_at      DateTime? @db.Timestamptz()
+  reps                  Int       @default(0)
+  lapses                Int       @default(0)
+  correct_streak        Int       @default(0)
+  total_correct         Int       @default(0)
+  total_incorrect       Int       @default(0)
+  fsrs_version          String    @default("1.0") @db.VarChar(20)
+  created_at            DateTime  @default(now()) @db.Timestamptz()
+  updated_at            DateTime  @updatedAt @db.Timestamptz()
+
+  user    User    @relation(fields: [user_id], references: [id])
+  concept Concept @relation(fields: [concept_id], references: [id])
+
+  @@unique([user_id, concept_id])
+  @@index([user_id, target_language_id, due_at])
+  @@map("concept_mastery")
+}
+
+model ReviewLog {
+  id                String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id           String   @db.Uuid
+  item_type         String   @db.VarChar(20) // concept|vocab
+  item_id           String   @db.Uuid
+  study_session_id  String?  @db.Uuid
+  rating            Int      @db.SmallInt // 1=again, 2=hard, 3=good, 4=easy
+  state_before      String?  @db.VarChar(20)
+  elapsed_days      Int?
+  scheduled_days    Int?
+  reviewed_at       DateTime @default(now()) @db.Timestamptz()
+
+  user          User          @relation(fields: [user_id], references: [id])
+  study_session StudySession? @relation(fields: [study_session_id], references: [id])
+
+  @@index([user_id, reviewed_at(sort: Desc)])
+  @@index([item_type, item_id])
+  @@map("review_log")
+}
+
+model VocabItem {
+  id                    String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id               String    @db.Uuid
+  target_language_id    String    @db.Uuid
+  lemma                 String    @db.VarChar(200)
+  normalized_lemma      String    @db.VarChar(200)
+  pos                   String?   @db.VarChar(20)
+  translation_native    String?   @db.VarChar(500)
+  concept_id            String?   @db.Uuid
+  source                String    @db.VarChar(20) // lesson|tutor|manual
+  state                 String    @default("new") @db.VarChar(20)
+  stability             Float     @default(0)
+  difficulty            Float     @default(0)
+  due_at                DateTime? @db.Timestamptz()
+  reps                  Int       @default(0)
+  lapses                Int       @default(0)
+  first_seen_at         DateTime  @default(now()) @db.Timestamptz()
+  last_seen_at          DateTime? @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, target_language_id, normalized_lemma])
+  @@index([user_id, target_language_id, due_at])
+  @@map("vocab_item")
+}
+
+model ErrorRecord {
+  id                    String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id               String    @db.Uuid
+  target_language_id    String    @db.Uuid
+  concept_id            String?   @db.Uuid
+  source                String    @db.VarChar(20) // exercise|tutor_text|tutor_voice|placement
+  category              String    @db.VarChar(30)
+  subcategory_key       String?   @db.VarChar(100)
+  original_text         String    @db.Text
+  corrected_text        String    @db.Text
+  explanation           String?   @db.Text
+  severity              Int       @default(2) @db.SmallInt // 1=nitpick, 2=noticeable, 3=meaning-breaking
+  is_meaning_changing   Boolean   @default(false)
+  study_session_id      String?   @db.Uuid
+  exercise_attempt_id   String?   @db.Uuid
+  tutor_message_id      String?   @db.Uuid
+  concept_version       Int?
+  created_at            DateTime  @default(now()) @db.Timestamptz()
+
+  user    User    @relation(fields: [user_id], references: [id])
+  concept Concept? @relation(fields: [concept_id], references: [id])
+
+  @@index([user_id, target_language_id, created_at(sort: Desc)])
+  @@index([user_id, concept_id, created_at(sort: Desc)])
+  @@index([user_id, target_language_id, category, created_at(sort: Desc)])
+  @@map("error_record")
+}
+
+model ActivityDay {
+  id                    String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id               String   @db.Uuid
+  target_language_id    String   @db.Uuid
+  date                  DateTime @db.Date
+  minutes_learned       Int      @default(0)
+  lessons_completed     Int      @default(0)
+  exercises_attempted   Int      @default(0)
+  correct_count         Int      @default(0)
+  concepts_advanced     Int      @default(0)
+  tutor_voice_seconds   Int      @default(0)
+  tutor_turns           Int      @default(0)
+  xp                    Int      @default(0)
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, date, target_language_id])
+  @@index([user_id, date(sort: Desc)])
+  @@map("activity_day")
+}
+
+model PlacementAttempt {
+  id                       String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id                  String    @db.Uuid
+  target_language_id       String    @db.Uuid
+  status                   String    @default("in_progress") @db.VarChar(20) // in_progress|completed|abandoned
+  responses                Json      @default("[]")
+  inferred_cefr            String?   @db.VarChar(2)
+  inferred_start_unit_id   String?   @db.Uuid
+  recommendation           Json      @default("{}")
+  started_at               DateTime  @default(now()) @db.Timestamptz()
+  completed_at             DateTime? @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@index([user_id])
+  @@map("placement_attempt")
+}
+
+// ---------------------------------------------------------------------------
+// Part D — AI sessions
+// ---------------------------------------------------------------------------
+
+model TutorSession {
+  id                    String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  study_session_id      String    @db.Uuid
+  user_id               String    @db.Uuid
+  target_language_id    String    @db.Uuid
+  mode                  String    @db.VarChar(30) // lesson_coach|free_conversation|roleplay|...
+  lesson_id             String?   @db.Uuid
+  scenario_key          String?   @db.VarChar(100)
+  cefr_ceiling          String?   @db.VarChar(2)
+  prompt_version        String    @db.VarChar(50)
+  model_config          Json      @default("{}")
+  status                String    @default("active") @db.VarChar(20) // active|ended|failed
+  started_at            DateTime  @default(now()) @db.Timestamptz()
+  ended_at              DateTime? @db.Timestamptz()
+  turn_count            Int       @default(0)
+  total_input_tokens    Int       @default(0)
+  total_output_tokens   Int       @default(0)
+  total_stt_seconds     Float     @default(0)
+  total_tts_characters  Int       @default(0)
+  total_cost_usd        Decimal?  @db.Decimal(10, 4)
+  p50_turn_latency_ms   Int?
+
+  study_session StudySession @relation(fields: [study_session_id], references: [id])
+  user          User         @relation(fields: [user_id], references: [id])
+  messages      TutorMessage[]
+
+  @@index([user_id, started_at(sort: Desc)])
+  @@map("tutor_session")
+}
+
+model TutorMessage {
+  id                    String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  tutor_session_id      String    @db.Uuid
+  turn_index            Int       @default(0)
+  role                  String    @db.VarChar(20) // user|mentor|system_note|tool
+  content_text          String?   @db.Text
+  content_audio_asset_id String?  @db.Uuid
+  transcript_confidence Float?
+  user_audio_asset_id   String?   @db.Uuid
+  corrections           Json      @default("[]")
+  tool_calls            Json?
+  structured            Json?
+  tokens_in             Int?
+  tokens_out            Int?
+  model_id              String?   @db.VarChar(100)
+  stt_ms                Int?
+  llm_first_token_ms    Int?
+  tts_ms                Int?
+  total_ms              Int?
+  safety_flags          Json      @default("{}")
+  created_at            DateTime  @default(now()) @db.Timestamptz()
+
+  tutor_session TutorSession @relation(fields: [tutor_session_id], references: [id])
+
+  @@unique([tutor_session_id, turn_index, role])
+  @@index([tutor_session_id, turn_index])
+  @@map("tutor_message")
+}
+
+model EvalRun {
+  id               String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  git_sha          String   @db.VarChar(40)
+  prompt_version   String   @db.VarChar(50)
+  model_id         String   @db.VarChar(100)
+  suite            String   @db.VarChar(100)
+  passed           Int      @default(0)
+  failed           Int      @default(0)
+  p50_first_token_ms Int?
+  cost_usd         Decimal? @db.Decimal(10, 4)
+  created_at       DateTime @default(now()) @db.Timestamptz()
+
+  @@map("eval_run")
+}
+
+model ContentReport {
+  id                String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  reporter_user_id  String    @db.Uuid
+  exercise_id       String?   @db.Uuid
+  concept_id        String?   @db.Uuid
+  reason            String    @db.VarChar(30) // translation_wrong|audio_wrong|explanation_unclear|offensive|other
+  comment           String?   @db.Text
+  status            String    @default("open") @db.VarChar(20) // open|triaged|fixed|wontfix
+  resolved_by       String?   @db.Uuid
+  created_at        DateTime  @default(now()) @db.Timestamptz()
+
+  reporter User      @relation(fields: [reporter_user_id], references: [id])
+  exercise Exercise? @relation(fields: [exercise_id], references: [id])
+
+  @@index([status])
+  @@map("content_report")
+}
+
+model AuditLog {
+  id              String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  actor_user_id   String   @db.Uuid
+  action          String   @db.VarChar(100)
+  target_type     String   @db.VarChar(50)
+  target_id       String   @db.Uuid
+  metadata        Json     @default("{}")
+  ip_hash         String?  @db.VarChar(64)
+  created_at      DateTime @default(now()) @db.Timestamptz()
+
+  actor User @relation(fields: [actor_user_id], references: [id])
+
+  @@index([actor_user_id, created_at(sort: Desc)])
+  @@map("audit_log")
+}
+
+// ---------------------------------------------------------------------------
+// Part E — Usage, metering, entitlement
+// ---------------------------------------------------------------------------
+
+model Entitlement {
+  id                        String    @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id                   String    @db.Uuid
+  tier                      String    @default("free") @db.VarChar(10) // free|pro
+  status                    String    @default("active") @db.VarChar(20) // active|past_due|canceled
+  current_period_start      DateTime? @db.Date()
+  current_period_end        DateTime? @db.Date()
+  external_customer_id      String?   @db.VarChar(200)
+  external_subscription_id  String?   @db.VarChar(200)
+  created_at                DateTime  @default(now()) @db.Timestamptz()
+  updated_at                DateTime  @updatedAt @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, status])
+  @@map("entitlement")
+}
+
+model UsageLedger {
+  id                   String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id              String   @db.Uuid
+  target_language_id   String?  @db.Uuid
+  metric               String   @db.VarChar(30) // voice_seconds|stt_seconds|tts_characters|llm_input_tokens|llm_output_tokens
+  quantity             Decimal  @db.Decimal(12, 4)
+  unit_cost_usd        Decimal? @db.Decimal(12, 8)
+  cost_usd             Decimal? @db.Decimal(12, 6)
+  provider             String?  @db.VarChar(50)
+  model_id             String?  @db.VarChar(100)
+  tutor_session_id     String?  @db.Uuid
+  period_start         DateTime @db.Date()
+  occurred_at          DateTime @default(now()) @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@index([user_id, metric, period_start])
+  @@index([period_start, metric])
+  @@map("usage_ledger")
+}
+
+model UsageCounter {
+  id              String   @id @default(dbgenerated("uuid_generate_v7()")) @db.Uuid
+  user_id         String   @db.Uuid
+  metric          String   @db.VarChar(30)
+  period_start    DateTime @db.Date()
+  quantity        Decimal  @default(0) @db.Decimal(12, 4)
+  updated_at      DateTime @updatedAt @db.Timestamptz()
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, metric, period_start])
+  @@map("usage_counter")
+}

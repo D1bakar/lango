@@ -1,0 +1,89 @@
+name: Bug report
+description: Something is broken or behaves in a way it should not.
+title: "[Bug]: "
+labels:
+  - bug
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this.
+
+        **If this is a security problem, stop.** Do not open an issue — see
+        [SECURITY.md](https://github.com/OWNER/REPO/blob/main/SECURITY.md) for the private reporting channel.
+
+        **If a lesson, translation, or explanation is wrong**, use the content
+        error template instead. That route is triaged faster because a wrong
+        answer costs us the learner's trust immediately.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - API
+        - Web app
+        - Voice / audio
+        - AI tutor behaviour
+        - Content (lesson, translation, explanation)
+        - Progress, streaks, or review scheduling
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe what you saw, including any error message or request id.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+      description: What should have happened, and why do you think so?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can we reproduce it?
+      description: Numbered steps. Include the learning path or the exact command.
+      placeholder: |
+        1. Go to ...
+        2. Select ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser and version, operating system, device, and whether you were on mobile data.
+      placeholder: Chrome 141 on Android 15, Pixel 8, 4G
+    validations:
+      required: false
+
+  - type: input
+    id: request-id
+    attributes:
+      label: Request id
+      description: If an error appeared, the response carried an `X-Request-Id`. It lets us find the exact request in our logs. This is the single most useful thing you can give us.
+      placeholder: 0193f2c4-1a2b-7c3d-8e4f-5a6b7c8d9e0f
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this is not a duplicate.
+          required: true
+        - label: I am able to share the reproduction steps, and they do not include personal data or credentials.
+          required: true

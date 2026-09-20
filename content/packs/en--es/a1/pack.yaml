@@ -1,0 +1,36 @@
+schema_version: 1
+pack_key: en--es-a1
+native_language: en
+target_language: es
+cefr_from: A1
+cefr_to: A1
+
+title: Spanish from English — Foundations
+description: >
+  A complete A1 path for English speakers. Ten units covering greetings,
+  introductions, everyday needs, and the present tense, built around speaking
+  from the first lesson rather than tapping tiles.
+
+estimated_minutes: 1500
+version: 0.1.0
+license: CC-BY-NC-4.0
+status: draft
+
+authors: []
+
+review:
+  status: draft
+  # Both reviewer roles are required before this pack can be published. A pack
+  # without a fluent reviewer is not publishable — see MAINTAINERS.md.
+  reviewers: []
+
+changelog:
+  - version: 0.1.0
+    date: 2026-09-20
+    notes: >
+      Pack metadata only. The curriculum format is frozen; units, lessons, and
+      exercises land with the content pipeline.
+
+# Empty because nothing has been removed or renamed yet. A MAJOR version bump
+# requires entries here mapping old concept keys to new ones, or import fails.
+migrations: []

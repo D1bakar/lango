@@ -1,0 +1,29 @@
+schema_version: 1
+tag: en
+english_name: English
+native_name: English
+script: Latn
+text_direction: ltr
+transliteration_scheme: null
+transliteration_required: false
+tokenizer_profile: whitespace
+normalization_profile: en
+
+morphology:
+  has_grammatical_gender: false
+  genders: []
+  has_cases: false
+  case_count: 0
+  has_counter_words: false
+  has_formal_register: false
+  has_diacritics: false
+  has_tones: false
+
+content_policy:
+  forbidden_terms: []
+  min_age_rating: general
+
+notes: >
+  English is present as the native language of the seeded pack. It is not yet a
+  learnable target: no pack targets it, so `packs_available` is zero and the API
+  does not offer it in the target-language list.

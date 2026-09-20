@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/**
+ * Design tokens.
+ *
+ * Calm and educational, with the structure of a modern product site:
+ * a warm paper canvas, quiet ink, one teal accent, hairline borders,
+ * serif display headings, soft cards with depth, and a stats band.
+ * No gradients on text, no gamified colour.
+ *
+ * Fonts are system stacks on purpose. A webfont costs bandwidth on exactly the
+ * connections this product is meant to work on, and there is nothing here that
+ * justifies it.
+ */
+@theme {
+  --color-canvas: #faf8f5;
+  --color-surface: #ffffff;
+  --color-surface-warm: #f3efe7;
+  --color-ink: #1b1d22;
+  --color-muted: #61666f;
+  --color-faint: #8a8f98;
+  --color-line: #e7e2d9;
+  --color-line-strong: #d8d1c2;
+  --color-accent: #1f5f5b;
+  --color-accent-strong: #174843;
+  --color-accent-soft: #edf3f2;
+  --color-accent-mist: #e0ebe9;
+  --color-warn: #8a5a15;
+  --color-warn-soft: #fdf5e6;
+  --color-ink-invert: #faf8f5;
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+
+  --shadow-card: 0 1px 2px rgb(27 29 34 / 0.06), 0 8px 24px -12px rgb(27 29 34 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(27 29 34 / 0.08), 0 16px 40px -16px rgb(31 95 91 / 0.35);
+
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible focus for keyboard users, on every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+  }
+}

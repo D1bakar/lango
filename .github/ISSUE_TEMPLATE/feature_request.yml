@@ -1,0 +1,92 @@
+name: Feature request
+description: Propose a change, addition, or removal.
+title: "[Feature]: "
+labels:
+  - enhancement
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One question decides whether we build this: **does it help the learner
+        learn?** Everything below exists to answer that honestly, including for
+        ideas we will end up declining.
+
+        If you are proposing a large change to the architecture, consider
+        opening a discussion first. Also check whether an ADR in
+        [docs/architecture/adr](https://github.com/OWNER/REPO/tree/main/docs/architecture/adr)
+        already covers the decision — if so, the request is really to revisit
+        that ADR, and the review trigger in it is what we would judge against.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the learner's actual difficulty. Not the missing feature — the problem underneath it.
+      placeholder: |
+        Learners who stop partway through a unit lose the concepts they had
+        started, and there is no way to resume where they lost confidence.
+    validations:
+      required: true
+
+  - type: textarea
+    id: learning-outcome
+    attributes:
+      label: What learning outcome does it improve?
+      description: |
+        Be specific: comprehension, spoken production, retention, accuracy,
+        consistency, or time to a measurable result. If the honest answer is
+        "it would be nice to have" or "competitors have it", say that — it is a
+        legitimate answer and it helps us rank it correctly.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What do you suggest?
+      description: Your proposed behaviour. Rough sketches and examples are welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What else did you consider?
+      description: Including doing nothing, or solving it with existing features.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: mvp
+    attributes:
+      label: When should this exist?
+      options:
+        - Blocks the MVP hypothesis test — needed now
+        - V1 — valuable, but not needed to validate the core idea
+        - V2 or later — real, but premature
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: cost
+    attributes:
+      label: Does this add ongoing cost?
+      description: |
+        Anything that calls a model, synthesises speech, or transcribes audio has
+        a real per-minute cost. If this adds one, say roughly how much and how
+        often it would run. Voice features need a metering story before they can
+        ship. See ADR-0009.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and discussions for this idea.
+          required: true
+        - label: I have not described a game mechanic as the primary reason to build this.
+          required: false

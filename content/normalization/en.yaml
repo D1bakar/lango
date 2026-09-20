@@ -1,0 +1,20 @@
+schema_version: 1
+profile: en
+
+rules:
+  trim: true
+  collapse_whitespace: true
+  case_sensitive: false
+  diacritics: ignore
+  punctuation: ignore
+  inverted_punctuation: ignore
+  accept_missing_opening_marks: false
+  numeric_normalization: true
+  ignore_articles: false
+  script_folding: []
+  width_normalization: false
+
+notes: >
+  English grading. Used for exercises that ask a learner to produce the English
+  meaning of a target-language sentence, where the point is comprehension rather
+  than English spelling.

@@ -1,0 +1,16 @@
+blank_issues_enabled: false
+
+contact_links:
+  # Replace OWNER/REPO with the real repository before publishing. GitHub
+  # requires absolute URLs here, so a relative link will not work.
+  - name: Report a security vulnerability
+    url: https://github.com/OWNER/REPO/security/advisories/new
+    about: Report vulnerabilities privately. Never open a public issue for a security problem. See SECURITY.md.
+
+  - name: Questions and general discussion
+    url: https://github.com/OWNER/REPO/discussions
+    about: Ask questions, share what you are building, or propose an idea before writing code.
+
+  - name: Contributing guide
+    url: https://github.com/OWNER/REPO/blob/main/CONTRIBUTING.md
+    about: Setup, branch and commit conventions, and how to contribute a language pack.

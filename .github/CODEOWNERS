@@ -1,0 +1,34 @@
+# Code owners.
+#
+# BEFORE ENABLING "Require review from Code Owners" in branch protection:
+# replace every @placeholder below with real GitHub users or teams. GitHub
+# silently ignores rules whose owner does not exist, and a required review that
+# nobody can satisfy will block every pull request.
+#
+# Patterns are matched last-wins, so specific rules must come after general ones.
+
+# Default owner for everything not listed below.
+*                           @your-org/maintainers
+
+# Architecture decisions and the design documents that constrain the codebase.
+/docs/architecture/         @your-org/architecture
+
+# CI, dependency policy, and repository governance.
+/.github/                   @your-org/maintainers
+/CONTRIBUTING.md            @your-org/maintainers
+/SECURITY.md                @your-org/maintainers
+
+# The shared contract layer. A change here affects the API, the client, and the
+# content validator simultaneously.
+/packages/types/            @your-org/architecture
+
+# Runtime configuration and secret handling.
+/packages/config/           @your-org/maintainers
+
+# Content requires a fluent or native speaker of the target language, so each
+# language gets its own reviewer. Add one line per language as packs land, and
+# keep the pack-specific lines after the general content rule.
+/content/                   @your-org/curriculum
+/content/packs/en--es/      @your-org/lang-en-es
+/content/languages/         @your-org/curriculum
+/content/normalization/     @your-org/curriculum

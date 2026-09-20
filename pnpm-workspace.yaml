@@ -1,0 +1,19 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm refuses to install a package published within a recent window (its
+# default is roughly 24 hours). This is the main defence against pulling in a
+# compromised release automatically, so it stays on. When a dependency is
+# rejected for being too new, pin the previous release: do not add an exclusion
+# here, because an exclusion list that grows is a policy that stops working.
+#
+# pnpm blocks dependency lifecycle scripts for the same reason. Every exception is
+# reviewed and listed explicitly. `pnpm ignored-builds` shows what is currently
+# blocked. See SECURITY.md.
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  argon2: true
+  esbuild: true
+  prisma: true

@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Test output
+coverage/
+.nyc_output/
+
+# Tooling caches
+.turbo/
+.eslintcache
+.cache/
+
+# Framework output
+.next/
+.vercel/
+
+# Environment files — never commit real secrets. .env.example is the only
+# environment file that belongs in version control.
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+logs/
+
+# Operating system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
