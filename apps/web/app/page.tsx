@@ -318,10 +318,10 @@ export default async function HomePage() {
           </p>
           <div className="mt-6">
             <Link
-              href="/learn"
+              href="/placement"
               className="inline-block rounded-md bg-ink-invert px-5 py-2.5 text-sm font-medium text-ink hover:opacity-90"
             >
-              Set my level →
+              Check my level →
             </Link>
           </div>
         </div>
