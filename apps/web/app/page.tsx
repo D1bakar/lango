@@ -332,15 +332,15 @@ export default async function HomePage() {
 
       {/* Stories / method — three cards like "From the blog" */}
       <section id="method" className="scroll-mt-24">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-medium tracking-wide text-accent uppercase">Method</p>
-            <h2 className="mt-2 font-serif text-3xl sm:text-4xl">A teacher, not a chat window.</h2>
-          </div>
-          <Link href="/status" className="text-sm font-medium text-accent-strong hover:underline">
-            Verify the running build →
-          </Link>
-        </div>
+        <SectionHeading
+          eyebrow="Method"
+          title="A teacher, not a chat window."
+          action={
+            <Link href="/status" className="text-sm font-medium text-accent-strong hover:underline">
+              Verify the running build →
+            </Link>
+          }
+        />
         <ul className="mt-8 grid gap-5 md:grid-cols-3">
           {METHOD_CARDS.map((card) => (
             <li
