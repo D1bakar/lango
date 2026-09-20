@@ -23,7 +23,9 @@ export function SectionHeading({
       <div>
         <p className="text-xs font-medium tracking-wide text-accent uppercase">{eyebrow}</p>
         <h2 className="mt-2 font-serif text-3xl text-balance sm:text-4xl">{title}</h2>
-        {children !== undefined ? <div className="mt-3 max-w-2xl text-muted">{children}</div> : null}
+        {children !== undefined ? (
+          <div className="mt-3 max-w-2xl text-muted">{children}</div>
+        ) : null}
       </div>
       {action !== undefined ? <div className="shrink-0">{action}</div> : null}
     </div>
