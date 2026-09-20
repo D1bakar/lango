@@ -22,7 +22,7 @@ export default async function LearnPage() {
     return <Onboarding languages={languages} pairsByNative={pairsByNative} />;
   } catch (error) {
     return (
-      <div className="max-w-3xl">
+      <div className="max-w-4xl">
         <h1 className="font-serif text-3xl">Choose a language</h1>
         <div className="mt-8">
           <ApiDownPanel error={error} />
