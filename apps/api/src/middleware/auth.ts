@@ -29,10 +29,7 @@ export type AuthenticatedRequest = FastifyRequest & {
  *
  * Throws a 401 if the token is missing, expired, or invalid.
  */
-export async function requireAuth(
-  request: FastifyRequest,
-  reply: FastifyReply,
-): Promise<void> {
+export async function requireAuth(request: FastifyRequest, reply: FastifyReply): Promise<void> {
   const header = request.headers.authorization;
   if (header === undefined || !header.startsWith("Bearer ")) {
     reply.status(401).send({
@@ -84,18 +81,12 @@ export function signAccessToken(
   app: FastifyInstance,
   user: { id: string; email: string; role: string },
 ): string {
-  return app.jwt.sign(
-    { sub: user.id, email: user.email, role: user.role },
-    { expiresIn: "15m" },
-  );
+  return app.jwt.sign({ sub: user.id, email: user.email, role: user.role }, { expiresIn: "15m" });
 }
 
 /**
  * Sign a refresh token (longer-lived, stored as httpOnly cookie).
  */
-export function signRefreshToken(
-  app: FastifyInstance,
-  userId: string,
-): string {
+export function signRefreshToken(app: FastifyInstance, userId: string): string {
   return app.jwt.sign({ sub: userId }, { expiresIn: "7d" });
 }
