@@ -303,7 +303,7 @@ export function Onboarding({ languages, pairsByNative }: OnboardingProps) {
       </div>
 
       {stepIndex > 0 ? (
-        <div className="mt-10">
+        <div className="mt-10" aria-live="polite" aria-atomic="false">
           <button
             type="button"
             onClick={() => setStepIndex((current) => Math.max(current - 1, 0))}
