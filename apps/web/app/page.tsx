@@ -209,10 +209,10 @@ export default async function HomePage() {
 
       {/* For contributors — two large cards like "For organisations" */}
       <section id="contribute" className="scroll-mt-24">
-        <p className="text-xs font-medium tracking-wide text-accent uppercase">For contributors</p>
-        <h2 className="mt-2 max-w-2xl font-serif text-3xl text-balance sm:text-4xl">
-          Teaching a language? Help write or review it.
-        </h2>
+        <SectionHeading
+          eyebrow="For contributors"
+          title="Teaching a language? Help write or review it."
+        />
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
           <div className="rounded-2xl border border-line bg-surface-warm p-8 shadow-card">
             <h3 className="font-serif text-2xl">Write a language pack</h3>
