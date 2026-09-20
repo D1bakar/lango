@@ -4,6 +4,7 @@
 // Copyright 2026 Lingua contributors
 
 import type { LanguagePairSummary, LanguageSummary } from "@lingua/types";
+import Link from "next/link";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 
 type StepId = "native" | "target" | "level" | "goal" | "plan";
@@ -206,6 +207,13 @@ export function Onboarding({ languages, pairsByNative }: OnboardingProps) {
                 detail={LEVEL_COPY[code]?.detail ?? ""}
               />
             ))}
+            <p className="text-sm text-muted sm:col-span-2">
+              Not sure where you stand?{" "}
+              <Link href="/placement" className="font-medium text-accent-strong hover:underline">
+                Take the 10-minute placement check
+              </Link>{" "}
+              — it finds your level through doing, not guessing.
+            </p>
           </Step>
         ) : null}
 
