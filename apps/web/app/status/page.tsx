@@ -50,6 +50,29 @@ export default async function StatusPage() {
             recorded.
           </p>
         ) : null}
+
+        <section className="mt-10 rounded-2xl border border-line bg-surface p-6 shadow-card sm:p-8">
+          <h2 className="font-serif text-xl">Verify in five seconds</h2>
+          <p className="mt-2 text-sm text-muted">
+            The most expensive bug in a content-driven product is the server quietly serving
+            something other than what the author wrote. Check this page against the repository:
+          </p>
+          <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-ink">
+            <li>
+              Languages defined should equal the files in{" "}
+              <code className="text-accent-strong">content/languages/</code>.
+            </li>
+            <li>
+              Language packs should equal the <code className="text-accent-strong">pack.yaml</code>{" "}
+              files under <code className="text-accent-strong">content/packs/</code>.
+            </li>
+            <li>
+              Packs published should equal packs whose{" "}
+              <code className="text-accent-strong">review.status</code> is{" "}
+              <code className="text-accent-strong">approved</code> with two reviewers recorded.
+            </li>
+          </ol>
+        </section>
       </div>
     );
   } catch (error) {
