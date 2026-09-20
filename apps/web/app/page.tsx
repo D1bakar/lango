@@ -4,20 +4,15 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { CorrectionCard } from "@/components/correction-card";
+import { PathCard } from "@/components/path-card";
+import type { PathCardData } from "@/components/path-card";
 import { SectionHeading } from "@/components/section-heading";
 import { fetchContentStatus, fetchLanguages, fetchPairs } from "@/lib/api";
 import type { LanguagePairSummary } from "@lingua/types";
 
 export const dynamic = "force-dynamic";
 
-type PathCard = {
-  key: string;
-  from: string;
-  to: string;
-  title: string;
-  detail: string;
-  meta: string;
-};
+type PathCard = PathCardData;
 
 const FALLBACK_PATHS: PathCard[] = [
   {
@@ -207,33 +202,7 @@ export default async function HomePage() {
         </SectionHeading>
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {pathCards.map((card) => (
-            <li
-              key={card.key}
-              className="group flex flex-col rounded-2xl border border-line bg-surface p-6 shadow-card transition hover:-translate-y-0.5 hover:shadow-lift"
-            >
-              <div className="flex items-center gap-2">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-xs font-bold text-accent-strong">
-                  {card.from}
-                </span>
-                <span aria-hidden="true" className="text-faint">
-                  →
-                </span>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ink text-xs font-bold text-ink-invert">
-                  {card.to}
-                </span>
-                <span className="ml-auto rounded-full border border-line px-2.5 py-1 text-[11px] text-muted">
-                  {card.meta}
-                </span>
-              </div>
-              <h3 className="mt-4 font-serif text-xl">{card.title}</h3>
-              <p className="mt-2 flex-1 text-sm text-muted">{card.detail}</p>
-              <Link
-                href="/learn"
-                className="mt-5 text-sm font-medium text-accent-strong group-hover:underline"
-              >
-                Continue →
-              </Link>
-            </li>
+            <PathCard key={card.key} card={card} href="/learn" />
           ))}
         </ul>
       </section>
