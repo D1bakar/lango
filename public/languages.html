@@ -13,18 +13,16 @@
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <div class="utility-bar"><div class="container"><p><strong>DIRECTORY</strong> · 22 COURSES · 5 MIN EACH</p><nav class="nav"><a href="./index.html">Home</a><a href="./review.html">Review</a></nav></div></div>
-  <header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span><br /><span class="brand-sub">Course directory</span></span></a><nav class="nav"><a href="./index.html">Home</a><span class="pill" data-streak>0 day streak</span></nav></div></header>
-  <main id="main" class="container" style="padding-block:32px">
-    <p class="eyebrow">Directory</p>
-    <h1>Choose a course</h1>
-    <p style="color:var(--muted)">22 starters, each 1 unit × 5 lessons × 8–10 words. Search or filter by script. Selection saves locally.</p>
+  <header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span></span></a><nav class="nav"><a href="./index.html">Home</a><span class="pill" data-streak>0 day streak</span></nav></div></header>
+  <main id="main" class="container" style="padding-block:48px">
+    <h1 style="text-align:center">Choose a course</h1>
+    <p style="color:var(--muted);text-align:center;max-width:40rem;margin:8px auto 0">22 starters. Search or filter by script. Selection saves locally.</p>
     <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
       <input id="q" class="input" style="max-width:320px" type="search" placeholder="Search Japanese, French, Hindi…" aria-label="Search courses" />
       <select id="f" class="select" style="max-width:220px" aria-label="Filter by script"><option value="">All scripts</option><option value="Latn">Latin</option><option value="Jpan">Japanese</option><option value="Kore">Korean</option><option value="Hans">Chinese</option><option value="Deva">Devanagari</option><option value="Arab">Arabic</option><option value="Cyrl">Cyrillic</option></select>
     </div>
     <div id="grid" class="grid-2" style="margin-top:16px"><p>Loading…</p></div>
-    <div class="card" style="margin-top:16px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center"><div><strong>Not sure?</strong><p style="color:var(--muted);font-size:14px">English speakers start Spanish or Japanese. Same method everywhere.</p></div><a id="continue" href="./lesson.html" class="btn btn-primary" aria-disabled="true">Select a course to continue</a></div>
+    <div class="card" style="margin-top:16px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center"><div><strong>Not sure?</strong><p style="color:var(--muted);font-size:14px">English speakers start Spanish or Japanese. Same method everywhere.</p></div><a id="continue" href="./lesson.html" class="btn btn-apple" aria-disabled="true">Select a course to continue</a></div>
     <p id="error" class="notice notice-error" hidden></p>
   </main>
   <script type="module">
