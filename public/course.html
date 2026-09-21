@@ -1,53 +1,50 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="Course curriculum: units, lessons, words." />
   <title>Course — Lango</title>
   <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /><link rel="stylesheet" href="./css/app.css" />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span></span></a><nav class="nav"><a href="./languages.html">Courses</a><span class="pill" data-xp>0 XP</span></nav></div></header>
-  <main id="main" class="container" style="padding-block:48px;max-width:46rem">
-    <h1 id="title">Loading…</h1><p id="desc" style="color:var(--muted);margin-top:8px"></p>
-    <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap"><a id="start" href="#" class="btn btn-apple">Start lesson 1</a><a id="review-link" href="#" class="btn btn-ghost">Review</a></div>
+  <div id="shell"></div>
+  <main data-content>
+    <div class="page-h"><h1 id="title">Loading…</h1><p id="desc"></p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center"><a id="start" href="#" class="btn btn-primary">Start lesson 1</a><a id="review-link" href="#" class="btn btn-ghost">Review</a></div>
     <div class="progress" style="margin-top:16px"><i id="prog" style="width:0%"></i></div>
-    <div id="units" class="path" style="margin-top:16px"></div>
+    <div id="units" class="path" style="margin-top:16px"><div class="skel"></div></div>
   </main>
   <script type="module">
     import { loadLanguages, getQuery } from "./js/loader.js";
     import { loadStore, setLanguage } from "./js/store.js";
     import { mountShell } from "./js/shell.js";
     import { courseProgress } from "./js/srs.js";
-    mountShell({});
+    mountShell({ active: "courses", layout: "mid" });
     const langs = await loadLanguages();
     const tag = getQuery("lang") || loadStore().lang || langs[0].tag;
     const c = langs.find(x=>x.tag===tag) || langs[0];
     setLanguage(c.tag);
     document.getElementById("title").textContent = `${c.name} · ${c.nativeName}`;
-    document.getElementById("desc").textContent = `${c.description||""} ${c.words.length} words, ${c.totalLessons} lessons.`;
+    document.getElementById("desc").textContent = `${c.words.length} words · ${c.totalLessons} lessons`;
     document.getElementById("prog").style.width = courseProgress(c)+"%";
     document.getElementById("start").href = "./lesson.html?lang="+encodeURIComponent(c.tag);
     document.getElementById("review-link").href = "./review.html?lang="+encodeURIComponent(c.tag);
-    const box = document.getElementById("units");
-    const units = c.units?.length ? c.units : [{ id: c.tag+"-u1", title: "Starter", lessons: [{ id: c.tag+"-u1-l1", title: "First 5 words", words: c.words.slice(0,5) }] }];
+    const box = document.getElementById("units"); box.innerHTML = "";
+    const units = c.units?.length ? c.units : [{ id: c.tag+"-u1", title: "Starter", lessons: [{ id: c.tag+"-u1-l1", title: "First words", words: c.words.slice(0,5) }] }];
+    let n = 0;
     for (const u of units) {
-      const card = document.createElement("section"); card.className="card path";
-      card.innerHTML = `<h2 style="font-size:20px;letter-spacing:-0.02em">${u.title}</h2><p style="color:var(--muted);font-size:14px">${(u.lessons||[]).length} lessons</p>`;
-      let i = 0;
+      const sec = document.createElement("section"); sec.className="card path";
+      sec.innerHTML = `<h2 style="font-size:20px">${u.title}</h2>`;
       for (const l of (u.lessons||[])) {
-        i++;
-        const row = document.createElement("div");
-        row.className = "path-node";
-        row.innerHTML = `<span class="path-dot">${i}</span><span style="flex:1"><strong>${l.title}</strong><br/><span style="color:var(--muted);font-size:13px">${(l.words||[]).slice(0,3).map(w=>w.back).join(", ")}…</span></span>`;
+        n++;
+        const row = document.createElement("div"); row.className="path-node";
+        row.innerHTML = `<span class="path-dot">${n}</span><span style="flex:1"><strong>${l.title}</strong><br/><span style="color:var(--muted);font-size:13px">${(l.words||[]).slice(0,3).map(w=>w.back).join(", ")}</span></span>`;
         const a = document.createElement("a"); a.className="btn btn-primary"; a.style.minHeight="40px"; a.textContent="Start"; a.href=`./lesson.html?lang=${encodeURIComponent(c.tag)}&lesson=${encodeURIComponent(l.id)}`;
-        row.appendChild(a); card.appendChild(row);
+        row.appendChild(a); sec.appendChild(row);
       }
-      const wl = document.createElement("details"); wl.style.marginTop="8px";
-      wl.innerHTML = `<summary style="cursor:pointer;font-weight:700">Word list (${c.words.length})</summary><p style="font-size:14px;color:var(--muted)">${c.words.map(w=>`${w.front} → ${w.back}`).join(" · ")}</p>`;
-      card.appendChild(wl); box.appendChild(card);
+      box.appendChild(sec);
     }
   </script>
 </body>
