@@ -62,21 +62,32 @@
 
 .utility-bar { display: none; }
 
-.hero { display: grid; gap: var(--s-8); padding-block: var(--s-12); }
-@media (min-width: 900px) { .hero { grid-template-columns: 1.05fr 0.95fr; align-items: center; } }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-5); }
+.hero { display: grid; gap: var(--s-8); padding-block: 80px; text-align: center; max-width: 56rem; margin-inline: auto; }
+@media (min-width: 900px) { .hero-split { grid-template-columns: 1.05fr 0.95fr; text-align: left; align-items: center; } }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-5); justify-content: center; }
+.hero-split .hero-cta { justify-content: flex-start; }
+.hero-sub { margin-top: 16px; color: var(--muted); font-size: 21px; line-height: 1.4; letter-spacing: -0.01em; }
+
+.path { display: flex; flex-direction: column; gap: 0; }
+.path-node { display: flex; gap: 16px; align-items: flex-start; padding: 18px 0; border-top: 1px solid var(--sep); }
+.path-node:first-child { border-top: 0; }
+.path-dot { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 1px solid var(--sep); font-weight: 600; box-shadow: var(--shadow-sm); }
+.path-node.is-done .path-dot { background: var(--ink); color: #fff; border-color: transparent; }
+.tile { display: flex; gap: 14px; align-items: flex-start; text-decoration: none; }
+.tile-icon { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--apple-blue-bg); color: var(--apple-blue); font-size: 20px; }
 
 .grid-2 { display: grid; gap: 16px; }
 @media (min-width: 800px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
 .grid-3 { display: grid; gap: 16px; }
 @media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
 
-.progress { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
-.progress > i { display: block; height: 100%; background: var(--brand-600); border-radius: inherit; transition: width var(--dur) var(--ease); }
+.progress { height: 8px; border-radius: 999px; background: rgb(0 0 0 / 0.08); overflow: hidden; }
+.progress > i { display: block; height: 100%; background: var(--apple-blue); border-radius: inherit; transition: width var(--dur) var(--ease); }
+.progress-success > i { background: var(--brand-600); }
 
-.course-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; }
-.course-card-top { background: var(--ink); color: #fff; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
-.course-card-tag { font-family: var(--font-display); font-weight: 800; font-size: 32px; }
+.course-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; border-radius: var(--r-apple); }
+.course-card-top { background: var(--card); color: var(--ink); padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--sep); }
+.course-card-tag { font-weight: 700; font-size: 28px; letter-spacing: -0.03em; }
 .course-card-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .course-card.is-selected { border-color: var(--brand-600); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-600) 20%, transparent); }
 
@@ -87,8 +98,9 @@
 .notice { border: 1px solid var(--line); background: var(--card); border-radius: var(--r-md); padding: 14px 16px; font-size: var(--t-sm); }
 .notice-error { border-color: #f0b4b4; background: var(--warn-bg); color: #7a1a1a; }
 
-.site-footer { background: var(--ink); color: #fff; margin-top: var(--s-16); }
-.site-footer a { color: rgb(255 255 255 / 0.75); }
+.site-footer { background: var(--bg); color: var(--muted); margin-top: 96px; border-top: 1px solid var(--sep); }
+.site-footer a { color: var(--body); text-decoration: none; font-size: 14px; }
+.site-footer a:hover { text-decoration: underline; }
 .lesson-shell { max-width: 46rem; margin-inline: auto; padding-block: var(--s-8); }
 .flip { perspective: 900px; }
 .flip-inner { transform-style: preserve-3d; transition: transform 200ms var(--ease); position: relative; min-height: 230px; }
