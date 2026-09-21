@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Stats — Lango</title><link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /></head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span><br /><span class="brand-sub">Progress</span></span></a><nav class="nav"><a href="./languages.html">Courses</a></nav></div></header>
+<main id="main" class="container" style="padding-block:32px">
+<h1>Your progress</h1><p style="color:var(--muted)">XP, streak and mastery — device only.</p>
+<div class="grid-3" style="margin-top:16px"><div class="card" style="text-align:center"><p id="xp" style="font-size:32px;font-weight:800;font-family:var(--font-display)">0</p><p class="eyebrow">Total XP</p></div><div class="card" style="text-align:center"><p id="streak" style="font-size:32px;font-weight:800;font-family:var(--font-display)">0</p><p class="eyebrow">Day streak</p></div><div class="card" style="text-align:center"><p id="level" style="font-size:32px;font-weight:800;font-family:var(--font-display)">1</p><p class="eyebrow">Level (200 XP)</p></div></div>
+<div class="card" style="margin-top:16px"><h2 style="font-size:18px">Mastery by course</h2><div id="bars" class="stack" style="margin-top:12px"></div></div>
+<div class="card" style="margin-top:16px"><h2 style="font-size:18px">How XP works</h2><p style="color:var(--muted);font-size:14px">+10 per correct answer. Level = floor(XP/200)+1. Streak increments once per calendar day you earn XP (local timezone).</p></div>
+</main>
+<script type="module">
+import { loadLanguages } from "./js/loader.js";
+import { loadStore } from "./js/store.js";
+import { mountShell } from "./js/shell.js";
+import { courseProgress } from "./js/srs.js";
+mountShell({});
+const s = loadStore();
+document.getElementById("xp").textContent = s.xp;
+document.getElementById("streak").textContent = s.streak + "d";
+document.getElementById("level").textContent = "Lv " + (s.level||1);
+const langs = await loadLanguages();
+const box = document.getElementById("bars");
+for(const c of langs){
+  const p = courseProgress(c);
+  const d=document.createElement("div");
+  d.innerHTML=`<div style="display:flex;justify-content:space-between;font-size:14px"><strong>${c.name}</strong><span style="color:var(--muted)">${p}%</span></div><div class="progress" style="margin-top:6px"><i style="width:${p}%"></i></div>`;
+  box.appendChild(d);
+}
+</script>
+</body>
+</html>
