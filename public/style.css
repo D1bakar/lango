@@ -1,28 +1,72 @@
-/* Colors for our drawings. Simple. */
+/* Lango v1 tokens. Tailwind handles layout. This file holds base + a11y. */
 
-body {
-  font-family: system-ui, sans-serif;
-  background: #eef6ff;
-  margin: 0;
-  padding: 40px;
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --primary: #16a34a;
+  --primary-dark: #15803d;
+  --accent: #1d4ed8;
+  --warn: #dc2626;
+  --radius: 16px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keep old .box working for legacy pages until removed */
 .box {
   max-width: 520px;
   margin: 0 auto;
-  background: white;
+  background: var(--card);
   padding: 24px;
-  border-radius: 16px;
-  border: 2px solid #bcd8ff;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
 }
 
-h1 {
-  color: #1d4ed8;
-}
-
-nav a,
 a {
-  display: inline-block;
-  margin: 6px 8px 0 0;
-  color: #1d4ed8;
+  color: var(--accent);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #111827;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 50;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Visible focus for keyboard users */
+:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
