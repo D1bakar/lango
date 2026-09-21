@@ -1,0 +1,5 @@
+# Dirty toys we never save in git
+node_modules/
+.env
+*.log
+.DS_Store

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Status - Lango</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="box">
+      <h1>Is the kitchen awake?</h1>
+      <p id="msg">Checking...</p>
+      <a href="/">Back home</a>
+    </main>
+    <script>
+      fetch("/health")
+        .then((r) => r.json())
+        .then((h) => {
+          document.getElementById("msg").textContent = h.ok
+            ? "Yes! Kitchen is awake."
+            : "Hmm, kitchen says no.";
+        })
+        .catch(() => {
+          document.getElementById("msg").textContent = "No. Kitchen is sleeping.";
+        });
+    </script>
+  </body>
+</html>

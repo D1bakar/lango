@@ -1,0 +1,28 @@
+/* Colors for our drawings. Simple. */
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #eef6ff;
+  margin: 0;
+  padding: 40px;
+}
+
+.box {
+  max-width: 520px;
+  margin: 0 auto;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  border: 2px solid #bcd8ff;
+}
+
+h1 {
+  color: #1d4ed8;
+}
+
+nav a,
+a {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  color: #1d4ed8;
+}

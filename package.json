@@ -1,0 +1,16 @@
+{
+  "name": "lango",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Lango - tiny language learning starter. Plain JavaScript + Express.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

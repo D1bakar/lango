@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learn - Lango</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="box">
+      <h1>Choose a language</h1>
+      <p>This list comes from our tiny book.</p>
+      <ul id="list">
+        <li>Loading...</li>
+      </ul>
+      <a href="/">Back home</a>
+    </main>
+    <script>
+      // Ask the kitchen for the tiny book, then show it.
+      fetch("/api/languages")
+        .then((r) => r.json())
+        .then((langs) => {
+          const ul = document.getElementById("list");
+          ul.innerHTML = "";
+          for (const l of langs) {
+            const li = document.createElement("li");
+            li.textContent = l.name + " (" + l.tag + ")";
+            ul.appendChild(li);
+          }
+        })
+        .catch(() => {
+          document.getElementById("list").innerHTML = "<li>Kitchen is sleeping.</li>";
+        });
+    </script>
+  </body>
+</html>
