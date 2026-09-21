@@ -3,19 +3,160 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Lango</title>
-    <link rel="stylesheet" href="/style.css" />
+    <meta name="description" content="Lango — learn 10 essential words. Frontend-only, no account, progress stays in your browser." />
+    <title>Lango — Learn 10 words a day</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Nunito", "system-ui", "sans-serif"] },
+            colors: {
+              brand: { 600: "#16a34a", 700: "#15803d" },
+              ink: "#1f2937",
+              muted: "#6b7280",
+              line: "#e5e7eb",
+              paper: "#f8fafc",
+            },
+            borderRadius: { xl2: "16px" },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <main class="box">
-      <h1>Hello Lango!</h1>
-      <p>I am new. I am tiny. I will grow slowly.</p>
-      <nav>
-        <a href="/learn">Go to Learn</a>
-        <a href="/status">Go to Status</a>
-        <a href="/health">Health (robots)</a>
-        <a href="/api/languages">Languages (tiny book)</a>
-      </nav>
+  <body class="bg-paper text-ink">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="border-b border-line bg-white">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <a href="./index.html" class="flex items-center gap-2" aria-label="Lango home">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white font-extrabold" aria-hidden="true">L</span>
+          <span class="text-lg font-extrabold tracking-tight">Lango</span>
+        </a>
+        <nav class="flex items-center gap-4 text-sm font-bold" aria-label="Primary">
+          <a href="./languages.html" class="hidden sm:inline hover:underline">Languages</a>
+          <a href="./lesson.html" class="hidden sm:inline hover:underline">Lesson</a>
+          <span id="streak" class="rounded-full border border-line bg-paper px-3 py-1 text-xs text-muted" title="Day streak stored locally">0 day streak</span>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="mx-auto max-w-5xl px-4">
+      <section class="grid gap-8 py-10 md:grid-cols-2 md:items-center md:py-16">
+        <div>
+          <p class="mb-3 inline-block rounded-full border border-line bg-white px-3 py-1 text-xs font-bold text-muted">FRONTEND-ONLY • NO ACCOUNT • 5 MINUTES</p>
+          <h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">Learn 10 words.<br />Use them today.</h1>
+          <p class="mt-4 max-w-md text-base text-muted">Pick Spanish or English. Flip cards, answer 5 quick questions. Your XP and progress stay in this browser — nothing is sent anywhere.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="./languages.html" class="min-h-[48px] inline-flex items-center rounded-xl bg-brand-600 px-6 py-3 font-extrabold text-white hover:bg-brand-700 active:scale-95 transition">Start learning</a>
+            <a href="#how" class="min-h-[48px] inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-extrabold hover:bg-paper active:scale-95 transition">How it works</a>
+          </div>
+          <dl class="mt-8 grid max-w-md grid-cols-3 gap-3 text-center">
+            <div class="rounded-xl border border-line bg-white p-3">
+              <dt class="text-xs font-bold text-muted">WORDS</dt>
+              <dd class="text-xl font-extrabold">10</dd>
+            </div>
+            <div class="rounded-xl border border-line bg-white p-3">
+              <dt class="text-xs font-bold text-muted">TIME</dt>
+              <dd class="text-xl font-extrabold">5 min</dd>
+            </div>
+            <div class="rounded-xl border border-line bg-white p-3">
+              <dt class="text-xs font-bold text-muted">COURSES</dt>
+              <dd class="text-xl font-extrabold">2</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="rounded-2xl border border-line bg-white p-5 shadow-sm" aria-label="Today lesson preview">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 class="font-extrabold">Today: Greetings</h2>
+            <span class="text-xs font-bold text-muted">ES • Lesson 1</span>
+          </div>
+          <div id="preview-card" class="rounded-xl bg-paper p-8 text-center border border-line">
+            <p class="text-xs font-bold text-muted">FRONT</p>
+            <p class="mt-1 text-3xl font-extrabold">Hello</p>
+            <p class="mt-4 text-sm text-muted">Tap Reveal in lesson to see Hola</p>
+          </div>
+          <a href="./lesson.html?lang=es" class="mt-4 flex min-h-[48px] items-center justify-center rounded-xl bg-ink px-4 py-3 font-bold text-white hover:opacity-90">Open Spanish lesson</a>
+          <p class="mt-2 text-center text-xs text-muted">Works offline after first load. No login.</p>
+        </div>
+      </section>
+
+      <section id="how" class="border-t border-line py-10">
+        <h2 class="text-2xl font-extrabold">How a lesson works</h2>
+        <div class="mt-5 grid gap-4 md:grid-cols-3">
+          <article class="rounded-2xl border border-line bg-white p-5">
+            <p class="text-sm font-extrabold text-brand-700">1 • PICK</p>
+            <h3 class="mt-1 font-extrabold">Choose a course</h3>
+            <p class="mt-1 text-sm text-muted">Spanish or English. Your choice is saved locally and used to open the right lesson.</p>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5">
+            <p class="text-sm font-extrabold text-brand-700">2 • PRACTICE</p>
+            <h3 class="mt-1 font-extrabold">Flip + answer</h3>
+            <p class="mt-1 text-sm text-muted">5 flashcards, then 5 multiple-choice questions. Instant feedback, no timer pressure.</p>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5">
+            <p class="text-sm font-extrabold text-brand-700">3 • KEEP</p>
+            <h3 class="mt-1 font-extrabold">Earn XP locally</h3>
+            <p class="mt-1 text-sm text-muted">+10 XP per correct answer. Streak counts consecutive days you finish a lesson.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="border-t border-line py-10" aria-labelledby="langs-heading">
+        <div class="flex items-end justify-between">
+          <h2 id="langs-heading" class="text-2xl font-extrabold">Courses</h2>
+          <a href="./languages.html" class="text-sm font-bold hover:underline">View all</a>
+        </div>
+        <div id="lang-grid" class="mt-5 grid gap-4 sm:grid-cols-2">
+          <p class="text-sm text-muted">Loading courses…</p>
+        </div>
+      </section>
     </main>
+
+    <footer class="border-t border-line bg-white">
+      <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <p>Lango v1 • Frontend-only. Data stays in your browser.</p>
+        <p><a href="./languages.html" class="font-bold hover:underline">Languages</a> • <button id="reset" class="font-bold hover:underline">Reset progress</button></p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { loadLanguages, loadStore, clearProgress } from "./app.js";
+
+      const store = loadStore();
+      const streakEl = document.getElementById("streak");
+      streakEl.textContent = store.streak + " day streak";
+
+      document.getElementById("reset").addEventListener("click", () => {
+        if (confirm("Clear local XP and progress?")) {
+          clearProgress();
+          window.location.reload();
+        }
+      });
+
+      const grid = document.getElementById("lang-grid");
+      try {
+        const langs = await loadLanguages();
+        grid.innerHTML = "";
+        for (const l of langs) {
+          const a = document.createElement("a");
+          a.href = "./lesson.html?lang=" + encodeURIComponent(l.tag);
+          a.className = "flex items-center gap-4 rounded-2xl border border-line bg-white p-4 hover:shadow-sm transition";
+          a.innerHTML =
+            '<span class="flex h-11 w-11 items-center justify-center rounded-full bg-paper border border-line font-extrabold" aria-hidden="true">' +
+            l.tag.toUpperCase() +
+            "</span>" +
+            '<span><span class="block font-extrabold">' + l.name + ' <span class="font-bold text-muted">• ' + l.nativeName + "</span></span>" +
+            '<span class="block text-sm text-muted">' + l.words.length + " words • " + l.minutes + " min • " + l.level + "</span></span>";
+          grid.appendChild(a);
+        }
+      } catch (e) {
+        grid.innerHTML = '<p class="text-sm text-muted">Could not load courses. Check public/data/languages.json.</p>';
+      }
+    </script>
   </body>
 </html>
