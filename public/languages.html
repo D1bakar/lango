@@ -2,27 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Choose from 22 Lango courses. Search, filter, continue where you left off." />
-  <title>Languages — Lango</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Choose from 22 Lango courses." />
+  <title>Courses — Lango</title>
   <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./css/fonts.css" />
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/app.css" />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span></span></a><nav class="nav"><a href="./index.html">Home</a><span class="pill" data-streak>0 day streak</span></nav></div></header>
-  <main id="main" class="container" style="padding-block:48px">
-    <h1 style="text-align:center">Choose a course</h1>
-    <p style="color:var(--muted);text-align:center;max-width:40rem;margin:8px auto 0">22 starters. Search or filter by script. Selection saves locally.</p>
-    <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
-      <input id="q" class="input" style="max-width:320px" type="search" placeholder="Search Japanese, French, Hindi…" aria-label="Search courses" />
-      <select id="f" class="select" style="max-width:220px" aria-label="Filter by script"><option value="">All scripts</option><option value="Latn">Latin</option><option value="Jpan">Japanese</option><option value="Kore">Korean</option><option value="Hans">Chinese</option><option value="Deva">Devanagari</option><option value="Arab">Arabic</option><option value="Cyrl">Cyrillic</option></select>
+  <div id="shell"></div>
+  <main data-content>
+    <div class="page-h"><h1>Choose a course</h1><p>22 starters. Search or filter by script. Selection saves locally.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <input id="q" class="input" style="flex:2;min-width:200px" type="search" placeholder="Search Japanese, French, Hindi…" aria-label="Search courses" />
+      <select id="f" class="select" style="flex:1;min-width:160px" aria-label="Filter by script"><option value="">All scripts</option><option value="Latn">Latin</option><option value="Jpan">Japanese</option><option value="Kore">Korean</option><option value="Hans">Chinese</option><option value="Deva">Devanagari</option><option value="Arab">Arabic</option><option value="Cyrl">Cyrillic</option></select>
     </div>
-    <div id="grid" class="grid-2" style="margin-top:16px"><p>Loading…</p></div>
-    <div class="card" style="margin-top:16px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center"><div><strong>Not sure?</strong><p style="color:var(--muted);font-size:14px">English speakers start Spanish or Japanese. Same method everywhere.</p></div><a id="continue" href="./lesson.html" class="btn btn-apple" aria-disabled="true">Select a course to continue</a></div>
+    <div id="grid" class="grid-2" style="margin-top:16px"><div class="skel"></div><div class="skel"></div></div>
+    <div class="card" style="margin-top:16px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center"><div><strong>Not sure?</strong><p style="color:var(--muted);font-size:14px">Start Spanish or Japanese. Same method everywhere.</p></div><a id="continue" href="./lesson.html" class="btn btn-apple" aria-disabled="true">Select a course</a></div>
     <p id="error" class="notice notice-error" hidden></p>
   </main>
   <script type="module">
@@ -30,27 +30,26 @@
     import { loadStore, setLanguage } from "./js/store.js";
     import { mountShell } from "./js/shell.js";
     import { courseProgress } from "./js/srs.js";
-    mountShell({ active: "courses" });
+    mountShell({ active: "courses", layout: "wide" });
     const store = loadStore();
     let all = [], selected = store.lang;
     const grid = document.getElementById("grid"), cont = document.getElementById("continue"), q = document.getElementById("q"), f = document.getElementById("f");
-    function paintContinue(){ if(selected){ cont.href="./course.html?lang="+encodeURIComponent(selected); cont.setAttribute("aria-disabled","false"); cont.textContent="Continue with "+selected.toUpperCase()+" →"; } }
+    function paintContinue(){ if(selected){ cont.href="./course.html?lang="+encodeURIComponent(selected); cont.textContent="Continue with "+selected.toUpperCase(); } }
     function render(){
       const term = q.value.toLowerCase(), script = f.value;
       grid.innerHTML = "";
       for(const l of all.filter(x => (!term || (x.name+x.nativeName+x.tag).toLowerCase().includes(term)) && (!script || x.script===script))){
         const b=document.createElement("button"); b.type="button";
         b.className="card card-hover course-card"+(selected===l.tag?" is-selected":"");
-        b.setAttribute("aria-pressed", selected===l.tag?"true":"false");
         const pct = courseProgress(l);
-        b.innerHTML=`<div class="course-card-top"><span class="course-card-tag">${l.tag.toUpperCase()}</span><span class="pill">${l.level} · ${l.words.length}w</span></div><div class="course-card-body"><strong>${l.name} · ${l.nativeName}</strong><span style="color:var(--muted);font-size:14px">${l.description||""}</span><span class="progress" aria-label="${pct}% mastered"><i style="width:${pct}%"></i></span><span style="font-size:12px;font-weight:700;color:var(--muted)">${pct}% mastered · ${selected===l.tag?"✓ Selected":"Select"}</span></div>`;
+        b.innerHTML=`<div class="course-card-top"><span class="course-card-tag">${l.tag.toUpperCase()}</span><span class="pill">${l.level} · ${l.words.length} words</span></div><div class="course-card-body"><strong>${l.name} · ${l.nativeName}</strong><span class="progress" aria-label="${pct}%"><i style="width:${pct}%"></i></span><span style="font-size:13px;color:var(--muted)">${pct}% · ${selected===l.tag?"Selected":"Select"}</span></div>`;
         b.addEventListener("click",()=>{ selected=l.tag; setLanguage(l.tag); render(); paintContinue(); });
         grid.appendChild(b);
       }
-      if(!grid.children.length) grid.innerHTML="<p>No matches. Try another search.</p>";
+      if(!grid.children.length) grid.innerHTML="<p>No matches.</p>";
     }
     try{ all=await loadLanguages(); render(); paintContinue(); }
-    catch(e){ const er=document.getElementById("error"); er.hidden=false; er.textContent="Could not load courses. Check data/languages.json."; }
+    catch{ const er=document.getElementById("error"); er.hidden=false; er.textContent="Could not load courses."; }
     q.addEventListener("input",render); f.addEventListener("change",render);
   </script>
 </body>
