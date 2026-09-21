@@ -1,4 +1,4 @@
-/* Lango Apple x Codingo tokens — Apple neutral, Codingo IA. */
+/* Lango v3 One Shell tokens — single radius/shadow/motion/layout. */
 :root {
   --font-sans: "Inter", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Inter", "Sora", "Noto Sans JP", system-ui, -apple-system, sans-serif;
@@ -24,9 +24,11 @@
   --brand-900: #0d3b24;
 
   --accent: var(--apple-blue);
+  --success: #1a8737;
+  --success-bg: #e6f4ea;
   --warn: #b91c1c;
   --warn-bg: #fef2f2;
-  --ok-bg: #f0fdf4;
+  --ok-bg: var(--success-bg);
 
   --r-sm: 10px;
   --r-md: 14px;
@@ -58,12 +60,17 @@
   --shadow-md: 0 8px 24px rgb(0 0 0 / 0.08);
   --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.12);
 
-  --container: 75rem;
+  --wide: 75rem;
+  --mid: 64rem;
+  --narrow: 46rem;
+  --container: var(--wide);
+  --sidebar-w: 248px;
+  --tabbar-h: 64px;
   --header-h: 64px;
   --nav-blur: saturate(180%) blur(20px);
 
-  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --dur: 220ms;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur: 240ms;
 }
 
 [data-theme="dark"] {
