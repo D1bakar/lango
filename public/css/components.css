@@ -1,5 +1,5 @@
-/* Lango Apple components — Codingo IA, Apple HIG skin. No toy press edge. */
-.container { width: min(var(--container), 100% - 40px); margin-inline: auto; }
+/* Lango v3 components — one button language, one card, one nav. */
+.container { width: min(var(--wide), 100% - 40px); margin-inline: auto; }
 .stack > * + * { margin-top: var(--s-4); }
 
 .btn {
@@ -13,7 +13,6 @@
 .btn-primary:hover { background: #000; }
 .btn-apple { background: var(--apple-blue); color: #fff; }
 .btn-apple:hover { background: var(--apple-blue-dark); }
-.btn-dark { background: var(--ink); color: var(--card); }
 .btn-ghost { background: rgb(0 0 0 / 0.04); color: var(--ink); border-color: transparent; }
 .btn-ghost:hover { background: rgb(0 0 0 / 0.07); border-color: transparent; }
 [data-theme="dark"] .btn-ghost { background: rgb(255 255 255 / 0.1); }
@@ -54,13 +53,10 @@
   background: var(--ink); color: #fff; font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
 }
 .brand-name { font-weight: 600; font-size: 17px; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
-.brand-sub { font-size: 12px; color: var(--muted); font-weight: 400; }
 .nav { display: flex; align-items: center; gap: 20px; font-weight: 400; font-size: 14px; }
 .nav a { text-decoration: none; color: var(--body); opacity: 0.85; }
 .nav a:hover { color: var(--ink); opacity: 1; text-decoration: none; }
 @media (max-width: 720px) { .nav .hide-sm { display: none; } }
-
-.utility-bar { display: none; }
 
 .hero { display: grid; gap: var(--s-8); padding-block: 80px; text-align: center; max-width: 56rem; margin-inline: auto; }
 @media (min-width: 900px) { .hero-split { grid-template-columns: 1.05fr 0.95fr; text-align: left; align-items: center; } }
@@ -101,7 +97,6 @@
 .site-footer { background: var(--bg); color: var(--muted); margin-top: 96px; border-top: 1px solid var(--sep); }
 .site-footer a { color: var(--body); text-decoration: none; font-size: 14px; }
 .site-footer a:hover { text-decoration: underline; }
-.lesson-shell { max-width: var(--narrow); margin-inline: auto; }
 .flip { perspective: 900px; }
 .flip-inner { transform-style: preserve-3d; transition: transform var(--dur) var(--ease); position: relative; min-height: 240px; }
 .flip.flipped .flip-inner { transform: rotateY(180deg); }
@@ -115,8 +110,8 @@
 @keyframes nudge { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-4px)} }
 .shake { animation: nudge 200ms var(--ease) 1; }
 
-/* v2 polish: RTL, details, toast, confetti-lite, print */
-[dir="rtl"] .site-header-inner, [dir="rtl"] .hero { direction: rtl; }
+/* v3: RTL, details, print */
+[dir="rtl"] .hero { direction: rtl; }
 details { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--card); }
 details + details { margin-top: 8px; }
 details summary { padding: 12px 16px; cursor: pointer; font-weight: 700; }
@@ -125,6 +120,6 @@ details p { padding: 12px 16px; }
 @keyframes pop { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 #done-section { animation: pop 220ms var(--ease); }
 @media print {
-  .site-header, .site-footer, .utility-bar { display: none; }
+  .sidebar, .tabbar, .topbar, .site-footer { display: none; }
   .card { box-shadow: none; break-inside: avoid; }
 }
