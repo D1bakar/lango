@@ -1,21 +1,24 @@
 # Lango
 
-Tiny start. Like a sand hut before a castle.
+Frontend-only language starter. No account, no database. Progress stays in your browser.
 
-A super simple language learning starter for beginners:
-one tiny server + plain HTML pages. No database, no login, no AI yet.
+Two beginner courses (Spanish, English). Each is 10 words, about 5 minutes: 5 flashcards + 5-question check. +10 XP per correct answer.
 
 ## What is inside?
 
 ```
-server.js           <- tiny kitchen (Express). Shows pages + gives data.
+server.js                <- static host for local dev. No DB, no auth.
 public/
-  index.html        <- drawing 1: Hello Lango
-  learn.html        <- drawing 2: Choose a language
-  status.html       <- drawing 3: Is the kitchen awake?
-  style.css         <- colors for drawings
+  index.html             <- landing: hero, stats, courses, method, FAQ
+  languages.html         <- course directory with persistent pick
+  lesson.html            <- player: flip cards, quiz, XP, streak
+  learn.html             <- legacy redirect -> languages.html
+  status.html            <- retired, points home
+  app.js                 <- store: localStorage lango.v1 + static loader
+  style.css              <- tokens, focus, reduced-motion
+  data/languages.json    <- 2 courses x 10 words
 data/
-  languages.json    <- tiny book: just 2 languages
+  languages.json         <- legacy copy (API fallback)
 ```
 
 ## How to start?
@@ -32,15 +35,17 @@ Open: http://localhost:3001
 ## Roads (API)
 
 ```
-GET /               -> Hello page
-GET /learn          -> Learn page
-GET /status         -> Status page
-GET /health         -> { "ok": true } (for robots)
-GET /api/languages  -> tiny book of languages
+GET /               -> Landing
+GET /languages      -> Course directory
+GET /lesson?lang=es -> Lesson player
+GET /learn          -> 301 -> /languages (legacy)
+GET /status         -> 301 -> / (retired)
+GET /health         -> { "ok": true }
+GET /api/languages  -> public/data/languages.json
 ```
 
-## Levels
+## Flow
 
-- Level 0 (now): empty box + hello works
-- Level 1 (next): learn page reads from tiny book
-- Later: database, login, lessons, AI teacher
+- Pick: languages.html saves tag to localStorage
+- Practice: lesson.html?lang=es flips 5, quizzes 5
+- Keep: XP + streak update locally, retry anytime
