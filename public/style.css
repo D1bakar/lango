@@ -3,7 +3,8 @@
 :root {
   --bg: #f8fafc;
   --card: #ffffff;
-  --ink: #1f2937;
+  --ink: #111827;
+  --body: #1f2937;
   --muted: #6b7280;
   --line: #e5e7eb;
   --primary: #16a34a;
@@ -20,9 +21,10 @@ html {
 body {
   font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
   background: var(--bg);
-  color: var(--ink);
+  color: var(--body);
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* Keep old .box working for legacy pages until removed */
@@ -36,7 +38,20 @@ body {
 }
 
 a {
-  color: var(--accent);
+  color: inherit;
+}
+
+/* FAQ accordions */
+details summary {
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] {
+  background: #f8fafc;
 }
 
 /* Skip link */
