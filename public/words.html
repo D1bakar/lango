@@ -1,16 +1,19 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Wordbook — Lango</title><link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /></head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /><title>Words — Lango</title><link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /><link rel="stylesheet" href="./css/app.css" /></head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
-<header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span><br /><span class="brand-sub">Wordbook</span></span></a><nav class="nav"><a href="./languages.html">Courses</a></nav></div></header>
-<main id="main" class="container" style="padding-block:32px"><h1>Wordbook</h1><p style="color:var(--muted)">All words with mastery 0–5. Search to drill.</p><input id="q" class="input" style="max-width:340px;margin-top:12px" type="search" placeholder="Search hello, hola, こんにちは…" aria-label="Search words" /><div id="list" class="stack" style="margin-top:12px"></div></main>
+<div id="shell"></div>
+<main data-content>
+<div class="page-h"><h1>Words</h1><p>Every word with mastery 0–5.</p></div>
+<input id="q" class="input" type="search" placeholder="Search words…" aria-label="Search words" />
+<div id="list" class="stack" style="margin-top:12px"><div class="skel"></div></div>
+</main>
 <script type="module">
-import { loadLanguages } from "./js/loader.js";
+import { loadLanguages, wordKey } from "./js/loader.js";
 import { loadStore } from "./js/store.js";
 import { mountShell } from "./js/shell.js";
-import { wordKey } from "./js/loader.js";
-mountShell({});
+mountShell({ active: "words", layout: "mid" });
 const langs = await loadLanguages();
 const s = loadStore();
 const all = langs.flatMap(c => (c.words||[]).map(w => ({ ...w, tag: c.tag, lang: c.name })));
@@ -21,7 +24,7 @@ function render(){
     const m = s.mastery[wordKey(w.tag,w.front)] ?? 0;
     const d=document.createElement("div"); d.className="card";
     d.style.cssText="display:flex;justify-content:space-between;gap:12px;align-items:center";
-    d.innerHTML=`<span><strong>${w.front} → ${w.back}</strong> <span class="pill">${w.tag.toUpperCase()} · Lv ${m}/5</span><br/><span style="color:var(--muted);font-size:13px">${w.lang}${w.roman?" · "+w.roman:""}</span></span><a class="btn btn-ghost" style="min-height:40px" href="./lesson.html?lang=${w.tag}">Practice</a>`;
+    d.innerHTML=`<span><strong>${w.front} → ${w.back}</strong> <span class="pill">${w.tag.toUpperCase()} · ${m}/5</span></span><a class="btn btn-ghost" style="min-height:40px" href="./lesson.html?lang=${w.tag}">Practice</a>`;
     box.appendChild(d);
   }
 }
