@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Review — Lango</title><link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /></head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /><title>Review — Lango</title><link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /><link rel="stylesheet" href="./css/app.css" /></head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
-<header class="site-header"><div class="container site-header-inner"><a href="./index.html" class="brand"><span class="brand-mark">L</span><span><span class="brand-name">Lango</span><br /><span class="brand-sub">Review inbox</span></span></a><nav class="nav"><a href="./languages.html">Courses</a><span class="pill" data-xp>0 XP</span></nav></div></header>
-<main id="main" class="container lesson-shell">
-<h1>Review weak words</h1><p style="color:var(--muted)">Mastery &lt; 4 resurfaces here. Grade yourself honestly — it drives SRS.</p>
-<div id="box" class="stack" style="margin-top:16px"></div>
+<div id="shell"></div>
+<main data-content>
+<div class="page-h"><h1>Review</h1><p>Mastery under 4 resurfaces here.</p></div>
+<div id="box" class="stack"><div class="skel"></div></div>
 </main>
 <script type="module">
 import { loadLanguages, getQuery } from "./js/loader.js";
@@ -14,20 +14,20 @@ import { loadStore } from "./js/store.js";
 import { mountShell } from "./js/shell.js";
 import { dueWords, gradeWord } from "./js/srs.js";
 import { speak } from "./js/tts.js";
-mountShell({});
+mountShell({ active: "review", layout: "narrow" });
 const langs = await loadLanguages();
 const tag = getQuery("lang") || loadStore().lang || langs[0].tag;
 const c = langs.find(x=>x.tag===tag) || langs[0];
 const due = dueWords(c, 12);
-const box = document.getElementById("box");
-if(!due.length) box.innerHTML = `<div class="card">All clear 🎉 No weak words in ${c.name}. <a href="./lesson.html?lang=${c.tag}">Do a new lesson →</a></div>`;
+const box = document.getElementById("box"); box.innerHTML = "";
+if(!due.length) box.innerHTML = `<div class="card" style="text-align:center">All clear. No weak words in ${c.name}.<p style="margin-top:12px"><a href="./lesson.html?lang=${c.tag}" class="btn btn-primary">New lesson</a></p></div>`;
 for(const w of due){
   const d=document.createElement("div"); d.className="card";
-  d.innerHTML=`<strong>${w.front}</strong><p style="color:var(--muted)">${w.roman||""}</p><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="btn btn-ghost" data-a="show" style="min-height:40px">Reveal</button><button class="btn btn-ghost" data-a="hear" style="min-height:40px">🔊</button><button class="btn btn-apple" data-a="know" style="min-height:40px">I knew it</button><button class="btn btn-primary" data-a="miss" style="min-height:40px">Still learning</button></div><p data-fb style="font-weight:700;margin-top:8px" hidden>${w.back}${w.example?" — "+w.example:""}</p>`;
+  d.innerHTML=`<strong>${w.front}</strong><p style="color:var(--muted);font-size:14px">${w.roman||""}</p><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn btn-ghost" data-a="show" style="min-height:40px">Reveal</button><button class="btn btn-ghost" data-a="hear" style="min-height:40px">Listen</button><button class="btn btn-apple" data-a="know" style="min-height:40px">Knew it</button><button class="btn btn-primary" data-a="miss" style="min-height:40px">Practice</button></div><p data-fb style="font-weight:600;margin-top:8px" hidden>${w.back}</p>`;
   d.querySelector('[data-a="show"]').onclick=()=>{ d.querySelector("[data-fb]").hidden=false; };
   d.querySelector('[data-a="hear"]').onclick=()=>speak(w.back,{lang:c.tag});
   d.querySelector('[data-a="know"]').onclick=(e)=>{ gradeWord(c.tag,w.front,true); e.target.closest(".card").style.opacity="0.5"; };
-  d.querySelector('[data-a="miss"]').onclick=(e)=>{ gradeWord(c.tag,w.front,false); e.target.closest(".card").style.borderColor="var(--warn)"; };
+  d.querySelector('[data-a="miss"]').onclick=(e)=>{ gradeWord(c.tag,w.front,false); };
   box.appendChild(d);
 }
 </script>
