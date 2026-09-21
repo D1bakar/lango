@@ -11,48 +11,278 @@
   <a href="#main" class="skip-link">Skip to content</a>
   <div id="shell"></div>
   <main data-content>
-    <div class="page-h"><p class="eyebrow" id="course-label">Loading…</p><h1 id="step-label" style="font-size:28px">Step 1</h1><div class="progress" style="margin-top:12px" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-wrap"><i id="bar" style="width:0%"></i></div></div>
+    <div class="page-h" style="margin-bottom:20px">
+      <p class="eyebrow" id="course-label">Loading…</p>
+      <h1 id="step-label" style="font-size:28px">Step 1</h1>
+      <div class="progress progress-lg" style="margin-top:14px" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-wrap"><i id="bar" style="width:0%"></i></div>
+    </div>
     <div id="notice" class="notice notice-error" hidden></div>
-    <section id="card-section" class="stack" aria-labelledby="card-front">
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap" role="tablist" aria-label="Modes"><button class="pill" data-mode="cards" aria-selected="true">Cards</button><button class="pill" data-mode="typing" aria-selected="false">Typing</button><button class="pill" data-mode="listening" aria-selected="false">Listening</button><button class="pill" data-mode="quiz" aria-selected="false">Quiz</button></div>
-      <div id="flip" class="flip card" tabindex="0" role="button" aria-label="Flashcard. Enter to flip." style="cursor:pointer"><div class="flip-inner"><div class="flip-face"><p class="eyebrow">Front</p><p id="card-front" style="font-size:34px;font-weight:700;letter-spacing:-0.02em">—</p><p id="card-roman" style="color:var(--muted)"></p><button id="speak" class="btn btn-ghost" style="margin-top:12px;min-height:40px">Hear it</button></div><div class="flip-face flip-back"><p class="eyebrow">Back</p><p id="card-back" style="font-size:34px;font-weight:700">—</p><p id="card-ex" style="color:var(--muted);font-size:14px"></p></div></div></div>
-      <div style="display:flex;gap:12px"><button id="prev" class="btn btn-ghost" style="flex:1">Back</button><button id="reveal" class="btn btn-ghost" style="flex:1">Reveal</button><button id="next" class="btn btn-primary" style="flex:1">Next</button></div>
-      <div id="typing-box" class="card" hidden><label for="typing-in" style="font-weight:600">Type “<span id="typing-q">—</span>”</label><div style="display:flex;gap:8px;margin-top:8px"><input id="typing-in" class="input" autocomplete="off" placeholder="Type here…" /><button id="typing-check" class="btn btn-apple">Check</button></div><p id="typing-fb" style="min-height:24px;font-weight:600" aria-live="polite"></p></div>
-      <div id="listen-box" class="card" hidden><p style="font-weight:600">Listen and pick</p><button id="listen-play" class="btn btn-primary" style="margin-top:8px">Play audio</button><div id="listen-opts" style="display:grid;gap:8px;margin-top:12px"></div></div>
-      <button id="to-quiz" class="btn btn-apple" style="width:100%" hidden>Start check</button>
+
+    <div class="segmented" role="tablist" aria-label="Study mode" style="display:flex;margin:0 auto 20px">
+      <button type="button" data-mode="cards" aria-selected="true">Cards</button>
+      <button type="button" data-mode="typing" aria-selected="false">Typing</button>
+      <button type="button" data-mode="listening" aria-selected="false">Listening</button>
+      <button type="button" data-mode="quiz" aria-selected="false">Quiz</button>
+    </div>
+
+    <section id="card-section" aria-labelledby="card-front">
+      <div id="cards-pane">
+        <div id="flip" class="flip" tabindex="0" role="button" aria-label="Flashcard. Press Enter to flip." style="cursor:pointer">
+          <div class="flip-inner">
+            <div class="flip-face">
+              <p class="eyebrow">Front · <span id="card-seen">1 of 5</span></p>
+              <p id="card-front" style="font-size:clamp(30px,7vw,42px);font-weight:800;letter-spacing:-0.03em;color:var(--ink)">—</p>
+              <p id="card-roman" class="muted"></p>
+              <button id="speak" class="btn btn-ghost btn-sm" style="margin-top:10px">🔊 Hear it</button>
+            </div>
+            <div class="flip-face flip-back">
+              <p class="eyebrow">Back</p>
+              <p id="card-back" style="font-size:clamp(30px,7vw,42px);font-weight:800;color:var(--bg)">—</p>
+              <p id="card-ex" style="font-size:15px;opacity:.8"></p>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <button id="prev" class="btn btn-ghost" style="flex:1">Back</button>
+          <button id="reveal" class="btn btn-ghost" style="flex:1">Reveal</button>
+          <button id="next" class="btn btn-primary" style="flex:1">Next</button>
+        </div>
+        <p class="muted center" style="font-size:13px;margin-top:14px" id="hint">
+          <span class="kbd">Space</span> flip · <span class="kbd">←</span><span class="kbd">→</span> move
+        </p>
+      </div>
+
+      <div id="typing-box" class="card stack rise" hidden>
+        <label for="typing-in">Type “<span id="typing-q">—</span>”</label>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="typing-in" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type here…" />
+          <button id="typing-check" class="btn btn-apple">Check</button>
+        </div>
+        <p id="typing-fb" style="min-height:24px;font-weight:700" aria-live="polite"></p>
+        <p class="muted" style="font-size:13px">Romaji and accents are accepted. Press <span class="kbd">Enter</span> to check.</p>
+      </div>
+
+      <div id="listen-box" class="card stack rise" hidden>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <p style="font-weight:700">Listen and pick</p>
+          <button id="listen-play" class="btn btn-apple btn-sm">🔊 Play audio</button>
+        </div>
+        <div id="listen-opts" class="stack" style="display:grid;gap:8px"></div>
+        <p id="listen-fb" style="min-height:24px;font-weight:700" aria-live="polite"></p>
+      </div>
+
+      <button id="to-quiz" class="btn btn-apple btn-block" style="margin-top:16px" hidden>Start check →</button>
     </section>
-    <section id="quiz-section" class="stack" hidden aria-labelledby="quiz-q"><h2 id="quiz-q" style="font-size:24px">—</h2><p id="quiz-progress" style="color:var(--muted)">Q1/5</p><div id="options" style="display:grid;gap:8px"></div><p id="feedback" style="min-height:24px;font-weight:600" aria-live="polite"></p><button id="quiz-next" class="btn btn-primary" hidden>Next</button></section>
-    <section id="done-section" class="card" style="text-align:center" hidden><h2>Lesson complete</h2><p id="score" style="color:var(--muted)">0/5</p><p id="xp-earned" style="font-weight:700;color:var(--success)">+0 XP</p><div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap"><button id="retry" class="btn btn-ghost">Retry</button><a href="./review.html" class="btn btn-primary">Review</a></div></section>
+
+    <section id="quiz-section" class="stack" hidden aria-labelledby="quiz-q">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+        <h2 id="quiz-q" style="font-size:clamp(22px,5vw,30px)">—</h2>
+        <span class="pill" id="quiz-progress">Q1/5</span>
+      </div>
+      <div id="options" class="stack" style="display:grid;gap:10px"></div>
+      <p id="feedback" style="min-height:24px;font-weight:700" aria-live="polite"></p>
+      <button id="quiz-next" class="btn btn-primary btn-block" hidden>Next</button>
+      <p class="muted center" style="font-size:13px">Press <span class="kbd">1</span>–<span class="kbd">4</span> to answer · <span class="kbd">Enter</span> to continue</p>
+    </section>
+
+    <section id="done-section" class="card" style="text-align:center" hidden>
+      <div class="empty-icon" style="background:var(--success-bg);font-size:30px">🎉</div>
+      <h2>Lesson complete</h2>
+      <p class="muted" id="score">0/5</p>
+      <p id="xp-earned" style="font-weight:800;color:var(--success);font-size:22px;margin-top:4px">+0 XP</p>
+      <div class="stat-row" style="margin-top:20px">
+        <div class="stat"><div class="stat-n" id="done-acc">0%</div><div class="stat-l">Accuracy</div></div>
+        <div class="stat"><div class="stat-n" id="done-xp">0</div><div class="stat-l">Total XP</div></div>
+        <div class="stat"><div class="stat-n" id="done-streak">0</div><div class="stat-l">Day streak</div></div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+        <a id="back-course" href="./course.html" class="btn btn-ghost">Curriculum</a>
+        <button id="retry" class="btn btn-ghost">Retry</button>
+        <a href="./review.html" class="btn btn-apple">Review weak words</a>
+      </div>
+    </section>
   </main>
   <script type="module">
     import { loadLanguages, getQuery } from "./js/loader.js";
     import { loadStore, saveStore, addXp, markDone } from "./js/store.js";
-    import { mountShell } from "./js/shell.js";
-    import { speak } from "./js/tts.js";
+    import { mountShell, toast } from "./js/shell.js";
+    import { speak, ttsSupported } from "./js/tts.js";
     import { gradeWord } from "./js/srs.js";
     mountShell({ active: "courses", layout: "narrow" });
+
+    const $ = (id) => document.getElementById(id);
     const store = loadStore();
-    const bar=document.getElementById("bar"), wrap=document.getElementById("bar-wrap"), step=document.getElementById("step-label"), courseLabel=document.getElementById("course-label"), notice=document.getElementById("notice");
-    const flip=document.getElementById("flip"), frontEl=document.getElementById("card-front"), backEl=document.getElementById("card-back"), romanEl=document.getElementById("card-roman"), exEl=document.getElementById("card-ex");
-    let langData=null, cards=[], idx=0, mode="cards", qi=0, correct=0, quizSet=[];
-    function prog(p,l){ bar.style.width=p+"%"; wrap.setAttribute("aria-valuenow",Math.round(p)); step.textContent=l; }
-    function norm(s){ return (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim(); }
-    function showCard(){ const c=cards[idx]; if(!c) return; flip.classList.remove("flipped"); frontEl.textContent=c.front; backEl.textContent=c.back; romanEl.textContent=c.roman||""; exEl.textContent=(c.example||""); prog(((idx+1)/(cards.length+5))*100,`Card ${idx+1} of ${cards.length}`); document.getElementById("typing-q").textContent=c.front; document.getElementById("to-quiz").hidden = idx!==cards.length-1; }
-    flip.addEventListener("click",(e)=>{ if(e.target.closest("button")) return; flip.classList.toggle("flipped"); });
-    document.getElementById("reveal").onclick=()=>flip.classList.toggle("flipped");
-    document.getElementById("prev").onclick=()=>{ if(idx>0){idx--; showCard();} };
-    document.getElementById("next").onclick=()=>{ if(idx<cards.length-1){idx++; showCard();} else startQuiz(); };
-    document.getElementById("to-quiz").onclick=startQuiz;
-    document.getElementById("speak").onclick=(e)=>{ e.stopPropagation(); const c=cards[idx]; if(c) speak(c.back,{lang:langData.tag, rate: loadStore().settings.ttsRate||1}); };
-    document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{ mode=b.dataset.mode; document.querySelectorAll("[data-mode]").forEach(x=>x.setAttribute("aria-selected",x===b?"true":"false")); document.getElementById("typing-box").hidden=mode!=="typing"; document.getElementById("listen-box").hidden=mode!=="listening"; if(mode==="listening") renderListen(); });
-    document.getElementById("typing-check").onclick=()=>{ const c=cards[idx], v=document.getElementById("typing-in").value, fb=document.getElementById("typing-fb"); const ok=norm(v)===norm(c.back); fb.textContent=ok?"Correct":"Expected: "+c.back; fb.style.color=ok?"var(--success)":"var(--warn)"; gradeWord(langData.tag,c.front,ok); };
-    function renderListen(){ const c=cards[idx]; if(!c) return; speak(c.back,{lang:langData.tag}); const pool=langData.words.filter(w=>w.back!==c.back).sort(()=>Math.random()-0.5).slice(0,3).map(w=>w.back); const opts=[c.back,...pool].sort(()=>Math.random()-0.5); const box=document.getElementById("listen-opts"); box.innerHTML=""; for(const o of opts){ const b=document.createElement("button"); b.className="btn btn-ghost quiz-opt"; b.textContent=o; b.onclick=()=>{ const ok=o===c.back; b.classList.add(ok?"is-right":"is-wrong"); gradeWord(langData.tag,c.front,ok); }; box.appendChild(b);} }
-    document.getElementById("listen-play").onclick=()=>{ const c=cards[idx]; if(c) speak(c.back,{lang:langData.tag}); };
-    function startQuiz(){ quizSet=cards.slice(0,5); qi=0; correct=0; document.getElementById("card-section").hidden=true; document.getElementById("quiz-section").hidden=false; showQ(); }
-    function showQ(){ const cur=quizSet[qi]; document.getElementById("feedback").textContent=""; document.getElementById("quiz-next").hidden=true; document.getElementById("quiz-progress").textContent=`Question ${qi+1}/${quizSet.length}`; document.getElementById("quiz-q").textContent=`What does "${cur.front}" mean?`; prog(((cards.length+qi+1)/(cards.length+5))*100,`Question ${qi+1} of ${quizSet.length}`); const ch=[cur.back,...langData.words.filter(w=>w.back!==cur.back).sort(()=>Math.random()-0.5).slice(0,3).map(w=>w.back)].sort(()=>Math.random()-0.5); const box=document.getElementById("options"); box.innerHTML=""; for(const t of ch){ const b=document.createElement("button"); b.className="btn btn-ghost quiz-opt"; b.textContent=t; b.onclick=()=>{ [...box.children].forEach(x=>x.disabled=true); const ok=t===cur.back; if(ok){correct++; b.classList.add("is-right");} else b.classList.add("is-wrong"); gradeWord(langData.tag,cur.front,ok); document.getElementById("quiz-next").hidden=false; }; box.appendChild(b);} }
-    document.getElementById("quiz-next").onclick=()=>{ if(qi<quizSet.length-1){qi++; showQ();} else { document.getElementById("quiz-section").hidden=true; document.getElementById("done-section").hidden=false; prog(100,"Done"); document.getElementById("score").textContent=`${correct}/${quizSet.length} in ${langData.name}`; const up=addXp(correct*10); markDone(langData.tag,correct); document.getElementById("xp-earned").textContent=`+${correct*10} XP · Total ${up.xp}`; } };
-    document.getElementById("retry").onclick=()=>location.reload();
-    try{ const langs=await loadLanguages(); const wanted=getQuery("lang")||store.lang||langs[0].tag; langData=langs.find(l=>l.tag===wanted)||langs[0]; const s=loadStore(); s.lang=langData.tag; saveStore(s); courseLabel.textContent=`${langData.name} · ${langData.words.length} words`; const lessonId=getQuery("lesson"); let pool=langData.words; if(lessonId&&langData.lessons?.length){ const les=langData.lessons.find(x=>x.id===lessonId); if(les?.words?.length) pool=les.words; } cards=pool.slice(0,5); showCard(); }catch{ notice.hidden=false; notice.textContent="Could not load lesson."; }
+    const bar = $("bar"), wrap = $("bar-wrap"), step = $("step-label"), courseLabel = $("course-label"), notice = $("notice");
+    const flip = $("flip"), frontEl = $("card-front"), backEl = $("card-back"), romanEl = $("card-roman"), exEl = $("card-ex");
+    let langData = null, cards = [], idx = 0, mode = "cards", qi = 0, correct = 0, quizSet = [], answered = false;
+    const QUESTS = 5;
+
+    const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\u3040-\u30ff\u4e00-\u9fff]/g, "").trim();
+    function prog(p, label) { bar.style.width = Math.min(100, p) + "%"; wrap.setAttribute("aria-valuenow", Math.round(Math.min(100, p))); step.textContent = label; }
+
+    function say(text, { important = false } = {}) {
+      const st = loadStore();
+      if (st.settings?.tts === false && !important) return false;
+      return speak(text, { lang: langData.tag, rate: st.settings?.ttsRate || 1 });
+    }
+
+    function showCard() {
+      const c = cards[idx]; if (!c) return;
+      flip.classList.remove("flipped");
+      frontEl.textContent = c.front; backEl.textContent = c.back;
+      romanEl.textContent = c.roman || ""; exEl.textContent = c.example || "";
+      $("card-seen").textContent = `${idx + 1} of ${cards.length}`;
+      $("typing-q").textContent = c.front;
+      $("typing-fb").textContent = ""; $("typing-in").value = "";
+      $("to-quiz").hidden = idx !== cards.length - 1;
+      $("prev").disabled = idx === 0;
+      prog(((idx + 1) / (cards.length + QUESTS)) * 100, `Card ${idx + 1} of ${cards.length}`);
+    }
+
+    /* ---- Mode tabs ---- */
+    const boxes = { cards: $("cards-pane"), typing: $("typing-box"), listening: $("listen-box") };
+    function setMode(next) {
+      mode = next;
+      document.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-selected", x.dataset.mode === mode ? "true" : "false"));
+      if (mode === "quiz") { $("cards-pane").hidden = true; $("typing-box").hidden = true; $("listen-box").hidden = true; startQuiz(); return; }
+      $("card-section").hidden = false; $("quiz-section").hidden = true;
+      for (const [k, el] of Object.entries(boxes)) el.hidden = k !== mode;
+      if (mode === "typing") setTimeout(() => $("typing-in").focus(), 60);
+      if (mode === "listening") renderListen();
+    }
+    document.querySelectorAll("[data-mode]").forEach((b) => (b.onclick = () => setMode(b.dataset.mode)));
+
+    /* ---- Flashcards ---- */
+    flip.addEventListener("click", (e) => { if (!e.target.closest("button")) flip.classList.toggle("flipped"); });
+    flip.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip.classList.toggle("flipped"); } });
+    $("reveal").onclick = () => flip.classList.toggle("flipped");
+    $("prev").onclick = () => { if (idx > 0) { idx--; showCard(); } };
+    $("next").onclick = () => { if (idx < cards.length - 1) { idx++; showCard(); } else setMode("quiz"); };
+    $("to-quiz").onclick = () => setMode("quiz");
+    $("speak").onclick = (e) => { e.stopPropagation(); const c = cards[idx]; if (c) say(c.back, { important: true }); };
+    if (!ttsSupported()) $("speak").hidden = true;
+
+    /* ---- Typing ---- */
+    function checkTyping() {
+      const c = cards[idx]; if (!c) return;
+      const v = $("typing-in").value, fb = $("typing-fb");
+      const ok = norm(v) === norm(c.back) || norm(v) === norm(c.roman || "");
+      fb.textContent = ok ? "✓ Correct" : `Expected: ${c.back}`;
+      fb.style.color = ok ? "var(--success)" : "var(--warn)";
+      if (!ok) { flip.classList.add("shake"); setTimeout(() => flip.classList.remove("shake"), 240); }
+      gradeWord(langData.tag, c.front, ok);
+      if (ok) { idx = Math.min(cards.length - 1, idx + 1); setTimeout(() => { if (idx === cards.length - 1) { showCard(); $("next").focus?.(); } else showCard(); }, 700); }
+    }
+    $("typing-check").onclick = checkTyping;
+    $("typing-in").addEventListener("keydown", (e) => { if (e.key === "Enter") checkTyping(); });
+
+    /* ---- Listening ---- */
+    function renderListen() {
+      const c = cards[idx]; if (!c) return;
+      say(c.back, { important: true });
+      const pool = langData.words.filter((w) => w.back !== c.back).sort(() => Math.random() - 0.5).slice(0, 3).map((w) => w.back);
+      const opts = [c.back, ...pool].sort(() => Math.random() - 0.5);
+      const box = $("listen-opts"); box.innerHTML = "";
+      $("listen-fb").textContent = "";
+      opts.forEach((o) => {
+        const b = document.createElement("button");
+        b.className = "btn btn-ghost quiz-opt"; b.textContent = o;
+        b.onclick = () => {
+          const ok = o === c.back;
+          b.classList.add(ok ? "is-right" : "is-wrong");
+          [...box.children].forEach((x) => (x.disabled = true));
+          $("listen-fb").textContent = ok ? "✓ Nice ear" : `That was “${c.back}”`;
+          $("listen-fb").style.color = ok ? "var(--success)" : "var(--warn)";
+          gradeWord(langData.tag, c.front, ok);
+          if (ok) setTimeout(() => { if (mode === "listening") { idx = (idx + 1) % cards.length; renderListen(); } }, 900);
+        };
+        box.appendChild(b);
+      });
+    }
+    $("listen-play").onclick = () => { const c = cards[idx]; if (c) say(c.back, { important: true }); };
+
+    /* ---- Quiz ---- */
+    function startQuiz() {
+      quizSet = cards.slice(0, QUESTS); qi = 0; correct = 0;
+      $("card-section").hidden = true; $("quiz-section").hidden = false; $("done-section").hidden = true;
+      showQ();
+    }
+    function showQ() {
+      answered = false;
+      const cur = quizSet[qi];
+      $("feedback").textContent = ""; $("quiz-next").hidden = true;
+      $("quiz-progress").textContent = `Q${qi + 1}/${quizSet.length}`;
+      $("quiz-q").textContent = `What does “${cur.front}” mean?`;
+      prog(((cards.length + qi + 1) / (cards.length + QUESTS)) * 100, `Question ${qi + 1} of ${quizSet.length}`);
+      const ch = [cur.back, ...langData.words.filter((w) => w.back !== cur.back).sort(() => Math.random() - 0.5).slice(0, 3).map((w) => w.back)].sort(() => Math.random() - 0.5);
+      const box = $("options"); box.innerHTML = "";
+      ch.forEach((t, i) => {
+        const b = document.createElement("button");
+        b.className = "btn btn-ghost quiz-opt"; b.textContent = t;
+        b.onclick = () => answer(b, t, cur);
+        box.appendChild(b);
+      });
+    }
+    function answer(btn, t, cur) {
+      if (answered) return; answered = true;
+      const box = $("options");
+      [...box.children].forEach((x) => (x.disabled = true));
+      const ok = t === cur.back;
+      if (ok) { correct++; btn.classList.add("is-right"); } else { btn.classList.add("is-wrong"); }
+      gradeWord(langData.tag, cur.front, ok);
+      $("feedback").textContent = ok ? "✓ Correct" : `✕ Answer: ${cur.back}`;
+      $("feedback").style.color = ok ? "var(--success)" : "var(--warn)";
+      $("quiz-next").hidden = false;
+      $("quiz-next").textContent = qi < quizSet.length - 1 ? "Next" : "Finish";
+    }
+    $("quiz-next").onclick = () => { if (qi < quizSet.length - 1) { qi++; showQ(); } else finish(); };
+    function finish() {
+      $("quiz-section").hidden = true; $("done-section").hidden = false; prog(100, "Done");
+      $("score").textContent = `${correct}/${quizSet.length} correct in ${langData.name}`;
+      const up = addXp(correct * 10); markDone(langData.tag, correct);
+      $("xp-earned").textContent = `+${correct * 10} XP`;
+      $("done-acc").textContent = Math.round((correct / quizSet.length) * 100) + "%";
+      $("done-xp").textContent = up.xp;
+      $("done-streak").textContent = up.streak;
+      $("back-course").href = `./course.html?lang=${encodeURIComponent(langData.tag)}`;
+      toast(`Lesson saved · +${correct * 10} XP`);
+    }
+    $("retry").onclick = () => { idx = 0; correct = 0; qi = 0; $("done-section").hidden = true; $("card-section").hidden = false; setMode("cards"); showCard(); };
+
+    /* ---- Keyboard shortcuts ---- */
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+      if (!$("quiz-section").hidden) {
+        const n = +e.key;
+        if (n >= 1 && n <= 4) { const b = $("options").children[n - 1]; if (b && !answered) b.click(); }
+        else if (e.key === "Enter" && !$("quiz-next").hidden) $("quiz-next").click();
+        return;
+      }
+      if (mode === "cards") {
+        if (e.key === "ArrowRight") $("next").click();
+        if (e.key === "ArrowLeft") $("prev").click();
+        if (e.key === " " || e.key === "Enter") { e.preventDefault(); flip.classList.toggle("flipped"); }
+      }
+    });
+
+    /* ---- Boot ---- */
+    try {
+      const langs = await loadLanguages();
+      const wanted = getQuery("lang") || store.lang || langs[0].tag;
+      langData = langs.find((l) => l.tag === wanted) || langs[0];
+      const s = loadStore(); s.lang = langData.tag; saveStore(s);
+      courseLabel.textContent = `${langData.name} · ${langData.nativeName}`;
+      const lessonId = getQuery("lesson");
+      let pool = langData.words;
+      if (lessonId && langData.lessons?.length) {
+        const les = langData.lessons.find((x) => x.id === lessonId);
+        if (les?.words?.length) pool = les.words;
+      }
+      cards = pool.slice(0, QUESTS);
+      showCard();
+    } catch {
+      notice.hidden = false; notice.textContent = "Could not load lesson.";
+    }
   </script>
 </body>
 </html>
