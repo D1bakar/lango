@@ -42,27 +42,25 @@
 
 .site-header {
   position: sticky; top: 0; z-index: 40;
-  background: color-mix(in srgb, var(--card) 92%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: var(--nav-blur);
+  -webkit-backdrop-filter: var(--nav-blur);
+  border-bottom: 1px solid var(--sep);
 }
 .site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--header-h); }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand-mark {
-  width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
-  background: var(--brand-600); color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 20px;
+  width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center;
+  background: var(--ink); color: #fff; font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
 }
-.brand-name { font-family: var(--font-display); font-weight: 800; color: var(--ink); line-height: 1.1; }
-.brand-sub { font-size: var(--t-xs); color: var(--muted); font-weight: 600; }
-.nav { display: flex; align-items: center; gap: 20px; font-weight: 700; font-size: var(--t-sm); }
-.nav a { text-decoration: none; color: var(--body); }
-.nav a:hover { color: var(--ink); text-decoration: underline; }
+.brand-name { font-weight: 600; font-size: 17px; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
+.brand-sub { font-size: 12px; color: var(--muted); font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 20px; font-weight: 400; font-size: 14px; }
+.nav a { text-decoration: none; color: var(--body); opacity: 0.85; }
+.nav a:hover { color: var(--ink); opacity: 1; text-decoration: none; }
 @media (max-width: 720px) { .nav .hide-sm { display: none; } }
 
-.utility-bar { background: var(--ink); color: #fff; font-size: var(--t-xs); }
-.utility-bar .container { display: flex; justify-content: space-between; gap: 12px; padding-block: 8px; }
-.utility-bar a { color: rgb(255 255 255 / 0.8); text-decoration: none; font-weight: 700; }
-.utility-bar a:hover { color: #fff; }
+.utility-bar { display: none; }
 
 .hero { display: grid; gap: var(--s-8); padding-block: var(--s-12); }
 @media (min-width: 900px) { .hero { grid-template-columns: 1.05fr 0.95fr; align-items: center; } }
