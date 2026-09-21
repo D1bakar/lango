@@ -3,26 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Status - Lango</title>
-    <link rel="stylesheet" href="/style.css" />
+    <meta http-equiv="refresh" content="5; url=./index.html" />
+    <title>Status — Retired</title>
   </head>
   <body>
-    <main class="box">
-      <h1>Is the kitchen awake?</h1>
-      <p id="msg">Checking...</p>
-      <a href="/">Back home</a>
+    <main style="max-width:520px;margin:40px auto;font-family:system-ui,sans-serif">
+      <h1>Status page retired</h1>
+      <p>Lango is frontend-only now. No health check needed. Your progress lives in this browser.</p>
+      <p><a href="./index.html">Back to home</a> • Redirecting in 5 seconds…</p>
     </main>
-    <script>
-      fetch("/health")
-        .then((r) => r.json())
-        .then((h) => {
-          document.getElementById("msg").textContent = h.ok
-            ? "Yes! Kitchen is awake."
-            : "Hmm, kitchen says no.";
-        })
-        .catch(() => {
-          document.getElementById("msg").textContent = "No. Kitchen is sleeping.";
-        });
-    </script>
   </body>
 </html>
