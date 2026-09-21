@@ -1,4 +1,4210 @@
 [
-  { "tag": "en", "name": "English" },
-  { "tag": "es", "name": "Spanish" }
+  {
+    "tag": "es",
+    "name": "Spanish",
+    "nativeName": "Español",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Hola",
+        "example": "Hola!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Gracias"
+      },
+      {
+        "front": "Please",
+        "back": "Por favor"
+      },
+      {
+        "front": "Yes",
+        "back": "Sí"
+      },
+      {
+        "front": "No",
+        "back": "No"
+      },
+      {
+        "front": "Water",
+        "back": "Agua"
+      },
+      {
+        "front": "Food",
+        "back": "Comida"
+      },
+      {
+        "front": "Friend",
+        "back": "Amigo"
+      },
+      {
+        "front": "Morning",
+        "back": "Mañana"
+      },
+      {
+        "front": "Night",
+        "back": "Noche"
+      }
+    ],
+    "units": [
+      {
+        "id": "es-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "es-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hola",
+                "example": "Hola!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Gracias"
+              },
+              {
+                "front": "Please",
+                "back": "Por favor"
+              },
+              {
+                "front": "Yes",
+                "back": "Sí"
+              }
+            ]
+          },
+          {
+            "id": "es-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Gracias"
+              },
+              {
+                "front": "Please",
+                "back": "Por favor"
+              },
+              {
+                "front": "Yes",
+                "back": "Sí"
+              },
+              {
+                "front": "No",
+                "back": "No"
+              }
+            ]
+          },
+          {
+            "id": "es-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Agua"
+              },
+              {
+                "front": "Food",
+                "back": "Comida"
+              },
+              {
+                "front": "Friend",
+                "back": "Amigo"
+              }
+            ]
+          },
+          {
+            "id": "es-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Amigo"
+              },
+              {
+                "front": "Morning",
+                "back": "Mañana"
+              },
+              {
+                "front": "Night",
+                "back": "Noche"
+              },
+              {
+                "front": "Hello",
+                "back": "Hola",
+                "example": "Hola!"
+              }
+            ]
+          },
+          {
+            "id": "es-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hola",
+                "example": "Hola!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Gracias"
+              },
+              {
+                "front": "Please",
+                "back": "Por favor"
+              },
+              {
+                "front": "Yes",
+                "back": "Sí"
+              },
+              {
+                "front": "No",
+                "back": "No"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "en",
+    "name": "English",
+    "nativeName": "English",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Hello",
+        "example": "Hello!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Thank you"
+      },
+      {
+        "front": "Please",
+        "back": "Please"
+      },
+      {
+        "front": "Yes",
+        "back": "Yes"
+      },
+      {
+        "front": "No",
+        "back": "No"
+      },
+      {
+        "front": "Water",
+        "back": "Water"
+      },
+      {
+        "front": "Food",
+        "back": "Food"
+      },
+      {
+        "front": "Friend",
+        "back": "Friend"
+      },
+      {
+        "front": "Morning",
+        "back": "Morning"
+      },
+      {
+        "front": "Night",
+        "back": "Night"
+      }
+    ],
+    "units": [
+      {
+        "id": "en-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "en-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hello",
+                "example": "Hello!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Thank you"
+              },
+              {
+                "front": "Please",
+                "back": "Please"
+              },
+              {
+                "front": "Yes",
+                "back": "Yes"
+              }
+            ]
+          },
+          {
+            "id": "en-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Thank you"
+              },
+              {
+                "front": "Please",
+                "back": "Please"
+              },
+              {
+                "front": "Yes",
+                "back": "Yes"
+              },
+              {
+                "front": "No",
+                "back": "No"
+              }
+            ]
+          },
+          {
+            "id": "en-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Water"
+              },
+              {
+                "front": "Food",
+                "back": "Food"
+              },
+              {
+                "front": "Friend",
+                "back": "Friend"
+              }
+            ]
+          },
+          {
+            "id": "en-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Friend"
+              },
+              {
+                "front": "Morning",
+                "back": "Morning"
+              },
+              {
+                "front": "Night",
+                "back": "Night"
+              },
+              {
+                "front": "Hello",
+                "back": "Hello",
+                "example": "Hello!"
+              }
+            ]
+          },
+          {
+            "id": "en-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hello",
+                "example": "Hello!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Thank you"
+              },
+              {
+                "front": "Please",
+                "back": "Please"
+              },
+              {
+                "front": "Yes",
+                "back": "Yes"
+              },
+              {
+                "front": "No",
+                "back": "No"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "ja",
+    "name": "Japanese",
+    "nativeName": "日本語",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Jpan",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "こんにちは",
+        "roman": "konnichiwa",
+        "example": "こんにちは!"
+      },
+      {
+        "front": "Thank you",
+        "back": "ありがとう",
+        "roman": "arigatou"
+      },
+      {
+        "front": "Please",
+        "back": "おねがいします",
+        "roman": "onegaishimasu"
+      },
+      {
+        "front": "Yes",
+        "back": "はい",
+        "roman": "hai"
+      },
+      {
+        "front": "No",
+        "back": "いいえ",
+        "roman": "iie"
+      },
+      {
+        "front": "Water",
+        "back": "水",
+        "roman": "mizu"
+      },
+      {
+        "front": "Food",
+        "back": "ごはん",
+        "roman": "gohan"
+      },
+      {
+        "front": "Friend",
+        "back": "友達",
+        "roman": "tomodachi"
+      },
+      {
+        "front": "Morning",
+        "back": "朝",
+        "roman": "asa"
+      },
+      {
+        "front": "Night",
+        "back": "夜",
+        "roman": "yoru"
+      }
+    ],
+    "units": [
+      {
+        "id": "ja-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "ja-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "こんにちは",
+                "roman": "konnichiwa",
+                "example": "こんにちは!"
+              },
+              {
+                "front": "Thank you",
+                "back": "ありがとう",
+                "roman": "arigatou"
+              },
+              {
+                "front": "Please",
+                "back": "おねがいします",
+                "roman": "onegaishimasu"
+              },
+              {
+                "front": "Yes",
+                "back": "はい",
+                "roman": "hai"
+              }
+            ]
+          },
+          {
+            "id": "ja-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "ありがとう",
+                "roman": "arigatou"
+              },
+              {
+                "front": "Please",
+                "back": "おねがいします",
+                "roman": "onegaishimasu"
+              },
+              {
+                "front": "Yes",
+                "back": "はい",
+                "roman": "hai"
+              },
+              {
+                "front": "No",
+                "back": "いいえ",
+                "roman": "iie"
+              }
+            ]
+          },
+          {
+            "id": "ja-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "水",
+                "roman": "mizu"
+              },
+              {
+                "front": "Food",
+                "back": "ごはん",
+                "roman": "gohan"
+              },
+              {
+                "front": "Friend",
+                "back": "友達",
+                "roman": "tomodachi"
+              }
+            ]
+          },
+          {
+            "id": "ja-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "友達",
+                "roman": "tomodachi"
+              },
+              {
+                "front": "Morning",
+                "back": "朝",
+                "roman": "asa"
+              },
+              {
+                "front": "Night",
+                "back": "夜",
+                "roman": "yoru"
+              },
+              {
+                "front": "Hello",
+                "back": "こんにちは",
+                "roman": "konnichiwa",
+                "example": "こんにちは!"
+              }
+            ]
+          },
+          {
+            "id": "ja-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "こんにちは",
+                "roman": "konnichiwa",
+                "example": "こんにちは!"
+              },
+              {
+                "front": "Thank you",
+                "back": "ありがとう",
+                "roman": "arigatou"
+              },
+              {
+                "front": "Please",
+                "back": "おねがいします",
+                "roman": "onegaishimasu"
+              },
+              {
+                "front": "Yes",
+                "back": "はい",
+                "roman": "hai"
+              },
+              {
+                "front": "No",
+                "back": "いいえ",
+                "roman": "iie"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "fr",
+    "name": "French",
+    "nativeName": "Français",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Bonjour",
+        "example": "Bonjour!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Merci"
+      },
+      {
+        "front": "Please",
+        "back": "S'il vous plaît"
+      },
+      {
+        "front": "Yes",
+        "back": "Oui"
+      },
+      {
+        "front": "No",
+        "back": "Non"
+      },
+      {
+        "front": "Water",
+        "back": "Eau"
+      },
+      {
+        "front": "Food",
+        "back": "Nourriture"
+      },
+      {
+        "front": "Friend",
+        "back": "Ami"
+      },
+      {
+        "front": "Morning",
+        "back": "Matin"
+      },
+      {
+        "front": "Night",
+        "back": "Nuit"
+      }
+    ],
+    "units": [
+      {
+        "id": "fr-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "fr-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Bonjour",
+                "example": "Bonjour!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Merci"
+              },
+              {
+                "front": "Please",
+                "back": "S'il vous plaît"
+              },
+              {
+                "front": "Yes",
+                "back": "Oui"
+              }
+            ]
+          },
+          {
+            "id": "fr-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Merci"
+              },
+              {
+                "front": "Please",
+                "back": "S'il vous plaît"
+              },
+              {
+                "front": "Yes",
+                "back": "Oui"
+              },
+              {
+                "front": "No",
+                "back": "Non"
+              }
+            ]
+          },
+          {
+            "id": "fr-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Eau"
+              },
+              {
+                "front": "Food",
+                "back": "Nourriture"
+              },
+              {
+                "front": "Friend",
+                "back": "Ami"
+              }
+            ]
+          },
+          {
+            "id": "fr-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Ami"
+              },
+              {
+                "front": "Morning",
+                "back": "Matin"
+              },
+              {
+                "front": "Night",
+                "back": "Nuit"
+              },
+              {
+                "front": "Hello",
+                "back": "Bonjour",
+                "example": "Bonjour!"
+              }
+            ]
+          },
+          {
+            "id": "fr-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Bonjour",
+                "example": "Bonjour!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Merci"
+              },
+              {
+                "front": "Please",
+                "back": "S'il vous plaît"
+              },
+              {
+                "front": "Yes",
+                "back": "Oui"
+              },
+              {
+                "front": "No",
+                "back": "Non"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "de",
+    "name": "German",
+    "nativeName": "Deutsch",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Hallo",
+        "example": "Hallo!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Danke"
+      },
+      {
+        "front": "Please",
+        "back": "Bitte"
+      },
+      {
+        "front": "Yes",
+        "back": "Ja"
+      },
+      {
+        "front": "No",
+        "back": "Nein"
+      },
+      {
+        "front": "Water",
+        "back": "Wasser"
+      },
+      {
+        "front": "Food",
+        "back": "Essen"
+      },
+      {
+        "front": "Friend",
+        "back": "Freund"
+      },
+      {
+        "front": "Morning",
+        "back": "Morgen"
+      },
+      {
+        "front": "Night",
+        "back": "Nacht"
+      }
+    ],
+    "units": [
+      {
+        "id": "de-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "de-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hallo",
+                "example": "Hallo!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Danke"
+              },
+              {
+                "front": "Please",
+                "back": "Bitte"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              }
+            ]
+          },
+          {
+            "id": "de-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Danke"
+              },
+              {
+                "front": "Please",
+                "back": "Bitte"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              },
+              {
+                "front": "No",
+                "back": "Nein"
+              }
+            ]
+          },
+          {
+            "id": "de-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Wasser"
+              },
+              {
+                "front": "Food",
+                "back": "Essen"
+              },
+              {
+                "front": "Friend",
+                "back": "Freund"
+              }
+            ]
+          },
+          {
+            "id": "de-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Freund"
+              },
+              {
+                "front": "Morning",
+                "back": "Morgen"
+              },
+              {
+                "front": "Night",
+                "back": "Nacht"
+              },
+              {
+                "front": "Hello",
+                "back": "Hallo",
+                "example": "Hallo!"
+              }
+            ]
+          },
+          {
+            "id": "de-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hallo",
+                "example": "Hallo!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Danke"
+              },
+              {
+                "front": "Please",
+                "back": "Bitte"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              },
+              {
+                "front": "No",
+                "back": "Nein"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "it",
+    "name": "Italian",
+    "nativeName": "Italiano",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Ciao",
+        "example": "Ciao!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Grazie"
+      },
+      {
+        "front": "Please",
+        "back": "Per favore"
+      },
+      {
+        "front": "Yes",
+        "back": "Sì"
+      },
+      {
+        "front": "No",
+        "back": "No"
+      },
+      {
+        "front": "Water",
+        "back": "Acqua"
+      },
+      {
+        "front": "Food",
+        "back": "Cibo"
+      },
+      {
+        "front": "Friend",
+        "back": "Amico"
+      },
+      {
+        "front": "Morning",
+        "back": "Mattina"
+      },
+      {
+        "front": "Night",
+        "back": "Notte"
+      }
+    ],
+    "units": [
+      {
+        "id": "it-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "it-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Ciao",
+                "example": "Ciao!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Grazie"
+              },
+              {
+                "front": "Please",
+                "back": "Per favore"
+              },
+              {
+                "front": "Yes",
+                "back": "Sì"
+              }
+            ]
+          },
+          {
+            "id": "it-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Grazie"
+              },
+              {
+                "front": "Please",
+                "back": "Per favore"
+              },
+              {
+                "front": "Yes",
+                "back": "Sì"
+              },
+              {
+                "front": "No",
+                "back": "No"
+              }
+            ]
+          },
+          {
+            "id": "it-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Acqua"
+              },
+              {
+                "front": "Food",
+                "back": "Cibo"
+              },
+              {
+                "front": "Friend",
+                "back": "Amico"
+              }
+            ]
+          },
+          {
+            "id": "it-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Amico"
+              },
+              {
+                "front": "Morning",
+                "back": "Mattina"
+              },
+              {
+                "front": "Night",
+                "back": "Notte"
+              },
+              {
+                "front": "Hello",
+                "back": "Ciao",
+                "example": "Ciao!"
+              }
+            ]
+          },
+          {
+            "id": "it-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Ciao",
+                "example": "Ciao!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Grazie"
+              },
+              {
+                "front": "Please",
+                "back": "Per favore"
+              },
+              {
+                "front": "Yes",
+                "back": "Sì"
+              },
+              {
+                "front": "No",
+                "back": "No"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "pt",
+    "name": "Portuguese",
+    "nativeName": "Português",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Olá",
+        "example": "Olá!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Obrigado"
+      },
+      {
+        "front": "Please",
+        "back": "Por favor"
+      },
+      {
+        "front": "Yes",
+        "back": "Sim"
+      },
+      {
+        "front": "No",
+        "back": "Não"
+      },
+      {
+        "front": "Water",
+        "back": "Água"
+      },
+      {
+        "front": "Food",
+        "back": "Comida"
+      },
+      {
+        "front": "Friend",
+        "back": "Amigo"
+      },
+      {
+        "front": "Morning",
+        "back": "Manhã"
+      },
+      {
+        "front": "Night",
+        "back": "Noite"
+      }
+    ],
+    "units": [
+      {
+        "id": "pt-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "pt-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Olá",
+                "example": "Olá!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Obrigado"
+              },
+              {
+                "front": "Please",
+                "back": "Por favor"
+              },
+              {
+                "front": "Yes",
+                "back": "Sim"
+              }
+            ]
+          },
+          {
+            "id": "pt-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Obrigado"
+              },
+              {
+                "front": "Please",
+                "back": "Por favor"
+              },
+              {
+                "front": "Yes",
+                "back": "Sim"
+              },
+              {
+                "front": "No",
+                "back": "Não"
+              }
+            ]
+          },
+          {
+            "id": "pt-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Água"
+              },
+              {
+                "front": "Food",
+                "back": "Comida"
+              },
+              {
+                "front": "Friend",
+                "back": "Amigo"
+              }
+            ]
+          },
+          {
+            "id": "pt-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Amigo"
+              },
+              {
+                "front": "Morning",
+                "back": "Manhã"
+              },
+              {
+                "front": "Night",
+                "back": "Noite"
+              },
+              {
+                "front": "Hello",
+                "back": "Olá",
+                "example": "Olá!"
+              }
+            ]
+          },
+          {
+            "id": "pt-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Olá",
+                "example": "Olá!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Obrigado"
+              },
+              {
+                "front": "Please",
+                "back": "Por favor"
+              },
+              {
+                "front": "Yes",
+                "back": "Sim"
+              },
+              {
+                "front": "No",
+                "back": "Não"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "nl",
+    "name": "Dutch",
+    "nativeName": "Nederlands",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Hallo",
+        "example": "Hallo!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Dank je"
+      },
+      {
+        "front": "Please",
+        "back": "Alsjeblieft"
+      },
+      {
+        "front": "Yes",
+        "back": "Ja"
+      },
+      {
+        "front": "No",
+        "back": "Nee"
+      },
+      {
+        "front": "Water",
+        "back": "Water"
+      },
+      {
+        "front": "Food",
+        "back": "Eten"
+      },
+      {
+        "front": "Friend",
+        "back": "Vriend"
+      },
+      {
+        "front": "Morning",
+        "back": "Ochtend"
+      },
+      {
+        "front": "Night",
+        "back": "Nacht"
+      }
+    ],
+    "units": [
+      {
+        "id": "nl-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "nl-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hallo",
+                "example": "Hallo!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Dank je"
+              },
+              {
+                "front": "Please",
+                "back": "Alsjeblieft"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              }
+            ]
+          },
+          {
+            "id": "nl-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Dank je"
+              },
+              {
+                "front": "Please",
+                "back": "Alsjeblieft"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              },
+              {
+                "front": "No",
+                "back": "Nee"
+              }
+            ]
+          },
+          {
+            "id": "nl-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Water"
+              },
+              {
+                "front": "Food",
+                "back": "Eten"
+              },
+              {
+                "front": "Friend",
+                "back": "Vriend"
+              }
+            ]
+          },
+          {
+            "id": "nl-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Vriend"
+              },
+              {
+                "front": "Morning",
+                "back": "Ochtend"
+              },
+              {
+                "front": "Night",
+                "back": "Nacht"
+              },
+              {
+                "front": "Hello",
+                "back": "Hallo",
+                "example": "Hallo!"
+              }
+            ]
+          },
+          {
+            "id": "nl-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hallo",
+                "example": "Hallo!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Dank je"
+              },
+              {
+                "front": "Please",
+                "back": "Alsjeblieft"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              },
+              {
+                "front": "No",
+                "back": "Nee"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "ko",
+    "name": "Korean",
+    "nativeName": "한국어",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Kore",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "안녕하세요",
+        "roman": "annyeonghaseyo",
+        "example": "안녕하세요!"
+      },
+      {
+        "front": "Thank you",
+        "back": "감사합니다",
+        "roman": "gamsahamnida"
+      },
+      {
+        "front": "Please",
+        "back": "주세요",
+        "roman": "juseyo"
+      },
+      {
+        "front": "Yes",
+        "back": "네",
+        "roman": "ne"
+      },
+      {
+        "front": "No",
+        "back": "아니요",
+        "roman": "aniyo"
+      },
+      {
+        "front": "Water",
+        "back": "물",
+        "roman": "mul"
+      },
+      {
+        "front": "Food",
+        "back": "음식",
+        "roman": "eumsik"
+      },
+      {
+        "front": "Friend",
+        "back": "친구",
+        "roman": "chingu"
+      },
+      {
+        "front": "Morning",
+        "back": "아침",
+        "roman": "achim"
+      },
+      {
+        "front": "Night",
+        "back": "밤",
+        "roman": "bam"
+      }
+    ],
+    "units": [
+      {
+        "id": "ko-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "ko-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "안녕하세요",
+                "roman": "annyeonghaseyo",
+                "example": "안녕하세요!"
+              },
+              {
+                "front": "Thank you",
+                "back": "감사합니다",
+                "roman": "gamsahamnida"
+              },
+              {
+                "front": "Please",
+                "back": "주세요",
+                "roman": "juseyo"
+              },
+              {
+                "front": "Yes",
+                "back": "네",
+                "roman": "ne"
+              }
+            ]
+          },
+          {
+            "id": "ko-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "감사합니다",
+                "roman": "gamsahamnida"
+              },
+              {
+                "front": "Please",
+                "back": "주세요",
+                "roman": "juseyo"
+              },
+              {
+                "front": "Yes",
+                "back": "네",
+                "roman": "ne"
+              },
+              {
+                "front": "No",
+                "back": "아니요",
+                "roman": "aniyo"
+              }
+            ]
+          },
+          {
+            "id": "ko-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "물",
+                "roman": "mul"
+              },
+              {
+                "front": "Food",
+                "back": "음식",
+                "roman": "eumsik"
+              },
+              {
+                "front": "Friend",
+                "back": "친구",
+                "roman": "chingu"
+              }
+            ]
+          },
+          {
+            "id": "ko-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "친구",
+                "roman": "chingu"
+              },
+              {
+                "front": "Morning",
+                "back": "아침",
+                "roman": "achim"
+              },
+              {
+                "front": "Night",
+                "back": "밤",
+                "roman": "bam"
+              },
+              {
+                "front": "Hello",
+                "back": "안녕하세요",
+                "roman": "annyeonghaseyo",
+                "example": "안녕하세요!"
+              }
+            ]
+          },
+          {
+            "id": "ko-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "안녕하세요",
+                "roman": "annyeonghaseyo",
+                "example": "안녕하세요!"
+              },
+              {
+                "front": "Thank you",
+                "back": "감사합니다",
+                "roman": "gamsahamnida"
+              },
+              {
+                "front": "Please",
+                "back": "주세요",
+                "roman": "juseyo"
+              },
+              {
+                "front": "Yes",
+                "back": "네",
+                "roman": "ne"
+              },
+              {
+                "front": "No",
+                "back": "아니요",
+                "roman": "aniyo"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "zh",
+    "name": "Mandarin",
+    "nativeName": "中文",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Hans",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "你好",
+        "roman": "ni hao",
+        "example": "你好!"
+      },
+      {
+        "front": "Thank you",
+        "back": "谢谢",
+        "roman": "xiexie"
+      },
+      {
+        "front": "Please",
+        "back": "请",
+        "roman": "qing"
+      },
+      {
+        "front": "Yes",
+        "back": "是",
+        "roman": "shi"
+      },
+      {
+        "front": "No",
+        "back": "不",
+        "roman": "bu"
+      },
+      {
+        "front": "Water",
+        "back": "水",
+        "roman": "shui"
+      },
+      {
+        "front": "Food",
+        "back": "食物",
+        "roman": "shiwu"
+      },
+      {
+        "front": "Friend",
+        "back": "朋友",
+        "roman": "pengyou"
+      },
+      {
+        "front": "Morning",
+        "back": "早上",
+        "roman": "zaoshang"
+      },
+      {
+        "front": "Night",
+        "back": "晚上",
+        "roman": "wanshang"
+      }
+    ],
+    "units": [
+      {
+        "id": "zh-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "zh-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "你好",
+                "roman": "ni hao",
+                "example": "你好!"
+              },
+              {
+                "front": "Thank you",
+                "back": "谢谢",
+                "roman": "xiexie"
+              },
+              {
+                "front": "Please",
+                "back": "请",
+                "roman": "qing"
+              },
+              {
+                "front": "Yes",
+                "back": "是",
+                "roman": "shi"
+              }
+            ]
+          },
+          {
+            "id": "zh-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "谢谢",
+                "roman": "xiexie"
+              },
+              {
+                "front": "Please",
+                "back": "请",
+                "roman": "qing"
+              },
+              {
+                "front": "Yes",
+                "back": "是",
+                "roman": "shi"
+              },
+              {
+                "front": "No",
+                "back": "不",
+                "roman": "bu"
+              }
+            ]
+          },
+          {
+            "id": "zh-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "水",
+                "roman": "shui"
+              },
+              {
+                "front": "Food",
+                "back": "食物",
+                "roman": "shiwu"
+              },
+              {
+                "front": "Friend",
+                "back": "朋友",
+                "roman": "pengyou"
+              }
+            ]
+          },
+          {
+            "id": "zh-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "朋友",
+                "roman": "pengyou"
+              },
+              {
+                "front": "Morning",
+                "back": "早上",
+                "roman": "zaoshang"
+              },
+              {
+                "front": "Night",
+                "back": "晚上",
+                "roman": "wanshang"
+              },
+              {
+                "front": "Hello",
+                "back": "你好",
+                "roman": "ni hao",
+                "example": "你好!"
+              }
+            ]
+          },
+          {
+            "id": "zh-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "你好",
+                "roman": "ni hao",
+                "example": "你好!"
+              },
+              {
+                "front": "Thank you",
+                "back": "谢谢",
+                "roman": "xiexie"
+              },
+              {
+                "front": "Please",
+                "back": "请",
+                "roman": "qing"
+              },
+              {
+                "front": "Yes",
+                "back": "是",
+                "roman": "shi"
+              },
+              {
+                "front": "No",
+                "back": "不",
+                "roman": "bu"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "hi",
+    "name": "Hindi",
+    "nativeName": "हिन्दी",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Deva",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "नमस्ते",
+        "roman": "namaste",
+        "example": "नमस्ते!"
+      },
+      {
+        "front": "Thank you",
+        "back": "धन्यवाद",
+        "roman": "dhanyavaad"
+      },
+      {
+        "front": "Please",
+        "back": "कृपया",
+        "roman": "kripaya"
+      },
+      {
+        "front": "Yes",
+        "back": "हाँ",
+        "roman": "haan"
+      },
+      {
+        "front": "No",
+        "back": "नहीं",
+        "roman": "nahin"
+      },
+      {
+        "front": "Water",
+        "back": "पानी",
+        "roman": "paani"
+      },
+      {
+        "front": "Food",
+        "back": "खाना",
+        "roman": "khaana"
+      },
+      {
+        "front": "Friend",
+        "back": "दोस्त",
+        "roman": "dost"
+      },
+      {
+        "front": "Morning",
+        "back": "सुबह",
+        "roman": "subah"
+      },
+      {
+        "front": "Night",
+        "back": "रात",
+        "roman": "raat"
+      }
+    ],
+    "units": [
+      {
+        "id": "hi-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "hi-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "नमस्ते",
+                "roman": "namaste",
+                "example": "नमस्ते!"
+              },
+              {
+                "front": "Thank you",
+                "back": "धन्यवाद",
+                "roman": "dhanyavaad"
+              },
+              {
+                "front": "Please",
+                "back": "कृपया",
+                "roman": "kripaya"
+              },
+              {
+                "front": "Yes",
+                "back": "हाँ",
+                "roman": "haan"
+              }
+            ]
+          },
+          {
+            "id": "hi-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "धन्यवाद",
+                "roman": "dhanyavaad"
+              },
+              {
+                "front": "Please",
+                "back": "कृपया",
+                "roman": "kripaya"
+              },
+              {
+                "front": "Yes",
+                "back": "हाँ",
+                "roman": "haan"
+              },
+              {
+                "front": "No",
+                "back": "नहीं",
+                "roman": "nahin"
+              }
+            ]
+          },
+          {
+            "id": "hi-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "पानी",
+                "roman": "paani"
+              },
+              {
+                "front": "Food",
+                "back": "खाना",
+                "roman": "khaana"
+              },
+              {
+                "front": "Friend",
+                "back": "दोस्त",
+                "roman": "dost"
+              }
+            ]
+          },
+          {
+            "id": "hi-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "दोस्त",
+                "roman": "dost"
+              },
+              {
+                "front": "Morning",
+                "back": "सुबह",
+                "roman": "subah"
+              },
+              {
+                "front": "Night",
+                "back": "रात",
+                "roman": "raat"
+              },
+              {
+                "front": "Hello",
+                "back": "नमस्ते",
+                "roman": "namaste",
+                "example": "नमस्ते!"
+              }
+            ]
+          },
+          {
+            "id": "hi-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "नमस्ते",
+                "roman": "namaste",
+                "example": "नमस्ते!"
+              },
+              {
+                "front": "Thank you",
+                "back": "धन्यवाद",
+                "roman": "dhanyavaad"
+              },
+              {
+                "front": "Please",
+                "back": "कृपया",
+                "roman": "kripaya"
+              },
+              {
+                "front": "Yes",
+                "back": "हाँ",
+                "roman": "haan"
+              },
+              {
+                "front": "No",
+                "back": "नहीं",
+                "roman": "nahin"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "ar",
+    "name": "Arabic",
+    "nativeName": "العربية",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Arab",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "مرحبا",
+        "roman": "marhaban",
+        "example": "مرحبا!"
+      },
+      {
+        "front": "Thank you",
+        "back": "شكرا",
+        "roman": "shukran"
+      },
+      {
+        "front": "Please",
+        "back": "من فضلك",
+        "roman": "min fadlak"
+      },
+      {
+        "front": "Yes",
+        "back": "نعم",
+        "roman": "naam"
+      },
+      {
+        "front": "No",
+        "back": "لا",
+        "roman": "la"
+      },
+      {
+        "front": "Water",
+        "back": "ماء",
+        "roman": "maa"
+      },
+      {
+        "front": "Food",
+        "back": "طعام",
+        "roman": "taam"
+      },
+      {
+        "front": "Friend",
+        "back": "صديق",
+        "roman": "sadiq"
+      },
+      {
+        "front": "Morning",
+        "back": "صباح",
+        "roman": "sabah"
+      },
+      {
+        "front": "Night",
+        "back": "ليل",
+        "roman": "layl"
+      }
+    ],
+    "units": [
+      {
+        "id": "ar-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "ar-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "مرحبا",
+                "roman": "marhaban",
+                "example": "مرحبا!"
+              },
+              {
+                "front": "Thank you",
+                "back": "شكرا",
+                "roman": "shukran"
+              },
+              {
+                "front": "Please",
+                "back": "من فضلك",
+                "roman": "min fadlak"
+              },
+              {
+                "front": "Yes",
+                "back": "نعم",
+                "roman": "naam"
+              }
+            ]
+          },
+          {
+            "id": "ar-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "شكرا",
+                "roman": "shukran"
+              },
+              {
+                "front": "Please",
+                "back": "من فضلك",
+                "roman": "min fadlak"
+              },
+              {
+                "front": "Yes",
+                "back": "نعم",
+                "roman": "naam"
+              },
+              {
+                "front": "No",
+                "back": "لا",
+                "roman": "la"
+              }
+            ]
+          },
+          {
+            "id": "ar-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "ماء",
+                "roman": "maa"
+              },
+              {
+                "front": "Food",
+                "back": "طعام",
+                "roman": "taam"
+              },
+              {
+                "front": "Friend",
+                "back": "صديق",
+                "roman": "sadiq"
+              }
+            ]
+          },
+          {
+            "id": "ar-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "صديق",
+                "roman": "sadiq"
+              },
+              {
+                "front": "Morning",
+                "back": "صباح",
+                "roman": "sabah"
+              },
+              {
+                "front": "Night",
+                "back": "ليل",
+                "roman": "layl"
+              },
+              {
+                "front": "Hello",
+                "back": "مرحبا",
+                "roman": "marhaban",
+                "example": "مرحبا!"
+              }
+            ]
+          },
+          {
+            "id": "ar-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "مرحبا",
+                "roman": "marhaban",
+                "example": "مرحبا!"
+              },
+              {
+                "front": "Thank you",
+                "back": "شكرا",
+                "roman": "shukran"
+              },
+              {
+                "front": "Please",
+                "back": "من فضلك",
+                "roman": "min fadlak"
+              },
+              {
+                "front": "Yes",
+                "back": "نعم",
+                "roman": "naam"
+              },
+              {
+                "front": "No",
+                "back": "لا",
+                "roman": "la"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "tr",
+    "name": "Turkish",
+    "nativeName": "Türkçe",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Merhaba",
+        "example": "Merhaba!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Teşekkürler"
+      },
+      {
+        "front": "Please",
+        "back": "Lütfen"
+      },
+      {
+        "front": "Yes",
+        "back": "Evet"
+      },
+      {
+        "front": "No",
+        "back": "Hayır"
+      },
+      {
+        "front": "Water",
+        "back": "Su"
+      },
+      {
+        "front": "Food",
+        "back": "Yemek"
+      },
+      {
+        "front": "Friend",
+        "back": "Arkadaş"
+      },
+      {
+        "front": "Morning",
+        "back": "Sabah"
+      },
+      {
+        "front": "Night",
+        "back": "Gece"
+      }
+    ],
+    "units": [
+      {
+        "id": "tr-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "tr-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Merhaba",
+                "example": "Merhaba!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Teşekkürler"
+              },
+              {
+                "front": "Please",
+                "back": "Lütfen"
+              },
+              {
+                "front": "Yes",
+                "back": "Evet"
+              }
+            ]
+          },
+          {
+            "id": "tr-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Teşekkürler"
+              },
+              {
+                "front": "Please",
+                "back": "Lütfen"
+              },
+              {
+                "front": "Yes",
+                "back": "Evet"
+              },
+              {
+                "front": "No",
+                "back": "Hayır"
+              }
+            ]
+          },
+          {
+            "id": "tr-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Su"
+              },
+              {
+                "front": "Food",
+                "back": "Yemek"
+              },
+              {
+                "front": "Friend",
+                "back": "Arkadaş"
+              }
+            ]
+          },
+          {
+            "id": "tr-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Arkadaş"
+              },
+              {
+                "front": "Morning",
+                "back": "Sabah"
+              },
+              {
+                "front": "Night",
+                "back": "Gece"
+              },
+              {
+                "front": "Hello",
+                "back": "Merhaba",
+                "example": "Merhaba!"
+              }
+            ]
+          },
+          {
+            "id": "tr-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Merhaba",
+                "example": "Merhaba!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Teşekkürler"
+              },
+              {
+                "front": "Please",
+                "back": "Lütfen"
+              },
+              {
+                "front": "Yes",
+                "back": "Evet"
+              },
+              {
+                "front": "No",
+                "back": "Hayır"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "ru",
+    "name": "Russian",
+    "nativeName": "Русский",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Cyrl",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Привет",
+        "roman": "privet",
+        "example": "Привет!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Спасибо",
+        "roman": "spasibo"
+      },
+      {
+        "front": "Please",
+        "back": "Пожалуйста",
+        "roman": "pozhaluysta"
+      },
+      {
+        "front": "Yes",
+        "back": "Да",
+        "roman": "da"
+      },
+      {
+        "front": "No",
+        "back": "Нет",
+        "roman": "net"
+      },
+      {
+        "front": "Water",
+        "back": "Вода",
+        "roman": "voda"
+      },
+      {
+        "front": "Food",
+        "back": "Еда",
+        "roman": "eda"
+      },
+      {
+        "front": "Friend",
+        "back": "Друг",
+        "roman": "drug"
+      },
+      {
+        "front": "Morning",
+        "back": "Утро",
+        "roman": "utro"
+      },
+      {
+        "front": "Night",
+        "back": "Ночь",
+        "roman": "noch"
+      }
+    ],
+    "units": [
+      {
+        "id": "ru-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "ru-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Привет",
+                "roman": "privet",
+                "example": "Привет!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Спасибо",
+                "roman": "spasibo"
+              },
+              {
+                "front": "Please",
+                "back": "Пожалуйста",
+                "roman": "pozhaluysta"
+              },
+              {
+                "front": "Yes",
+                "back": "Да",
+                "roman": "da"
+              }
+            ]
+          },
+          {
+            "id": "ru-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Спасибо",
+                "roman": "spasibo"
+              },
+              {
+                "front": "Please",
+                "back": "Пожалуйста",
+                "roman": "pozhaluysta"
+              },
+              {
+                "front": "Yes",
+                "back": "Да",
+                "roman": "da"
+              },
+              {
+                "front": "No",
+                "back": "Нет",
+                "roman": "net"
+              }
+            ]
+          },
+          {
+            "id": "ru-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Вода",
+                "roman": "voda"
+              },
+              {
+                "front": "Food",
+                "back": "Еда",
+                "roman": "eda"
+              },
+              {
+                "front": "Friend",
+                "back": "Друг",
+                "roman": "drug"
+              }
+            ]
+          },
+          {
+            "id": "ru-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Друг",
+                "roman": "drug"
+              },
+              {
+                "front": "Morning",
+                "back": "Утро",
+                "roman": "utro"
+              },
+              {
+                "front": "Night",
+                "back": "Ночь",
+                "roman": "noch"
+              },
+              {
+                "front": "Hello",
+                "back": "Привет",
+                "roman": "privet",
+                "example": "Привет!"
+              }
+            ]
+          },
+          {
+            "id": "ru-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Привет",
+                "roman": "privet",
+                "example": "Привет!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Спасибо",
+                "roman": "spasibo"
+              },
+              {
+                "front": "Please",
+                "back": "Пожалуйста",
+                "roman": "pozhaluysta"
+              },
+              {
+                "front": "Yes",
+                "back": "Да",
+                "roman": "da"
+              },
+              {
+                "front": "No",
+                "back": "Нет",
+                "roman": "net"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "pl",
+    "name": "Polish",
+    "nativeName": "Polski",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Cześć",
+        "example": "Cześć!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Dziękuję"
+      },
+      {
+        "front": "Please",
+        "back": "Proszę"
+      },
+      {
+        "front": "Yes",
+        "back": "Tak"
+      },
+      {
+        "front": "No",
+        "back": "Nie"
+      },
+      {
+        "front": "Water",
+        "back": "Woda"
+      },
+      {
+        "front": "Food",
+        "back": "Jedzenie"
+      },
+      {
+        "front": "Friend",
+        "back": "Przyjaciel"
+      },
+      {
+        "front": "Morning",
+        "back": "Rano"
+      },
+      {
+        "front": "Night",
+        "back": "Noc"
+      }
+    ],
+    "units": [
+      {
+        "id": "pl-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "pl-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Cześć",
+                "example": "Cześć!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Dziękuję"
+              },
+              {
+                "front": "Please",
+                "back": "Proszę"
+              },
+              {
+                "front": "Yes",
+                "back": "Tak"
+              }
+            ]
+          },
+          {
+            "id": "pl-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Dziękuję"
+              },
+              {
+                "front": "Please",
+                "back": "Proszę"
+              },
+              {
+                "front": "Yes",
+                "back": "Tak"
+              },
+              {
+                "front": "No",
+                "back": "Nie"
+              }
+            ]
+          },
+          {
+            "id": "pl-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Woda"
+              },
+              {
+                "front": "Food",
+                "back": "Jedzenie"
+              },
+              {
+                "front": "Friend",
+                "back": "Przyjaciel"
+              }
+            ]
+          },
+          {
+            "id": "pl-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Przyjaciel"
+              },
+              {
+                "front": "Morning",
+                "back": "Rano"
+              },
+              {
+                "front": "Night",
+                "back": "Noc"
+              },
+              {
+                "front": "Hello",
+                "back": "Cześć",
+                "example": "Cześć!"
+              }
+            ]
+          },
+          {
+            "id": "pl-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Cześć",
+                "example": "Cześć!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Dziękuję"
+              },
+              {
+                "front": "Please",
+                "back": "Proszę"
+              },
+              {
+                "front": "Yes",
+                "back": "Tak"
+              },
+              {
+                "front": "No",
+                "back": "Nie"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "sv",
+    "name": "Swedish",
+    "nativeName": "Svenska",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Hej",
+        "example": "Hej!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Tack"
+      },
+      {
+        "front": "Please",
+        "back": "Snälla"
+      },
+      {
+        "front": "Yes",
+        "back": "Ja"
+      },
+      {
+        "front": "No",
+        "back": "Nej"
+      },
+      {
+        "front": "Water",
+        "back": "Vatten"
+      },
+      {
+        "front": "Food",
+        "back": "Mat"
+      },
+      {
+        "front": "Friend",
+        "back": "Vän"
+      },
+      {
+        "front": "Morning",
+        "back": "Morgon"
+      },
+      {
+        "front": "Night",
+        "back": "Natt"
+      }
+    ],
+    "units": [
+      {
+        "id": "sv-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "sv-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hej",
+                "example": "Hej!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Tack"
+              },
+              {
+                "front": "Please",
+                "back": "Snälla"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              }
+            ]
+          },
+          {
+            "id": "sv-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Tack"
+              },
+              {
+                "front": "Please",
+                "back": "Snälla"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              },
+              {
+                "front": "No",
+                "back": "Nej"
+              }
+            ]
+          },
+          {
+            "id": "sv-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Vatten"
+              },
+              {
+                "front": "Food",
+                "back": "Mat"
+              },
+              {
+                "front": "Friend",
+                "back": "Vän"
+              }
+            ]
+          },
+          {
+            "id": "sv-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Vän"
+              },
+              {
+                "front": "Morning",
+                "back": "Morgon"
+              },
+              {
+                "front": "Night",
+                "back": "Natt"
+              },
+              {
+                "front": "Hello",
+                "back": "Hej",
+                "example": "Hej!"
+              }
+            ]
+          },
+          {
+            "id": "sv-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hej",
+                "example": "Hej!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Tack"
+              },
+              {
+                "front": "Please",
+                "back": "Snälla"
+              },
+              {
+                "front": "Yes",
+                "back": "Ja"
+              },
+              {
+                "front": "No",
+                "back": "Nej"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "el",
+    "name": "Greek",
+    "nativeName": "Ελληνικά",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Grek",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Γεια",
+        "roman": "geia",
+        "example": "Γεια!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Ευχαριστώ",
+        "roman": "efcharisto"
+      },
+      {
+        "front": "Please",
+        "back": "Παρακαλώ",
+        "roman": "parakalo"
+      },
+      {
+        "front": "Yes",
+        "back": "Ναι",
+        "roman": "nai"
+      },
+      {
+        "front": "No",
+        "back": "Όχι",
+        "roman": "ochi"
+      },
+      {
+        "front": "Water",
+        "back": "Νερό",
+        "roman": "nero"
+      },
+      {
+        "front": "Food",
+        "back": "Φαγητό",
+        "roman": "fagito"
+      },
+      {
+        "front": "Friend",
+        "back": "Φίλος",
+        "roman": "filos"
+      },
+      {
+        "front": "Morning",
+        "back": "Πρωί",
+        "roman": "proi"
+      },
+      {
+        "front": "Night",
+        "back": "Νύχτα",
+        "roman": "nychta"
+      }
+    ],
+    "units": [
+      {
+        "id": "el-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "el-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Γεια",
+                "roman": "geia",
+                "example": "Γεια!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Ευχαριστώ",
+                "roman": "efcharisto"
+              },
+              {
+                "front": "Please",
+                "back": "Παρακαλώ",
+                "roman": "parakalo"
+              },
+              {
+                "front": "Yes",
+                "back": "Ναι",
+                "roman": "nai"
+              }
+            ]
+          },
+          {
+            "id": "el-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Ευχαριστώ",
+                "roman": "efcharisto"
+              },
+              {
+                "front": "Please",
+                "back": "Παρακαλώ",
+                "roman": "parakalo"
+              },
+              {
+                "front": "Yes",
+                "back": "Ναι",
+                "roman": "nai"
+              },
+              {
+                "front": "No",
+                "back": "Όχι",
+                "roman": "ochi"
+              }
+            ]
+          },
+          {
+            "id": "el-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Νερό",
+                "roman": "nero"
+              },
+              {
+                "front": "Food",
+                "back": "Φαγητό",
+                "roman": "fagito"
+              },
+              {
+                "front": "Friend",
+                "back": "Φίλος",
+                "roman": "filos"
+              }
+            ]
+          },
+          {
+            "id": "el-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Φίλος",
+                "roman": "filos"
+              },
+              {
+                "front": "Morning",
+                "back": "Πρωί",
+                "roman": "proi"
+              },
+              {
+                "front": "Night",
+                "back": "Νύχτα",
+                "roman": "nychta"
+              },
+              {
+                "front": "Hello",
+                "back": "Γεια",
+                "roman": "geia",
+                "example": "Γεια!"
+              }
+            ]
+          },
+          {
+            "id": "el-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Γεια",
+                "roman": "geia",
+                "example": "Γεια!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Ευχαριστώ",
+                "roman": "efcharisto"
+              },
+              {
+                "front": "Please",
+                "back": "Παρακαλώ",
+                "roman": "parakalo"
+              },
+              {
+                "front": "Yes",
+                "back": "Ναι",
+                "roman": "nai"
+              },
+              {
+                "front": "No",
+                "back": "Όχι",
+                "roman": "ochi"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "th",
+    "name": "Thai",
+    "nativeName": "ไทย",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Thai",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "สวัสดี",
+        "roman": "sawatdi",
+        "example": "สวัสดี!"
+      },
+      {
+        "front": "Thank you",
+        "back": "ขอบคุณ",
+        "roman": "khop khun"
+      },
+      {
+        "front": "Please",
+        "back": "กรุณา",
+        "roman": "karuna"
+      },
+      {
+        "front": "Yes",
+        "back": "ใช่",
+        "roman": "chai"
+      },
+      {
+        "front": "No",
+        "back": "ไม่",
+        "roman": "mai"
+      },
+      {
+        "front": "Water",
+        "back": "น้ำ",
+        "roman": "nam"
+      },
+      {
+        "front": "Food",
+        "back": "อาหาร",
+        "roman": "ahan"
+      },
+      {
+        "front": "Friend",
+        "back": "เพื่อน",
+        "roman": "phuean"
+      },
+      {
+        "front": "Morning",
+        "back": "เช้า",
+        "roman": "chao"
+      },
+      {
+        "front": "Night",
+        "back": "กลางคืน",
+        "roman": "klang khuen"
+      }
+    ],
+    "units": [
+      {
+        "id": "th-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "th-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "สวัสดี",
+                "roman": "sawatdi",
+                "example": "สวัสดี!"
+              },
+              {
+                "front": "Thank you",
+                "back": "ขอบคุณ",
+                "roman": "khop khun"
+              },
+              {
+                "front": "Please",
+                "back": "กรุณา",
+                "roman": "karuna"
+              },
+              {
+                "front": "Yes",
+                "back": "ใช่",
+                "roman": "chai"
+              }
+            ]
+          },
+          {
+            "id": "th-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "ขอบคุณ",
+                "roman": "khop khun"
+              },
+              {
+                "front": "Please",
+                "back": "กรุณา",
+                "roman": "karuna"
+              },
+              {
+                "front": "Yes",
+                "back": "ใช่",
+                "roman": "chai"
+              },
+              {
+                "front": "No",
+                "back": "ไม่",
+                "roman": "mai"
+              }
+            ]
+          },
+          {
+            "id": "th-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "น้ำ",
+                "roman": "nam"
+              },
+              {
+                "front": "Food",
+                "back": "อาหาร",
+                "roman": "ahan"
+              },
+              {
+                "front": "Friend",
+                "back": "เพื่อน",
+                "roman": "phuean"
+              }
+            ]
+          },
+          {
+            "id": "th-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "เพื่อน",
+                "roman": "phuean"
+              },
+              {
+                "front": "Morning",
+                "back": "เช้า",
+                "roman": "chao"
+              },
+              {
+                "front": "Night",
+                "back": "กลางคืน",
+                "roman": "klang khuen"
+              },
+              {
+                "front": "Hello",
+                "back": "สวัสดี",
+                "roman": "sawatdi",
+                "example": "สวัสดี!"
+              }
+            ]
+          },
+          {
+            "id": "th-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "สวัสดี",
+                "roman": "sawatdi",
+                "example": "สวัสดี!"
+              },
+              {
+                "front": "Thank you",
+                "back": "ขอบคุณ",
+                "roman": "khop khun"
+              },
+              {
+                "front": "Please",
+                "back": "กรุณา",
+                "roman": "karuna"
+              },
+              {
+                "front": "Yes",
+                "back": "ใช่",
+                "roman": "chai"
+              },
+              {
+                "front": "No",
+                "back": "ไม่",
+                "roman": "mai"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "vi",
+    "name": "Vietnamese",
+    "nativeName": "Tiếng Việt",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Xin chào",
+        "example": "Xin chào!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Cảm ơn"
+      },
+      {
+        "front": "Please",
+        "back": "Làm ơn"
+      },
+      {
+        "front": "Yes",
+        "back": "Vâng"
+      },
+      {
+        "front": "No",
+        "back": "Không"
+      },
+      {
+        "front": "Water",
+        "back": "Nước"
+      },
+      {
+        "front": "Food",
+        "back": "Thức ăn"
+      },
+      {
+        "front": "Friend",
+        "back": "Bạn"
+      },
+      {
+        "front": "Morning",
+        "back": "Buổi sáng"
+      },
+      {
+        "front": "Night",
+        "back": "Buổi tối"
+      }
+    ],
+    "units": [
+      {
+        "id": "vi-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "vi-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Xin chào",
+                "example": "Xin chào!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Cảm ơn"
+              },
+              {
+                "front": "Please",
+                "back": "Làm ơn"
+              },
+              {
+                "front": "Yes",
+                "back": "Vâng"
+              }
+            ]
+          },
+          {
+            "id": "vi-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Cảm ơn"
+              },
+              {
+                "front": "Please",
+                "back": "Làm ơn"
+              },
+              {
+                "front": "Yes",
+                "back": "Vâng"
+              },
+              {
+                "front": "No",
+                "back": "Không"
+              }
+            ]
+          },
+          {
+            "id": "vi-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Nước"
+              },
+              {
+                "front": "Food",
+                "back": "Thức ăn"
+              },
+              {
+                "front": "Friend",
+                "back": "Bạn"
+              }
+            ]
+          },
+          {
+            "id": "vi-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Bạn"
+              },
+              {
+                "front": "Morning",
+                "back": "Buổi sáng"
+              },
+              {
+                "front": "Night",
+                "back": "Buổi tối"
+              },
+              {
+                "front": "Hello",
+                "back": "Xin chào",
+                "example": "Xin chào!"
+              }
+            ]
+          },
+          {
+            "id": "vi-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Xin chào",
+                "example": "Xin chào!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Cảm ơn"
+              },
+              {
+                "front": "Please",
+                "back": "Làm ơn"
+              },
+              {
+                "front": "Yes",
+                "back": "Vâng"
+              },
+              {
+                "front": "No",
+                "back": "Không"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "id",
+    "name": "Indonesian",
+    "nativeName": "Bahasa Indonesia",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Halo",
+        "example": "Halo!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Terima kasih"
+      },
+      {
+        "front": "Please",
+        "back": "Tolong"
+      },
+      {
+        "front": "Yes",
+        "back": "Ya"
+      },
+      {
+        "front": "No",
+        "back": "Tidak"
+      },
+      {
+        "front": "Water",
+        "back": "Air"
+      },
+      {
+        "front": "Food",
+        "back": "Makanan"
+      },
+      {
+        "front": "Friend",
+        "back": "Teman"
+      },
+      {
+        "front": "Morning",
+        "back": "Pagi"
+      },
+      {
+        "front": "Night",
+        "back": "Malam"
+      }
+    ],
+    "units": [
+      {
+        "id": "id-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "id-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Halo",
+                "example": "Halo!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Terima kasih"
+              },
+              {
+                "front": "Please",
+                "back": "Tolong"
+              },
+              {
+                "front": "Yes",
+                "back": "Ya"
+              }
+            ]
+          },
+          {
+            "id": "id-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Terima kasih"
+              },
+              {
+                "front": "Please",
+                "back": "Tolong"
+              },
+              {
+                "front": "Yes",
+                "back": "Ya"
+              },
+              {
+                "front": "No",
+                "back": "Tidak"
+              }
+            ]
+          },
+          {
+            "id": "id-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Air"
+              },
+              {
+                "front": "Food",
+                "back": "Makanan"
+              },
+              {
+                "front": "Friend",
+                "back": "Teman"
+              }
+            ]
+          },
+          {
+            "id": "id-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Teman"
+              },
+              {
+                "front": "Morning",
+                "back": "Pagi"
+              },
+              {
+                "front": "Night",
+                "back": "Malam"
+              },
+              {
+                "front": "Hello",
+                "back": "Halo",
+                "example": "Halo!"
+              }
+            ]
+          },
+          {
+            "id": "id-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Halo",
+                "example": "Halo!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Terima kasih"
+              },
+              {
+                "front": "Please",
+                "back": "Tolong"
+              },
+              {
+                "front": "Yes",
+                "back": "Ya"
+              },
+              {
+                "front": "No",
+                "back": "Tidak"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "fi",
+    "name": "Finnish",
+    "nativeName": "Suomi",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Latn",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "Hei",
+        "example": "Hei!"
+      },
+      {
+        "front": "Thank you",
+        "back": "Kiitos"
+      },
+      {
+        "front": "Please",
+        "back": "Ole hyvä"
+      },
+      {
+        "front": "Yes",
+        "back": "Kyllä"
+      },
+      {
+        "front": "No",
+        "back": "Ei"
+      },
+      {
+        "front": "Water",
+        "back": "Vesi"
+      },
+      {
+        "front": "Food",
+        "back": "Ruoka"
+      },
+      {
+        "front": "Friend",
+        "back": "Ystävä"
+      },
+      {
+        "front": "Morning",
+        "back": "Aamu"
+      },
+      {
+        "front": "Night",
+        "back": "Yö"
+      }
+    ],
+    "units": [
+      {
+        "id": "fi-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "fi-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hei",
+                "example": "Hei!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Kiitos"
+              },
+              {
+                "front": "Please",
+                "back": "Ole hyvä"
+              },
+              {
+                "front": "Yes",
+                "back": "Kyllä"
+              }
+            ]
+          },
+          {
+            "id": "fi-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "Kiitos"
+              },
+              {
+                "front": "Please",
+                "back": "Ole hyvä"
+              },
+              {
+                "front": "Yes",
+                "back": "Kyllä"
+              },
+              {
+                "front": "No",
+                "back": "Ei"
+              }
+            ]
+          },
+          {
+            "id": "fi-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "Vesi"
+              },
+              {
+                "front": "Food",
+                "back": "Ruoka"
+              },
+              {
+                "front": "Friend",
+                "back": "Ystävä"
+              }
+            ]
+          },
+          {
+            "id": "fi-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "Ystävä"
+              },
+              {
+                "front": "Morning",
+                "back": "Aamu"
+              },
+              {
+                "front": "Night",
+                "back": "Yö"
+              },
+              {
+                "front": "Hello",
+                "back": "Hei",
+                "example": "Hei!"
+              }
+            ]
+          },
+          {
+            "id": "fi-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "Hei",
+                "example": "Hei!"
+              },
+              {
+                "front": "Thank you",
+                "back": "Kiitos"
+              },
+              {
+                "front": "Please",
+                "back": "Ole hyvä"
+              },
+              {
+                "front": "Yes",
+                "back": "Kyllä"
+              },
+              {
+                "front": "No",
+                "back": "Ei"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tag": "he",
+    "name": "Hebrew",
+    "nativeName": "עברית",
+    "level": "Beginner",
+    "minutes": 5,
+    "script": "Hebr",
+    "description": "10 essential words for first conversations.",
+    "words": [
+      {
+        "front": "Hello",
+        "back": "שלום",
+        "roman": "shalom",
+        "example": "שלום!"
+      },
+      {
+        "front": "Thank you",
+        "back": "תודה",
+        "roman": "toda"
+      },
+      {
+        "front": "Please",
+        "back": "בבקשה",
+        "roman": "bevakasha"
+      },
+      {
+        "front": "Yes",
+        "back": "כן",
+        "roman": "ken"
+      },
+      {
+        "front": "No",
+        "back": "לא",
+        "roman": "lo"
+      },
+      {
+        "front": "Water",
+        "back": "מים",
+        "roman": "mayim"
+      },
+      {
+        "front": "Food",
+        "back": "אוכל",
+        "roman": "ochel"
+      },
+      {
+        "front": "Friend",
+        "back": "חבר",
+        "roman": "chaver"
+      },
+      {
+        "front": "Morning",
+        "back": "בוקר",
+        "roman": "boker"
+      },
+      {
+        "front": "Night",
+        "back": "לילה",
+        "roman": "laila"
+      }
+    ],
+    "units": [
+      {
+        "id": "he-u1",
+        "title": "Basics 1",
+        "description": "First conversations: greet, thank, survive.",
+        "lessons": [
+          {
+            "id": "he-u1-l1",
+            "title": "Greetings",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "שלום",
+                "roman": "shalom",
+                "example": "שלום!"
+              },
+              {
+                "front": "Thank you",
+                "back": "תודה",
+                "roman": "toda"
+              },
+              {
+                "front": "Please",
+                "back": "בבקשה",
+                "roman": "bevakasha"
+              },
+              {
+                "front": "Yes",
+                "back": "כן",
+                "roman": "ken"
+              }
+            ]
+          },
+          {
+            "id": "he-u1-l2",
+            "title": "Manners",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Thank you",
+                "back": "תודה",
+                "roman": "toda"
+              },
+              {
+                "front": "Please",
+                "back": "בבקשה",
+                "roman": "bevakasha"
+              },
+              {
+                "front": "Yes",
+                "back": "כן",
+                "roman": "ken"
+              },
+              {
+                "front": "No",
+                "back": "לא",
+                "roman": "lo"
+              }
+            ]
+          },
+          {
+            "id": "he-u1-l3",
+            "title": "Survival",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Water",
+                "back": "מים",
+                "roman": "mayim"
+              },
+              {
+                "front": "Food",
+                "back": "אוכל",
+                "roman": "ochel"
+              },
+              {
+                "front": "Friend",
+                "back": "חבר",
+                "roman": "chaver"
+              }
+            ]
+          },
+          {
+            "id": "he-u1-l4",
+            "title": "People & time",
+            "xp": 50,
+            "words": [
+              {
+                "front": "Friend",
+                "back": "חבר",
+                "roman": "chaver"
+              },
+              {
+                "front": "Morning",
+                "back": "בוקר",
+                "roman": "boker"
+              },
+              {
+                "front": "Night",
+                "back": "לילה",
+                "roman": "laila"
+              },
+              {
+                "front": "Hello",
+                "back": "שלום",
+                "roman": "shalom",
+                "example": "שלום!"
+              }
+            ]
+          },
+          {
+            "id": "he-u1-l5",
+            "title": "Boss review",
+            "xp": 100,
+            "words": [
+              {
+                "front": "Hello",
+                "back": "שלום",
+                "roman": "shalom",
+                "example": "שלום!"
+              },
+              {
+                "front": "Thank you",
+                "back": "תודה",
+                "roman": "toda"
+              },
+              {
+                "front": "Please",
+                "back": "בבקשה",
+                "roman": "bevakasha"
+              },
+              {
+                "front": "Yes",
+                "back": "כן",
+                "roman": "ken"
+              },
+              {
+                "front": "No",
+                "back": "לא",
+                "roman": "lo"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]
