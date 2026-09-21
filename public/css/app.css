@@ -1,0 +1,55 @@
+/* Lango v3 app shell — 3 layouts + sidebar/tabbar + transitions. */
+.shell { min-height: 100dvh; }
+@media (min-width: 1024px) {
+  .shell { display: grid; grid-template-columns: var(--sidebar-w) 1fr; }
+  .tabbar, .topbar { display: none; }
+}
+@media (max-width: 1023px) {
+  .sidebar { display: none; }
+  .shell-main { padding-bottom: var(--tabbar-h); }
+}
+.sidebar {
+  position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; gap: 20px;
+  padding: 20px 16px; border-right: 1px solid var(--sep); background: var(--card);
+}
+.side-nav { display: flex; flex-direction: column; gap: 4px; }
+.side-nav a {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px;
+  text-decoration: none; color: var(--body); font-weight: 600; font-size: 15px;
+}
+.side-nav a:hover { background: rgb(0 0 0 / 0.04); }
+.side-nav a[aria-current="page"] { background: var(--apple-blue-bg); color: var(--apple-blue); }
+.side-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.topbar {
+  position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center;
+  min-height: var(--header-h); padding: 0 20px; background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: var(--nav-blur); border-bottom: 1px solid var(--sep);
+}
+.topbar-title { font-weight: 700; letter-spacing: -0.02em; }
+.tabbar {
+  position: fixed; inset: auto 0 0 0; z-index: 40; display: grid; grid-template-columns: repeat(5, 1fr);
+  min-height: var(--tabbar-h); background: color-mix(in srgb, var(--card) 88%, transparent);
+  backdrop-filter: var(--nav-blur); border-top: 1px solid var(--sep); padding-bottom: env(safe-area-inset-bottom);
+}
+.tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; font-weight: 600; color: var(--muted); text-decoration: none; }
+.tabbar a[aria-current="page"] { color: var(--apple-blue); }
+
+.shell-narrow .page { width: min(var(--narrow), 100% - 40px); margin-inline: auto; padding-block: 48px; }
+.shell-mid .page { width: min(var(--mid), 100% - 40px); margin-inline: auto; padding-block: 48px; }
+.shell-wide .page { width: min(var(--wide), 100% - 40px); margin-inline: auto; padding-block: 48px; }
+.page-h { text-align: center; max-width: 40rem; margin: 0 auto 24px; }
+.page-h p { color: var(--muted); margin-top: 8px; }
+
+.site-footer { border-top: 1px solid var(--sep); margin-top: 64px; }
+.foot-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 24px; font-size: 14px; color: var(--muted); }
+.foot-inner nav { display: flex; gap: 16px; }
+.foot-inner a { color: var(--body); text-decoration: none; }
+
+@keyframes pageIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.page-enter { animation: pageIn 240ms var(--ease); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 240ms; }
+.skel { border-radius: 12px; background: linear-gradient(90deg, rgb(0 0 0/0.06), rgb(0 0 0/0.02), rgb(0 0 0/0.06)); min-height: 72px; animation: shimmer 1.2s infinite; }
+@keyframes shimmer { 50% { opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) {
+  .page-enter, .skel { animation: none; }
+}
