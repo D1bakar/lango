@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Welcome — Lango</title><link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./css/fonts.css" /><link rel="stylesheet" href="./css/tokens.css" /><link rel="stylesheet" href="./css/base.css" /><link rel="stylesheet" href="./css/components.css" /></head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<main id="main" class="container lesson-shell">
+<p class="eyebrow">Onboarding · 30 seconds</p><h1>Pick a course, set a goal, start.</h1>
+<div class="card stack" style="margin-top:16px"><h2 style="font-size:18px">1 · Course</h2><div id="langs" class="grid-2"></div>
+<h2 style="font-size:18px">2 · Daily goal</h2><div style="display:flex;gap:8px"><button class="btn btn-ghost" data-g="30">30 XP</button><button class="btn btn-ghost" data-g="50">50 XP</button><button class="btn btn-ghost" data-g="100">100 XP</button></div>
+<h2 style="font-size:18px">3 · Start</h2><a id="go" href="./languages.html" class="btn btn-primary" style="width:100%">Continue →</a></div>
+</main>
+<script type="module">
+import { loadLanguages } from "./js/loader.js";
+import { loadStore, setLanguage, updateSettings } from "./js/store.js";
+const langs = await loadLanguages();
+let sel = loadStore().lang || "ja", goal = 50;
+const box = document.getElementById("langs");
+for(const l of langs.slice(0,8)){
+  const b=document.createElement("button"); b.className="btn btn-ghost"; b.textContent=`${l.tag.toUpperCase()} · ${l.name}`;
+  b.onclick=()=>{ sel=l.tag; setLanguage(sel); [...box.children].forEach(x=>x.classList.remove("btn-dark")); b.classList.add("btn-dark"); paint(); };
+  box.appendChild(b);
+}
+document.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ goal=+b.dataset.g; updateSettings({goal}); paint(); });
+function paint(){ document.getElementById("go").href=`./course.html?lang=${encodeURIComponent(sel)}`; document.getElementById("go").textContent=`Start ${sel.toUpperCase()} · ${goal} XP/day →`; }
+paint();
+</script>
+</body>
+</html>
