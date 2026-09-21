@@ -1,5 +1,12 @@
-const CACHE = "lango-v2-1";
-const CORE = ["./index.html", "./languages.html", "./lesson.html", "./course.html", "./review.html", "./words.html", "./stats.html", "./settings.html", "./welcome.html", "./offline.html", "./css/fonts.css", "./css/tokens.css", "./css/base.css", "./css/components.css", "./data/languages.json", "./manifest.webmanifest"];
+const CACHE = "lango-v4-1";
+const CORE = [
+  "./index.html", "./languages.html", "./lesson.html", "./course.html",
+  "./review.html", "./words.html", "./stats.html", "./settings.html",
+  "./welcome.html", "./offline.html", "./404.html",
+  "./css/fonts.css", "./css/tokens.css", "./css/base.css", "./css/components.css", "./css/app.css",
+  "./js/shell.js", "./js/store.js", "./js/loader.js", "./js/srs.js", "./js/tts.js",
+  "./data/languages.json", "./manifest.webmanifest", "./icons/favicon.svg",
+];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
