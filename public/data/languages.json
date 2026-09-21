@@ -1,0 +1,42 @@
+[
+  {
+    "tag": "es",
+    "name": "Spanish",
+    "nativeName": "Español",
+    "level": "Beginner",
+    "minutes": 5,
+    "description": "10 essential words for first conversations.",
+    "words": [
+      { "front": "Hello", "back": "Hola" },
+      { "front": "Thank you", "back": "Gracias" },
+      { "front": "Please", "back": "Por favor" },
+      { "front": "Yes", "back": "Sí" },
+      { "front": "No", "back": "No" },
+      { "front": "Water", "back": "Agua" },
+      { "front": "Food", "back": "Comida" },
+      { "front": "Friend", "back": "Amigo" },
+      { "front": "Morning", "back": "Mañana" },
+      { "front": "Night", "back": "Noche" }
+    ]
+  },
+  {
+    "tag": "en",
+    "name": "English",
+    "nativeName": "English",
+    "level": "Beginner",
+    "minutes": 5,
+    "description": "10 essential words for first conversations.",
+    "words": [
+      { "front": "Hola", "back": "Hello" },
+      { "front": "Gracias", "back": "Thank you" },
+      { "front": "Por favor", "back": "Please" },
+      { "front": "Sí", "back": "Yes" },
+      { "front": "No", "back": "No" },
+      { "front": "Agua", "back": "Water" },
+      { "front": "Comida", "back": "Food" },
+      { "front": "Amigo", "back": "Friend" },
+      { "front": "Mañana", "back": "Morning" },
+      { "front": "Noche", "back": "Night" }
+    ]
+  }
+]
