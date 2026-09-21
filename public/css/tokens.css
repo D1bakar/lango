@@ -1,10 +1,13 @@
-/* Lango v3 One Shell tokens — single radius/shadow/motion/layout. */
+/* Lango v4 tokens — one source of truth for color, type, space, motion, depth. */
 :root {
   --font-sans: "Inter", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Inter", "Sora", "Noto Sans JP", system-ui, -apple-system, sans-serif;
 
+  /* Surfaces */
   --bg: #f5f5f7;
+  --bg-2: #ececf1;
   --card: #ffffff;
+  --card-2: #fbfbfd;
   --ink: #1d1d1f;
   --body: #3a3a3c;
   --muted: #6e6e73;
@@ -13,29 +16,48 @@
   --line-strong: #d2d2d7;
   --sep: #e8e8ed;
 
+  /* Brand / accent */
   --apple-blue: #0071e3;
-  --apple-blue-dark: #0077ed;
+  --apple-blue-dark: #0063c7;
   --apple-blue-bg: #e8f2fd;
+  --apple-blue-soft: #f2f8ff;
 
   --brand-50: #eef7f0;
   --brand-100: #e6f4ea;
+  --brand-500: #22a04a;
   --brand-600: #1a8737;
   --brand-700: #146c2e;
   --brand-900: #0d3b24;
 
   --accent: var(--apple-blue);
+  --accent-2: #6e5bff;
   --success: #1a8737;
   --success-bg: #e6f4ea;
   --warn: #b91c1c;
   --warn-bg: #fef2f2;
+  --gold: #e8a317;
   --ok-bg: var(--success-bg);
 
+  /* Gradients */
+  --grad-brand: linear-gradient(135deg, #0a84ff 0%, #0066dd 55%, #6e5bff 100%);
+  --grad-success: linear-gradient(135deg, #2fbf5f, #146c2e);
+  --grad-ink: linear-gradient(180deg, #2b2b2e, #111113);
+  --grad-surface: linear-gradient(180deg, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.4));
+  --grad-hero:
+    radial-gradient(60% 55% at 18% 12%, rgb(10 132 255 / 0.16), transparent 60%),
+    radial-gradient(55% 50% at 84% 8%, rgb(110 91 255 / 0.14), transparent 62%),
+    radial-gradient(60% 60% at 50% 110%, rgb(34 160 74 / 0.12), transparent 60%);
+
+  /* Radii */
+  --r-xs: 8px;
   --r-sm: 10px;
   --r-md: 14px;
   --r-lg: 20px;
   --r-xl: 28px;
+  --r-2xl: 36px;
   --r-apple: 20px;
 
+  /* Space */
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -46,7 +68,9 @@
   --s-10: 40px;
   --s-12: 48px;
   --s-16: 64px;
+  --s-20: 80px;
 
+  /* Type */
   --t-xs: 12px;
   --t-sm: 14px;
   --t-md: 16px;
@@ -55,36 +79,86 @@
   --t-2xl: 32px;
   --t-3xl: 40px;
   --t-4xl: 56px;
+  --t-5xl: 72px;
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 8px 24px rgb(0 0 0 / 0.08);
-  --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.12);
+  /* Depth */
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05), 0 1px 1px rgb(0 0 0 / 0.03);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 0.08), 0 2px 6px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.12), 0 6px 16px rgb(0 0 0 / 0.06);
+  --shadow-xl: 0 32px 72px rgb(0 0 0 / 0.18);
+  --glow-accent: 0 8px 24px rgb(0 113 227 / 0.28);
+  --glow-success: 0 8px 24px rgb(26 135 55 / 0.26);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--apple-blue) 35%, transparent);
 
-  --wide: 75rem;
+  /* Layout */
+  --wide: 76rem;
   --mid: 64rem;
   --narrow: 46rem;
   --container: var(--wide);
-  --sidebar-w: 248px;
+  --sidebar-w: 256px;
   --tabbar-h: 64px;
   --header-h: 64px;
   --nav-blur: saturate(180%) blur(20px);
 
+  /* Motion */
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 140ms;
   --dur: 240ms;
+  --dur-slow: 420ms;
+
+  /* Layers */
+  --z-sticky: 30;
+  --z-header: 40;
+  --z-overlay: 60;
+  --z-toast: 80;
+
+  color-scheme: light;
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
+
   --bg: #000000;
+  --bg-2: #0b0b0d;
   --card: #1c1c1e;
+  --card-2: #232326;
   --ink: #f5f5f7;
   --body: #d6d6d9;
   --muted: #98989f;
   --faint: #6e6e73;
   --line: #2c2c2e;
   --line-strong: #3a3a3c;
+  --sep: #2c2c2e;
+
   --apple-blue: #2997ff;
+  --apple-blue-dark: #4aa8ff;
   --apple-blue-bg: #0a2540;
+  --apple-blue-soft: #0b1c2e;
+
   --brand-100: #123825;
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.4);
+  --brand-500: #34c46a;
+  --brand-600: #34c46a;
+  --brand-700: #2ea85b;
+
+  --success: #34c46a;
+  --success-bg: #10281a;
+  --warn: #ff6b6b;
+  --warn-bg: #2a1414;
+  --ok-bg: var(--success-bg);
+
+  --grad-hero:
+    radial-gradient(60% 55% at 18% 12%, rgb(41 151 255 / 0.22), transparent 60%),
+    radial-gradient(55% 50% at 84% 8%, rgb(110 91 255 / 0.2), transparent 62%),
+    radial-gradient(60% 60% at 50% 110%, rgb(52 196 106 / 0.14), transparent 60%);
+  --grad-surface: linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.01));
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 6px 20px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.6);
+  --shadow-xl: 0 32px 72px rgb(0 0 0 / 0.7);
+  --glow-accent: 0 8px 28px rgb(41 151 255 / 0.35);
+  --glow-success: 0 8px 28px rgb(52 196 106 / 0.3);
 }

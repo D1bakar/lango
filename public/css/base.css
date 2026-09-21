@@ -1,33 +1,74 @@
-/* Lango Apple base — SF-like tight tracking, calm body. */
+/* Lango v4 base — calm typography, balanced headings, accessible focus. */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  background: var(--bg);
+}
 body {
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--body);
+  min-height: 100dvh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-size: 17px;
   letter-spacing: -0.01em;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
 }
-h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1.08; letter-spacing: -0.04em; }
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; }
-h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; }
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.35rem); font-weight: 700; }
 h3 { font-size: var(--t-lg); font-weight: 600; letter-spacing: -0.02em; }
-p { max-width: 65ch; }
+h4 { font-size: var(--t-md); font-weight: 600; letter-spacing: -0.02em; }
+p { max-width: 68ch; color: inherit; text-wrap: pretty; }
 a { color: inherit; text-underline-offset: 3px; }
-img, svg { display: block; max-width: 100%; }
-button, input, select { font: inherit; }
-:focus-visible { outline: 3px solid var(--apple-blue); outline-offset: 2px; border-radius: 8px; }
+img, svg, video { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { -webkit-appearance: none; appearance: none; }
+:focus-visible {
+  outline: 3px solid var(--apple-blue);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
 .skip-link {
-  position: absolute; left: -9999px; top: 0; z-index: 100;
-  background: var(--ink); color: var(--card); padding: 10px 16px; border-radius: 0 0 8px 0;
-  font-weight: 700; font-size: var(--t-sm);
+  position: absolute; left: -9999px; top: 0; z-index: var(--z-toast);
+  background: var(--ink); color: var(--card); padding: 10px 18px; border-radius: 0 0 10px 0;
+  font-weight: 700; font-size: var(--t-sm); text-decoration: none;
 }
 .skip-link:focus { left: 0; }
-::selection { background: var(--apple-blue-bg); }
+
+::selection { background: color-mix(in srgb, var(--apple-blue) 26%, transparent); }
+
+/* Calm scrollbars on desktop */
+@media (pointer: fine) {
+  * { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong); border-radius: 999px; border: 3px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
