@@ -1,8 +1,5 @@
 // Tiny kitchen for Lango start.
-// This file does only 3 things:
-// 1. Call the waiter (express).
-// 2. Show drawings from public/ folder.
-// 3. Give the tiny book when someone asks.
+// Static host for frontend-only app. No DB, no auth.
 
 import express from "express";
 import path from "node:path";
@@ -16,28 +13,40 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 3001;
 
-// 1. Show drawings. If browser asks for /, give public/index.html.
+// 1. Show static frontend.
 app.use(express.static(path.join(here, "public")));
 
-// 2. Health road. Robots ask: are you awake?
+// 2. Health road. Kept for uptime checks.
 app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
-// 3. Languages road. Give the tiny book.
+// 3. Languages road. Prefer new frontend dataset, fallback to legacy.
 app.get("/api/languages", (req, res) => {
-  const file = path.join(here, "data", "languages.json");
+  const next = path.join(here, "public", "data", "languages.json");
+  const legacy = path.join(here, "data", "languages.json");
+  const file = fs.existsSync(next) ? next : legacy;
   const text = fs.readFileSync(file, "utf-8");
   res.type("application/json").send(text);
 });
 
-// Pretty roads for humans: /learn and /status show their drawings.
+// Pretty roads for humans.
+app.get("/languages", (req, res) => {
+  res.sendFile(path.join(here, "public", "languages.html"));
+});
+
+app.get("/lesson", (req, res) => {
+  res.sendFile(path.join(here, "public", "lesson.html"));
+});
+
+// Legacy: /learn -> /languages, /status -> /.
 app.get("/learn", (req, res) => {
-  res.sendFile(path.join(here, "public", "learn.html"));
+  const q = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
+  res.redirect(301, "/languages" + q);
 });
 
 app.get("/status", (req, res) => {
-  res.sendFile(path.join(here, "public", "status.html"));
+  res.redirect(301, "/");
 });
 
 // Start listening on door 3001.
