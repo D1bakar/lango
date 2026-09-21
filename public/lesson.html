@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Lango lesson: flashcards then quick check." />
+    <title>Lesson — Lango</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Nunito", "system-ui", "sans-serif"] },
+            colors: { brand: { 600: "#16a34a", 700: "#15803d" }, ink: "#1f2937", muted: "#6b7280", line: "#e5e7eb", paper: "#f8fafc" },
+          },
+        },
+      };
+    </script>
+    <style>
+      .flip { perspective: 800px; }
+      .flip-inner { transform-style: preserve-3d; transition: transform 0.35s ease; }
+      .flip.flipped .flip-inner { transform: rotateY(180deg); }
+      .flip-face { backface-visibility: hidden; }
+      .flip-back { transform: rotateY(180deg); }
+      @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+      .shake { animation: shake 0.25s ease 2; }
+    </style>
+  </head>
+  <body class="bg-paper text-ink">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header class="border-b border-line bg-white">
+      <div class="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
+        <a href="./index.html" class="flex items-center gap-2" aria-label="Lango home">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white font-extrabold" aria-hidden="true">L</span>
+          <span class="text-lg font-extrabold">Lango</span>
+        </a>
+        <nav class="flex items-center gap-3 text-sm font-bold" aria-label="Primary">
+          <a href="./languages.html" class="hover:underline">Courses</a>
+          <span id="xp" class="rounded-full border border-line bg-paper px-3 py-1 text-xs text-muted">0 XP</span>
+        </nav>
+      </div>
+      <div class="mx-auto max-w-3xl px-4 pb-3">
+        <div class="flex items-center justify-between text-xs font-bold text-muted"><span id="step-label">Step 1 of 10</span><span id="course-label">Loading…</span></div>
+        <div class="mt-1 h-2 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-wrap">
+          <div id="bar" class="h-full w-0 bg-brand-600 transition-all"></div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="mx-auto max-w-3xl px-4 py-8">
+      <div id="notice" class="hidden rounded-xl border border-line bg-white p-4 text-sm" role="alert"></div>
+
+      <section id="card-section" aria-labelledby="card-front">
+        <div id="flip" class="flip cursor-pointer rounded-2xl border border-line bg-white shadow-sm" tabindex="0" role="button" aria-label="Flashcard. Press Enter to flip.">
+          <div class="flip-inner relative min-h-[220px]">
+            <div class="flip-face absolute inset-0 flex flex-col items-center justify-center p-8">
+              <p class="text-xs font-bold text-muted">FRONT • TAP TO REVEAL</p>
+              <p id="card-front" class="mt-2 text-4xl font-extrabold text-center">—</p>
+            </div>
+            <div class="flip-face flip-back absolute inset-0 flex flex-col items-center justify-center bg-paper p-8 rounded-2xl">
+              <p class="text-xs font-bold text-muted">BACK</p>
+              <p id="card-back" class="mt-2 text-4xl font-extrabold text-center">—</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex gap-3">
+          <button id="prev" class="min-h-[48px] flex-1 rounded-xl border border-line bg-white px-4 py-3 font-bold">Back</button>
+          <button id="reveal" class="min-h-[48px] flex-1 rounded-xl border border-line bg-white px-4 py-3 font-bold">Reveal</button>
+          <button id="next" class="min-h-[48px] flex-1 rounded-xl bg-ink px-4 py-3 font-extrabold text-white">Next</button>
+        </div>
+        <button id="to-quiz" class="mt-3 hidden min-h-[48px] w-full rounded-xl bg-brand-600 px-4 py-3 font-extrabold text-white hover:bg-brand-700">Start 5-question check</button>
+      </section>
+
+      <section id="quiz-section" class="hidden" aria-labelledby="quiz-q">
+        <h2 id="quiz-q" class="text-2xl font-extrabold">What does “…” mean?</h2>
+        <p class="mt-1 text-sm text-muted" id="quiz-progress">Question 1 of 5</p>
+        <div id="options" class="mt-4 grid gap-3" role="group" aria-label="Answer choices"></div>
+        <p id="feedback" class="mt-3 min-h-[24px] text-sm font-bold" aria-live="polite"></p>
+        <div class="mt-2 flex gap-3">
+          <button id="quiz-next" class="hidden min-h-[48px] flex-1 rounded-xl bg-ink px-4 py-3 font-extrabold text-white">Next</button>
+        </div>
+      </section>
+
+      <section id="done-section" class="hidden text-center" aria-labelledby="done-h">
+        <div class="rounded-2xl border border-line bg-white p-8">
+          <h2 id="done-h" class="text-3xl font-extrabold">Lesson complete</h2>
+          <p id="score" class="mt-2 text-muted">You got 0 of 5 correct.</p>
+          <p id="xp-earned" class="mt-1 font-extrabold text-brand-700">+0 XP</p>
+          <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <button id="retry" class="min-h-[48px] rounded-xl border border-line bg-white px-6 py-3 font-bold">Retry</button>
+            <a href="./languages.html" class="min-h-[48px] inline-flex items-center justify-center rounded-xl bg-brand-600 px-6 py-3 font-extrabold text-white hover:bg-brand-700">Other course</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { loadLanguages, loadStore, saveStore, addXp, markDone, getQuery } from "./app.js";
+
+      const store = loadStore();
+      document.getElementById("xp").textContent = store.xp + " XP";
+
+      const bar = document.getElementById("bar");
+      const barWrap = document.getElementById("bar-wrap");
+      const stepLabel = document.getElementById("step-label");
+      const courseLabel = document.getElementById("course-label");
+      const notice = document.getElementById("notice");
+
+      const flip = document.getElementById("flip");
+      const frontEl = document.getElementById("card-front");
+      const backEl = document.getElementById("card-back");
+      const prevBtn = document.getElementById("prev");
+      const nextBtn = document.getElementById("next");
+      const revealBtn = document.getElementById("reveal");
+      const toQuizBtn = document.getElementById("to-quiz");
+
+      const quizSection = document.getElementById("quiz-section");
+      const cardSection = document.getElementById("card-section");
+      const doneSection = document.getElementById("done-section");
+      const quizQ = document.getElementById("quiz-q");
+      const quizProg = document.getElementById("quiz-progress");
+      const optionsEl = document.getElementById("options");
+      const feedbackEl = document.getElementById("feedback");
+      const quizNextBtn = document.getElementById("quiz-next");
+
+      let langData = null;
+      let cards = [];
+      let idx = 0;
+      let qi = 0;
+      let correct = 0;
+      let quizSet = [];
+
+      function setProgress(pct, label) {
+        bar.style.width = pct + "%";
+        barWrap.setAttribute("aria-valuenow", String(Math.round(pct)));
+        stepLabel.textContent = label;
+      }
+
+      function showCard() {
+        const c = cards[idx];
+        if (!c) return;
+        flip.classList.remove("flipped");
+        frontEl.textContent = c.front;
+        backEl.textContent = c.back;
+        setProgress(((idx + 1) / (cards.length + 5)) * 100, "Card " + (idx + 1) + " of " + cards.length);
+        prevBtn.disabled = idx === 0;
+        prevBtn.classList.toggle("opacity-40", idx === 0);
+        nextBtn.textContent = idx === cards.length - 1 ? "Finish cards" : "Next";
+        toQuizBtn.classList.toggle("hidden", idx !== cards.length - 1);
+      }
+
+      function toggleFlip() { flip.classList.toggle("flipped"); }
+
+      flip.addEventListener("click", toggleFlip);
+      flip.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleFlip(); }
+      });
+      revealBtn.addEventListener("click", toggleFlip);
+      prevBtn.addEventListener("click", () => { if (idx > 0) { idx--; showCard(); } });
+      nextBtn.addEventListener("click", () => {
+        if (idx < cards.length - 1) { idx++; showCard(); }
+        else { startQuiz(); }
+      });
+      toQuizBtn.addEventListener("click", startQuiz);
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function startQuiz() {
+        quizSet = cards.slice(0, 5);
+        qi = 0; correct = 0;
+        cardSection.classList.add("hidden");
+        quizSection.classList.remove("hidden");
+        showQuestion();
+      }
+
+      function showQuestion() {
+        const pool = langData.words;
+        const current = quizSet[qi];
+        feedbackEl.textContent = "";
+        quizNextBtn.classList.add("hidden");
+        quizProg.textContent = "Question " + (qi + 1) + " of " + quizSet.length;
+        quizQ.textContent = 'What does "' + current.front + '" mean?';
+        setProgress(((cards.length + qi + 1) / (cards.length + 5)) * 100, "Question " + (qi + 1) + " of " + quizSet.length);
+
+        const distractors = shuffle(pool.filter((w) => w.back !== current.back)).slice(0, 3).map((w) => w.back);
+        const choices = shuffle([current.back, ...distractors]);
+        optionsEl.innerHTML = "";
+        for (const ch of choices) {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "min-h-[52px] rounded-xl border border-line bg-white px-4 py-3 text-left font-bold hover:border-ink transition";
+          b.textContent = ch;
+          b.addEventListener("click", () => answer(b, ch === current.back), { once: true });
+          optionsEl.appendChild(b);
+        }
+      }
+
+      function answer(btn, ok) {
+        const buttons = [...optionsEl.children];
+        buttons.forEach((b) => (b.disabled = true));
+        if (ok) {
+          correct++;
+          btn.classList.remove("border-line", "bg-white");
+          btn.classList.add("bg-green-50", "border-brand-600");
+          feedbackEl.textContent = "Correct.";
+          feedbackEl.className = "mt-3 min-h-[24px] text-sm font-bold text-brand-700";
+        } else {
+          btn.classList.add("shake", "bg-red-50", "border-red-500");
+          feedbackEl.textContent = "Not quite — correct answer is highlighted.";
+          feedbackEl.className = "mt-3 min-h-[24px] text-sm font-bold text-red-700";
+          const current = quizSet[qi];
+          const right = buttons.find((b) => b.textContent === current.back);
+          if (right) { right.classList.add("bg-green-50", "border-brand-600"); }
+        }
+        quizNextBtn.classList.remove("hidden");
+        quizNextBtn.textContent = qi === quizSet.length - 1 ? "See result" : "Next";
+      }
+
+      quizNextBtn.addEventListener("click", () => {
+        if (qi < quizSet.length - 1) { qi++; showQuestion(); }
+        else { finish(); }
+      });
+
+      function finish() {
+        quizSection.classList.add("hidden");
+        doneSection.classList.remove("hidden");
+        setProgress(100, "Done");
+        document.getElementById("score").textContent = "You got " + correct + " of " + quizSet.length + " correct in " + langData.name + ".";
+        const earned = correct * 10;
+        const updated = addXp(earned);
+        markDone(langData.tag, correct);
+        document.getElementById("xp-earned").textContent = "+" + earned + " XP • Total " + updated.xp + " XP";
+        document.getElementById("xp").textContent = updated.xp + " XP";
+      }
+
+      document.getElementById("retry").addEventListener("click", () => window.location.reload());
+
+      try {
+        const langs = await loadLanguages();
+        const wanted = getQuery("lang") || store.lang || langs[0]?.tag;
+        langData = langs.find((l) => l.tag === wanted) || langs[0];
+        if (!langData) throw new Error("empty");
+        courseLabel.textContent = langData.name + " • " + langData.words.length + " words";
+        const s = loadStore();
+        s.lang = langData.tag;
+        saveStore(s);
+        cards = langData.words.slice(0, 5);
+        showCard();
+      } catch (e) {
+        notice.textContent = "Could not load lesson. Open Languages and pick a course, or check public/data/languages.json.";
+        notice.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
