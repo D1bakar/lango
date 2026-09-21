@@ -16,96 +16,41 @@
   <a href="#main" class="skip-link">Skip to content</a>
   <div id="shell"></div>
   <main data-content>
-    <div class="page-h"><p class="eyebrow">Directory</p><h1>Choose a course</h1><p>22 starters across 11 scripts. Search, filter, and pick — your selection saves locally.</p></div>
-
-    <div class="card" style="position:sticky;top:calc(var(--header-h) + 8px);z-index:20;padding:16px">
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-        <input id="q" class="input" style="flex:1;min-width:220px" type="search" placeholder="Search Japanese, French, Hindi…" aria-label="Search courses" />
-        <span class="pill" id="count" aria-live="polite">22 courses</span>
-      </div>
-      <div id="scripts" class="segmented" role="tablist" aria-label="Filter by script" style="margin-top:12px"></div>
+    <div class="page-h"><h1>Choose a course</h1><p>22 starters. Search or filter by script. Selection saves locally.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <input id="q" class="input" style="flex:2;min-width:200px" type="search" placeholder="Search Japanese, French, Hindi…" aria-label="Search courses" />
+      <select id="f" class="select" style="flex:1;min-width:160px" aria-label="Filter by script"><option value="">All scripts</option><option value="Latn">Latin</option><option value="Jpan">Japanese</option><option value="Kore">Korean</option><option value="Hans">Chinese</option><option value="Deva">Devanagari</option><option value="Arab">Arabic</option><option value="Cyrl">Cyrillic</option></select>
     </div>
-
-    <div id="grid" class="grid-3" style="margin-top:20px"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-
-    <div class="card" style="margin-top:20px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center">
-      <div><strong id="pick-title">Not sure?</strong><p class="muted" style="font-size:14px" id="pick-sub">Start Spanish or Japanese. The method is identical everywhere.</p></div>
-      <a id="continue" href="./lesson.html" class="btn btn-apple" aria-disabled="true">Select a course</a>
-    </div>
+    <div id="grid" class="grid-2" style="margin-top:16px"><div class="skel"></div><div class="skel"></div></div>
+    <div class="card" style="margin-top:16px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;align-items:center"><div><strong>Not sure?</strong><p style="color:var(--muted);font-size:14px">Start Spanish or Japanese. Same method everywhere.</p></div><a id="continue" href="./lesson.html" class="btn btn-apple" aria-disabled="true">Select a course</a></div>
     <p id="error" class="notice notice-error" hidden></p>
   </main>
   <script type="module">
-    import { loadLanguages, accentFor, levelOf } from "./js/loader.js";
+    import { loadLanguages } from "./js/loader.js";
     import { loadStore, setLanguage } from "./js/store.js";
     import { mountShell } from "./js/shell.js";
     import { courseProgress } from "./js/srs.js";
     mountShell({ active: "courses", layout: "wide" });
-
     const store = loadStore();
-    let all = [];
-    let selected = store.lang;
-    let script = "";
-    const grid = document.getElementById("grid");
-    const cont = document.getElementById("continue");
-    const q = document.getElementById("q");
-    const scriptBox = document.getElementById("scripts");
-    const count = document.getElementById("count");
-
-    function paintContinue() {
-      if (selected) {
-        const c = all.find((x) => x.tag === selected);
-        cont.href = "./course.html?lang=" + encodeURIComponent(selected);
-        cont.textContent = "Continue " + (c ? c.name : selected.toUpperCase());
-        cont.setAttribute("aria-disabled", "false");
-        document.getElementById("pick-title").textContent = "Ready: " + (c ? c.name : selected.toUpperCase());
-        document.getElementById("pick-sub").textContent = "Jump back into your curriculum, or pick a different course above.";
-      }
-    }
-
-    function render() {
-      const term = q.value.trim().toLowerCase();
-      const list = all.filter((x) =>
-        (!term || (x.name + x.nativeName + x.tag).toLowerCase().includes(term)) &&
-        (!script || x.script === script)
-      );
+    let all = [], selected = store.lang;
+    const grid = document.getElementById("grid"), cont = document.getElementById("continue"), q = document.getElementById("q"), f = document.getElementById("f");
+    function paintContinue(){ if(selected){ cont.href="./course.html?lang="+encodeURIComponent(selected); cont.textContent="Continue with "+selected.toUpperCase(); } }
+    function render(){
+      const term = q.value.toLowerCase(), script = f.value;
       grid.innerHTML = "";
-      count.textContent = `${list.length} ${list.length === 1 ? "course" : "courses"}`;
-      if (!list.length) {
-        grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="empty-icon">🔍</div><strong>No matches</strong><p class="muted">Try another language or clear the search.</p></div>`;
-        return;
-      }
-      for (const l of list) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "course-card" + (selected === l.tag ? " is-selected" : "");
-        b.style.setProperty("--cc-accent", accentFor(l.script));
+      for(const l of all.filter(x => (!term || (x.name+x.nativeName+x.tag).toLowerCase().includes(term)) && (!script || x.script===script))){
+        const b=document.createElement("button"); b.type="button";
+        b.className="card card-hover course-card"+(selected===l.tag?" is-selected":"");
         const pct = courseProgress(l);
-        b.innerHTML = `<div class="course-card-top"><span class="course-card-tag">${l.tag.toUpperCase()}</span><span class="pill" style="background:rgba(255,255,255,.22);color:#fff">${levelOf(l)}</span></div><div class="course-card-body"><strong>${l.name} · ${l.nativeName}</strong><span class="muted" style="font-size:14px">${l.words.length} words · ${l.totalLessons} lessons · ${l.minutes || 5} min</span><span class="progress" aria-label="${pct}% mastered"><i style="width:${pct}%"></i></span><span style="font-size:13px;color:var(--muted)">${pct}% mastered · ${selected === l.tag ? "Selected" : "Tap to select"}</span></div>`;
-        b.addEventListener("click", () => { selected = l.tag; setLanguage(l.tag); render(); paintContinue(); });
+        b.innerHTML=`<div class="course-card-top"><span class="course-card-tag">${l.tag.toUpperCase()}</span><span class="pill">${l.level} · ${l.words.length} words</span></div><div class="course-card-body"><strong>${l.name} · ${l.nativeName}</strong><span class="progress" aria-label="${pct}%"><i style="width:${pct}%"></i></span><span style="font-size:13px;color:var(--muted)">${pct}% · ${selected===l.tag?"Selected":"Select"}</span></div>`;
+        b.addEventListener("click",()=>{ selected=l.tag; setLanguage(l.tag); render(); paintContinue(); });
         grid.appendChild(b);
       }
+      if(!grid.children.length) grid.innerHTML="<p>No matches.</p>";
     }
-
-    try {
-      all = await loadLanguages();
-      const scripts = [...new Set(all.map((l) => l.script).filter(Boolean))].sort();
-      scriptBox.innerHTML = `<button type="button" aria-selected="true" data-s="">All</button>` +
-        scripts.map((s) => `<button type="button" aria-selected="false" data-s="${s}">${s}</button>`).join("");
-      scriptBox.addEventListener("click", (e) => {
-        const b = e.target.closest("button[data-s]");
-        if (!b) return;
-        script = b.dataset.s;
-        scriptBox.querySelectorAll("button").forEach((x) => x.setAttribute("aria-selected", x === b ? "true" : "false"));
-        render();
-      });
-      render();
-      paintContinue();
-    } catch {
-      const er = document.getElementById("error");
-      er.hidden = false;
-      er.textContent = "Could not load courses.";
-    }
-    q.addEventListener("input", render);
+    try{ all=await loadLanguages(); render(); paintContinue(); }
+    catch{ const er=document.getElementById("error"); er.hidden=false; er.textContent="Could not load courses."; }
+    q.addEventListener("input",render); f.addEventListener("change",render);
   </script>
 </body>
 </html>
