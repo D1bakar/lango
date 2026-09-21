@@ -1,0 +1,74 @@
+/* Lango v2 design tokens — serious, production-grade. Single source of truth. */
+:root {
+  --font-sans: "Inter", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Sora", "Inter", "Noto Sans JP", system-ui, sans-serif;
+
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --ink: #111827;
+  --body: #1f2937;
+  --muted: #5b6472;
+  --faint: #8a93a3;
+  --line: #e3e6eb;
+  --line-strong: #cbd1d9;
+
+  --brand-50: #eef7f0;
+  --brand-100: #dcf0e1;
+  --brand-600: #178a4c;
+  --brand-700: #116e3c;
+  --brand-900: #0d3b24;
+
+  --accent: #1d4ed8;
+  --warn: #b91c1c;
+  --warn-bg: #fef2f2;
+  --ok-bg: #f0fdf4;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+
+  --t-xs: 12px;
+  --t-sm: 14px;
+  --t-md: 16px;
+  --t-lg: 20px;
+  --t-xl: 24px;
+  --t-2xl: 32px;
+  --t-3xl: 40px;
+  --t-4xl: 56px;
+
+  --shadow-sm: 0 1px 2px rgb(17 24 39 / 0.06);
+  --shadow-md: 0 4px 16px rgb(17 24 39 / 0.08);
+  --shadow-lg: 0 12px 32px rgb(17 24 39 / 0.12);
+
+  --container: 72rem;
+  --header-h: 64px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --dur: 180ms;
+}
+
+[data-theme="dark"] {
+  --bg: #0b0f14;
+  --card: #131a23;
+  --ink: #f1f4f8;
+  --body: #d6dce5;
+  --muted: #9aa4b2;
+  --faint: #6b7482;
+  --line: #232c38;
+  --line-strong: #334052;
+  --brand-100: #123825;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.4);
+}
