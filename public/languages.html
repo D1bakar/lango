@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Choose a Lango course. Saved in your browser." />
+    <title>Languages — Lango</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Nunito", "system-ui", "sans-serif"] },
+            colors: { brand: { 600: "#16a34a", 700: "#15803d" }, ink: "#1f2937", muted: "#6b7280", line: "#e5e7eb", paper: "#f8fafc" },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-paper text-ink">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header class="border-b border-line bg-white">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <a href="./index.html" class="flex items-center gap-2" aria-label="Lango home">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white font-extrabold" aria-hidden="true">L</span>
+          <span class="text-lg font-extrabold tracking-tight">Lango</span>
+        </a>
+        <nav class="flex items-center gap-4 text-sm font-bold" aria-label="Primary">
+          <a href="./index.html" class="hover:underline">Home</a>
+          <a href="./lesson.html" class="hover:underline">Lesson</a>
+          <span id="streak" class="rounded-full border border-line bg-paper px-3 py-1 text-xs text-muted">0 day streak</span>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="mx-auto max-w-3xl px-4 py-10">
+      <h1 class="text-3xl font-extrabold tracking-tight">Choose a course</h1>
+      <p class="mt-2 text-muted">2 beginner courses. Each is 10 words, about 5 minutes. Selection is stored on this device.</p>
+
+      <div id="grid" class="mt-6 grid gap-4" role="list">
+        <p class="text-sm text-muted">Loading courses…</p>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+        <a id="continue" href="./lesson.html" class="pointer-events-none min-h-[48px] inline-flex flex-1 items-center justify-center rounded-xl bg-line px-6 py-3 font-extrabold text-muted transition" aria-disabled="true">Select a course to continue</a>
+        <a href="./index.html" class="min-h-[48px] inline-flex items-center justify-center rounded-xl border border-line bg-white px-6 py-3 font-bold">Back</a>
+      </div>
+      <p id="error" class="mt-3 hidden text-sm text-red-700" role="alert"></p>
+    </main>
+
+    <footer class="border-t border-line bg-white">
+      <div class="mx-auto max-w-5xl px-4 py-6 text-sm text-muted">Progress stays in your browser. <button id="reset" class="font-bold hover:underline">Reset</button></div>
+    </footer>
+
+    <script type="module">
+      import { loadLanguages, loadStore, setLanguage, clearProgress } from "./app.js";
+
+      const store = loadStore();
+      document.getElementById("streak").textContent = store.streak + " day streak";
+      document.getElementById("reset").addEventListener("click", () => {
+        if (confirm("Clear local progress?")) { clearProgress(); location.reload(); }
+      });
+
+      const grid = document.getElementById("grid");
+      const cont = document.getElementById("continue");
+      const err = document.getElementById("error");
+      let selected = store.lang;
+
+      function paintContinue() {
+        if (selected) {
+          cont.href = "./lesson.html?lang=" + encodeURIComponent(selected);
+          cont.className = "min-h-[48px] inline-flex flex-1 items-center justify-center rounded-xl bg-brand-600 px-6 py-3 font-extrabold text-white hover:bg-brand-700 active:scale-95 transition";
+          cont.setAttribute("aria-disabled", "false");
+          cont.textContent = "Continue with " + selected.toUpperCase();
+        }
+      }
+
+      try {
+        const langs = await loadLanguages();
+        grid.innerHTML = "";
+        for (const l of langs) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.setAttribute("role", "listitem");
+          const isSel = selected === l.tag;
+          btn.className = "flex w-full items-center gap-4 rounded-2xl border bg-white p-4 text-left transition hover:shadow-sm " + (isSel ? "border-brand-600 ring-2 ring-brand-600/20" : "border-line");
+          btn.setAttribute("aria-pressed", isSel ? "true" : "false");
+          btn.innerHTML =
+            '<span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-paper border border-line font-extrabold">' + l.tag.toUpperCase() + "</span>" +
+            '<span class="flex-1"><span class="block font-extrabold">' + l.name + ' <span class="text-muted font-bold">• ' + l.nativeName + "</span></span>" +
+            '<span class="block text-sm text-muted">' + l.description + "</span>" +
+            '<span class="mt-1 block text-xs font-bold text-muted">' + l.words.length + " WORDS • " + l.minutes + " MIN • " + l.level.toUpperCase() + "</span></span>" +
+            '<span class="text-sm font-extrabold ' + (isSel ? "text-brand-700" : "text-muted") + '">' + (isSel ? "Selected" : "Select") + "</span>";
+          btn.addEventListener("click", () => {
+            selected = l.tag;
+            setLanguage(l.tag);
+            [...grid.children].forEach((c) => {
+              c.className = "flex w-full items-center gap-4 rounded-2xl border bg-white p-4 text-left transition hover:shadow-sm border-line";
+              c.setAttribute("aria-pressed", "false");
+              c.lastChild.textContent = "Select";
+              c.lastChild.className = "text-sm font-extrabold text-muted";
+            });
+            btn.className = "flex w-full items-center gap-4 rounded-2xl border bg-white p-4 text-left transition hover:shadow-sm border-brand-600 ring-2 ring-brand-600/20";
+            btn.setAttribute("aria-pressed", "true");
+            btn.lastChild.textContent = "Selected";
+            btn.lastChild.className = "text-sm font-extrabold text-brand-700";
+            paintContinue();
+          });
+          grid.appendChild(btn);
+        }
+        paintContinue();
+        if (!langs.length) {
+          grid.innerHTML = '<p class="text-sm text-muted">No courses yet.</p>';
+        }
+      } catch (e) {
+        grid.innerHTML = "";
+        err.textContent = "Could not load courses. Make sure public/data/languages.json exists.";
+        err.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
