@@ -12,7 +12,7 @@ function defaultStore() {
     lastDay: null,
     done: {},
     mastery: {},
-    settings: { theme: "system", goal: 50, tts: true, ttsRate: 1 },
+    settings: { theme: "light", goal: 50, tts: true, ttsRate: 1 },
   };
 }
 

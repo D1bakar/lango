@@ -22,7 +22,7 @@ const NAV = [
 export function mountShell(opts = {}) {
   const { active = "", layout = "wide" } = opts;
   const store = loadStore();
-  applyTheme(store.settings?.theme || "system");
+  applyTheme(store.settings?.theme || "light");
 
   const shell = document.getElementById("shell");
   if (shell) {
@@ -68,10 +68,7 @@ export function mountShell(opts = {}) {
 
 export function applyTheme(theme) {
   const root = document.documentElement;
-  if (theme === "system") {
-    const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    root.setAttribute("data-theme", dark ? "dark" : "light");
-  } else {
-    root.setAttribute("data-theme", theme);
-  }
+  // Light theme locked.
+  root.setAttribute("data-theme", "light");
+  root.style.colorScheme = "light";
 }
