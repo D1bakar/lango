@@ -1,4 +1,8 @@
-/* Lango v1 tokens. Tailwind handles layout. This file holds base + a11y. */
+/* Lango v2 legacy shim — new system lives in css/. This file keeps old pages working. */
+@import url("./css/fonts.css");
+@import url("./css/tokens.css");
+@import url("./css/base.css");
+@import url("./css/components.css");
 
 :root {
   --bg: #f8fafc;
@@ -19,7 +23,7 @@ html {
 }
 
 body {
-  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Inter", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--body);
   margin: 0;
