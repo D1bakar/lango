@@ -1,32 +1,38 @@
-/* Lango v2 design tokens — serious, production-grade. Single source of truth. */
+/* Lango Apple x Codingo tokens — Apple neutral, Codingo IA. */
 :root {
   --font-sans: "Inter", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Sora", "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --font-display: "Inter", "Sora", "Noto Sans JP", system-ui, -apple-system, sans-serif;
 
-  --bg: #f6f7f9;
+  --bg: #f5f5f7;
   --card: #ffffff;
-  --ink: #111827;
-  --body: #1f2937;
-  --muted: #5b6472;
-  --faint: #8a93a3;
-  --line: #e3e6eb;
-  --line-strong: #cbd1d9;
+  --ink: #1d1d1f;
+  --body: #3a3a3c;
+  --muted: #6e6e73;
+  --faint: #aeaeb2;
+  --line: #e8e8ed;
+  --line-strong: #d2d2d7;
+  --sep: #e8e8ed;
+
+  --apple-blue: #0071e3;
+  --apple-blue-dark: #0077ed;
+  --apple-blue-bg: #e8f2fd;
 
   --brand-50: #eef7f0;
-  --brand-100: #dcf0e1;
-  --brand-600: #178a4c;
-  --brand-700: #116e3c;
+  --brand-100: #e6f4ea;
+  --brand-600: #1a8737;
+  --brand-700: #146c2e;
   --brand-900: #0d3b24;
 
-  --accent: #1d4ed8;
+  --accent: var(--apple-blue);
   --warn: #b91c1c;
   --warn-bg: #fef2f2;
   --ok-bg: #f0fdf4;
 
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 16px;
-  --r-xl: 20px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-apple: 20px;
 
   --s-1: 4px;
   --s-2: 8px;
@@ -48,26 +54,29 @@
   --t-3xl: 40px;
   --t-4xl: 56px;
 
-  --shadow-sm: 0 1px 2px rgb(17 24 39 / 0.06);
-  --shadow-md: 0 4px 16px rgb(17 24 39 / 0.08);
-  --shadow-lg: 0 12px 32px rgb(17 24 39 / 0.12);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.12);
 
-  --container: 72rem;
+  --container: 75rem;
   --header-h: 64px;
+  --nav-blur: saturate(180%) blur(20px);
 
-  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
-  --dur: 180ms;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --dur: 220ms;
 }
 
 [data-theme="dark"] {
-  --bg: #0b0f14;
-  --card: #131a23;
-  --ink: #f1f4f8;
-  --body: #d6dce5;
-  --muted: #9aa4b2;
-  --faint: #6b7482;
-  --line: #232c38;
-  --line-strong: #334052;
+  --bg: #000000;
+  --card: #1c1c1e;
+  --ink: #f5f5f7;
+  --body: #d6d6d9;
+  --muted: #98989f;
+  --faint: #6e6e73;
+  --line: #2c2c2e;
+  --line-strong: #3a3a3c;
+  --apple-blue: #2997ff;
+  --apple-blue-bg: #0a2540;
   --brand-100: #123825;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 16px rgb(0 0 0 / 0.4);
