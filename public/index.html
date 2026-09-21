@@ -3,14 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Lango — 22 beginner courses, structured units and lessons. Frontend-only, offline, no account." />
-  <meta property="og:title" content="Lango — Become conversational, 5 minutes at a time" />
-  <meta property="og:description" content="22 courses incl. Japanese. Flashcards, typing, listening, SRS review. Progress stays in your browser." />
-  <meta property="og:type" content="website" />
-  <title>Lango — Learn 10 words a day</title>
+  <meta name="description" content="Lango — 22 courses, learning path, real lessons in your browser. Frontend-only, offline." />
+  <meta property="og:title" content="Lango — Small lessons. Real language." />
+  <meta name="theme-color" content="#f5f5f7" />
+  <title>Lango — Small lessons. Real language.</title>
   <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="./manifest.webmanifest" />
-  <meta name="theme-color" content="#111827" />
   <link rel="stylesheet" href="./css/fonts.css" />
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
@@ -19,63 +17,94 @@
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <div class="utility-bar"><div class="container"><p><strong>FRONTEND-ONLY</strong> · NO ACCOUNT · 22 COURSES · OFFLINE READY</p><nav class="nav" aria-label="Utility"><a href="./languages.html">Courses</a><a href="./review.html">Review</a><a href="./stats.html">Stats</a></nav></div></div>
   <header class="site-header"><div class="container site-header-inner">
-    <a href="./index.html" class="brand" aria-label="Lango home"><span class="brand-mark" aria-hidden="true">L</span><span><span class="brand-name">Lango</span><br /><span class="brand-sub">Learn 10 words a day</span></span></a>
-    <nav class="nav" aria-label="Primary"><a data-nav="courses" href="./languages.html">Courses</a><a data-nav="review" class="hide-sm" href="./review.html">Review</a><a data-nav="stats" class="hide-sm" href="./stats.html">Stats</a><a data-nav="settings" class="hide-sm" href="./settings.html">Settings</a><span class="pill" data-streak>0 day streak</span><a href="./welcome.html" class="btn btn-primary" style="min-height:44px;padding:8px 18px">Start learning</a></nav>
+    <a href="./index.html" class="brand" aria-label="Lango home"><span class="brand-mark" aria-hidden="true">L</span><span><span class="brand-name">Lango</span></span></a>
+    <nav class="nav" aria-label="Primary"><a href="./languages.html">Courses</a><a class="hide-sm" href="./course.html?lang=ja">Path</a><a class="hide-sm" href="./review.html">Review</a><a class="hide-sm" href="./stats.html">Stats</a><span class="pill" data-streak>0 day streak</span></nav>
   </div></header>
 
   <main id="main" class="container">
+    <!-- Hero (Codingo Hero, Apple voice) -->
     <section class="hero">
-      <div>
-        <p class="eyebrow">Spanish · Japanese · French + 19 more · Beginner</p>
-        <h1>Become conversational,<br />5 minutes at a time.</h1>
-        <p style="margin-top:12px;color:var(--muted);font-size:18px">Structured units like Duolingo, but calmer: learn 8–10 words, type them, hear them, prove them. XP, streak and mastery stored only on this device.</p>
-        <div class="hero-cta"><a href="./languages.html" class="btn btn-primary">Choose your course</a><a href="./course.html?lang=ja" class="btn btn-dark">Try Japanese now</a><a href="./welcome.html" class="btn btn-ghost">How it works</a></div>
-        <ul style="margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px;font-weight:600;list-style:none;padding:0"><li>✓ No account</li><li>✓ Works offline</li><li>✓ Free forever</li></ul>
-      </div>
-      <div class="stack">
-        <article class="card" style="background:var(--ink);color:#fff;border-color:transparent"><p class="eyebrow" style="color:rgb(255 255 255/0.6)">Today's lesson · JA 01 · 5 cards + typing + quiz</p><p style="margin-top:12px;font-size:13px;color:rgb(255 255 255/0.6);font-weight:700">FRONT</p><p style="font-family:var(--font-display);font-size:40px;font-weight:800">Hello</p><p style="margin-top:8px;background:rgb(255 255 255/0.1);border-radius:12px;padding:12px 14px;font-size:14px">Tap Reveal in the lesson to see <strong>こんにちは (konnichiwa)</strong> — then type it and prove it.</p><a href="./lesson.html?lang=ja" class="btn" style="margin-top:12px;background:#fff;color:var(--ink);width:100%">Open Japanese lesson</a></article>
-        <div class="grid-3"><div class="card" style="text-align:center"><p style="font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--ink)">22</p><p class="eyebrow">Courses</p></div><div class="card" style="text-align:center"><p style="font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--ink)">5</p><p class="eyebrow">Min / lesson</p></div><div class="card" style="text-align:center"><p style="font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--ink)" data-xp>0 XP</p><p class="eyebrow">On device</p></div></div>
+      <p class="eyebrow">22 courses · Japanese · Spanish · French · +19</p>
+      <h1>Small lessons.<br />Real language.</h1>
+      <p class="hero-sub">Follow the path. Five minutes a day — flashcards, typing, listening, quiz. No account. Progress stays on this device.</p>
+      <div class="hero-cta"><a href="./languages.html" class="btn btn-primary">Get started</a><a href="./course.html?lang=ja" class="btn btn-ghost">Try Japanese</a></div>
+      <p style="margin-top:16px;color:var(--muted);font-size:14px">Free forever · Offline after first load · <span data-xp>0 XP</span> on this device</p>
+      <div class="card" style="margin-top:32px;text-align:left;display:grid;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><strong>Today · JA 01 Greetings</strong><span class="pill">5 cards + quiz</span></div>
+        <div style="display:flex;gap:12px;align-items:center"><span style="font-size:32px;font-weight:700;letter-spacing:-0.03em">Hello → こんにちは</span></div>
+        <div class="progress"><i style="width:20%"></i></div>
+        <div><a href="./lesson.html?lang=ja" class="btn btn-apple" style="width:100%">Continue lesson</a></div>
       </div>
     </section>
 
+    <!-- Features (Codingo Features) -->
+    <section style="padding-block:48px" aria-labelledby="feat-h">
+      <h2 id="feat-h" style="text-align:center">Learn by doing.</h2>
+      <p style="text-align:center;color:var(--muted);margin-top:8px">Four modes in every lesson. Just like class, minus the classroom.</p>
+      <div class="grid-3" style="margin-top:24px" id="modes">
+        <a class="card card-hover tile" href="./lesson.html?lang=ja"><span class="tile-icon" aria-hidden="true">◍</span><span><strong>Flashcards</strong><br /><span style="color:var(--muted);font-size:14px">See it. Say it. Flip it.</span></span></a>
+        <a class="card card-hover tile" href="./lesson.html?lang=ja"><span class="tile-icon" aria-hidden="true">⌨</span><span><strong>Type it</strong><br /><span style="color:var(--muted);font-size:14px">Tolerant check, romaji OK.</span></span></a>
+        <a class="card card-hover tile" href="./lesson.html?lang=ja"><span class="tile-icon" aria-hidden="true">♪</span><span><strong>Hear it</strong><br /><span style="color:var(--muted);font-size:14px">Native TTS voices.</span></span></a>
+      </div>
+    </section>
+
+    <!-- Learning path (Codingo LearningPath) -->
+    <section style="padding-block:24px" aria-labelledby="path-h">
+      <div style="display:flex;justify-content:space-between;align-items:end"><div><p class="eyebrow">Learning path</p><h2 id="path-h">Basics 1. Five steps.</h2></div><a href="./course.html?lang=ja" style="color:var(--apple-blue);font-weight:600">Open curriculum</a></div>
+      <div class="card path" id="path-preview" style="margin-top:16px"><p style="color:var(--muted)">Loading path…</p></div>
+    </section>
+
+    <!-- Courses -->
     <section style="padding-block:24px" aria-labelledby="courses-h">
-      <div style="display:flex;justify-content:space-between;align-items:end;gap:12px"><div><p class="eyebrow">Courses</p><h2 id="courses-h">Start with one. Finish it today.</h2></div><a href="./languages.html" style="font-weight:700">View all 22 →</a></div>
-      <div id="lang-grid" class="grid-2" style="margin-top:16px"><p style="color:var(--muted)">Loading courses…</p></div>
+      <div style="display:flex;justify-content:space-between;align-items:end"><h2 id="courses-h">Start with one.</h2><a href="./languages.html" style="color:var(--apple-blue);font-weight:600">All 22</a></div>
+      <div id="lang-grid" class="grid-2" style="margin-top:16px"><p>Loading…</p></div>
     </section>
 
-    <section class="grid-2" style="padding-block:24px">
-      <article class="card" style="background:var(--ink);color:#fff;border-color:transparent"><p class="eyebrow" style="color:rgb(255 255 255/0.6)">For self-learners</p><h3 style="color:#fff;margin-top:8px">One lesson a day beats one hour a month.</h3><ul style="margin-top:12px;font-size:14px;color:rgb(255 255 255/0.8);line-height:1.8"><li>• Flashcards → typing → listening → quiz</li><li>• Streak counts days you finish</li><li>• Review inbox resurfaces weak words</li></ul><a href="./review.html" class="btn" style="margin-top:16px;background:#fff;color:var(--ink)">Open review inbox</a></article>
-      <article class="card"><p class="eyebrow">For classrooms</p><h3 style="margin-top:8px">Project it. Drill it. Done in 5 minutes.</h3><ul style="margin-top:12px;font-size:14px;color:var(--muted);line-height:1.8"><li>• No login, no student data leaves the room</li><li>• Same words for everyone — quiz aloud</li><li>• Static files: run from any laptop</li></ul><a href="./languages.html" class="btn btn-dark" style="margin-top:16px">Browse 22 courses</a></article>
+    <!-- Stats (Codingo Stats) -->
+    <section style="padding-block:24px" aria-labelledby="stats-h">
+      <h2 id="stats-h" style="text-align:center">Proof, not promises.</h2>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card" style="text-align:center"><p style="font-size:32px;font-weight:700" data-xp>0 XP</p><p class="eyebrow">Earned here</p></div>
+        <div class="card" style="text-align:center"><p style="font-size:32px;font-weight:700" data-streak>0 day streak</p><p class="eyebrow">Streak</p></div>
+        <div class="card" style="text-align:center"><p style="font-size:32px;font-weight:700">22</p><p class="eyebrow">Courses offline</p></div>
+      </div>
+      <p style="text-align:center;margin-top:12px"><a href="./stats.html" style="color:var(--apple-blue)">See your stats</a> · <a href="./review.html" style="color:var(--apple-blue)">Review weak words</a></p>
     </section>
 
-    <section style="padding-block:24px" id="how"><p class="eyebrow">How it works</p><h2>Learn → Produce → Keep.</h2><div class="grid-3" style="margin-top:16px"><article class="card"><p style="font-family:var(--font-display);font-weight:800">01 — Learn</p><p style="color:var(--muted);font-size:14px">Flip 5 cards. Say each out loud. Roman + example included for Japanese, Korean, Chinese.</p></article><article class="card"><p style="font-family:var(--font-display);font-weight:800">02 — Produce</p><p style="color:var(--muted);font-size:14px">Type the translation, hear it with TTS, then 5-question check with instant feedback.</p></article><article class="card"><p style="font-family:var(--font-display);font-weight:800">03 — Keep</p><p style="color:var(--muted);font-size:14px">+10 XP per correct. Weak words (mastery &lt; 4) return in Review until they stick.</p></article></div></section>
-
-    <section id="faq" class="card" style="margin-block:24px"><h2>Questions, answered.</h2><div style="margin-top:12px;display:grid;gap:8px"><details><summary style="font-weight:700;cursor:pointer">Do I need an account?</summary><p style="color:var(--muted);font-size:14px">No. Progress is localStorage key lango.v2. Export it in Settings if you switch devices.</p></details><details><summary style="font-weight:700;cursor:pointer">Does it work offline?</summary><p style="color:var(--muted);font-size:14px">Yes after first load — service worker caches shell + 22 course files.</p></details><details><summary style="font-weight:700;cursor:pointer">How is Japanese taught?</summary><p style="color:var(--muted);font-size:14px">Kana/kanji + romaji + TTS voice ja-JP. Typing accepts romaji-tolerant matches.</p></details></div></section>
+    <!-- CTA quiet -->
+    <section class="card" style="margin-block:32px;text-align:center;padding:48px 28px">
+      <h2>Begin with Japanese today.</h2>
+      <p style="color:var(--muted);margin-top:8px">One lesson. Five minutes. No signup.</p>
+      <p style="margin-top:16px"><a href="./welcome.html" class="btn btn-apple">Get started</a></p>
+    </section>
   </main>
 
-  <footer class="site-footer"><div class="container" style="display:grid;gap:24px;padding-block:40px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div><p style="font-weight:800">Lango</p><p style="color:rgb(255 255 255/0.6);font-size:14px">Short daily lessons in your browser.</p><p style="margin-top:8px;font-size:14px"><span data-xp>0 XP</span> · <span data-streak>0 day streak</span></p></div><nav aria-label="Learn"><p class="eyebrow" style="color:rgb(255 255 255/0.5)">Learn</p><p><a href="./languages.html">All courses</a><br /><a href="./course.html?lang=ja">Japanese</a><br /><a href="./review.html">Review</a></p></nav><nav aria-label="Product"><p class="eyebrow" style="color:rgb(255 255 255/0.5)">Product</p><p><a href="./stats.html">Stats</a><br /><a href="./settings.html">Settings</a><br /><a href="./welcome.html">Onboarding</a></p></nav></div></footer>
+  <footer class="site-footer"><div class="container" style="display:grid;gap:24px;padding-block:40px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));font-size:14px"><div><strong style="color:var(--ink)">Lango</strong><p>Short lessons in your browser.</p></div><nav aria-label="Learn"><strong style="color:var(--ink)">Learn</strong><br /><a href="./languages.html">All courses</a><br /><a href="./course.html?lang=ja">Path</a><br /><a href="./review.html">Review</a></nav><nav aria-label="Product"><strong style="color:var(--ink)">Product</strong><br /><a href="./stats.html">Stats</a><br /><a href="./words.html">Wordbook</a><br /><a href="./settings.html">Settings</a></nav></div></footer>
 
   <script type="module">
     import { loadLanguages } from "./js/loader.js";
-    import { loadStore } from "./js/store.js";
     import { mountShell } from "./js/shell.js";
-    mountShell({ active: "" });
+    mountShell({});
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(()=>{});
-    const grid = document.getElementById("lang-grid");
     try {
-      const langs = (await loadLanguages()).slice(0, 4);
-      grid.innerHTML = "";
-      for (const l of langs) {
-        const a = document.createElement("a");
-        a.href = "./course.html?lang=" + encodeURIComponent(l.tag);
-        a.className = "card card-hover course-card";
-        a.style.textDecoration = "none";
-        a.innerHTML = `<div class="course-card-top"><span class="course-card-tag">${l.tag.toUpperCase()}</span><span class="pill">${l.level} · ${l.words.length} words</span></div><div class="course-card-body"><strong style="color:var(--ink)">${l.name} · ${l.nativeName}</strong><span style="color:var(--muted);font-size:14px">${l.description||""}</span></div>`;
+      const langs = await loadLanguages();
+      const ja = langs.find(l=>l.tag==="ja") || langs[0];
+      const path = document.getElementById("path-preview");
+      path.innerHTML = "";
+      const lessons = (ja.units?.[0]?.lessons || []).slice(0,5);
+      lessons.forEach((l,i)=>{
+        const d=document.createElement("div"); d.className="path-node"+(i===0?" is-done":"");
+        d.innerHTML=`<span class="path-dot">${i===0?"✓":i+1}</span><span><strong>${l.title}</strong><br/><span style="color:var(--muted);font-size:14px">${(l.words||[]).slice(0,3).map(w=>w.back).join(" · ")} · <a style="color:var(--apple-blue)" href="./lesson.html?lang=${ja.tag}&lesson=${encodeURIComponent(l.id)}">Start</a></span></span>`;
+        path.appendChild(d);
+      });
+      const grid=document.getElementById("lang-grid"); grid.innerHTML="";
+      for(const l of langs.slice(0,4)){
+        const a=document.createElement("a"); a.href="./course.html?lang="+encodeURIComponent(l.tag); a.className="card card-hover"; a.style.textDecoration="none";
+        a.innerHTML=`<strong>${l.name} <span style="color:var(--muted);font-weight:400">· ${l.nativeName}</span></strong><p style="color:var(--muted);font-size:14px">${l.words.length} words · ${l.totalLessons} lessons</p>`;
         grid.appendChild(a);
       }
-    } catch { grid.innerHTML = "<p>Could not load courses.</p>"; }
+    } catch { }
   </script>
 </body>
 </html>
